@@ -19,13 +19,13 @@ def normalize_hex(code, prefix = True):
 
     lowered = code.lower()
 
-    if prefix == (lowered.find('#') == 0):
+    if prefix == lowered.startswith('#'):
         return lowered
 
     return '#' + lowered if prefix else lowered[1:]
 
 def __remove_head_sharp(hex_code):
-    if hex_code.find('#') == 0:
+    if hex_code.startswith('#'):
         return hex_code[1:]
 
     return hex_code
