@@ -27,14 +27,13 @@ def normalize_hex(code, prefix = True):
     return '#' + lowered if prefix else lowered[1:]
 
 def hsl_to_rgb(hsl):
-    h, s, l = map(lambda c: c[0] / c[1], zip(hsl, (360.0, 100.0, 100.0)))
+    h, s, l = (c / u for (c, u) in zip(hsl, (360.0, 100.0, 100.0)))
 
     m2 = l * (s + 1) if l <= 0.5 else l + s - l * s
     m1 = l * 2 - m2
 
     adjusted_h = (h + 1 / 3.0, h, h - 1 / 3.0)
-    return list(map(lambda ah: round(__hue_to_rgb(m1, m2, ah) * 255),
-                    adjusted_h))
+    return [round(__hue_to_rgb(m1, m2, ah) * 255) for ah in adjusted_h]
 
 def __hue_to_rgb(m1, m2, h):
     if h < 0:
