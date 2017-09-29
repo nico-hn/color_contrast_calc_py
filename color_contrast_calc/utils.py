@@ -1,4 +1,4 @@
-# Utiity functions that provide basic operations on colors given as color codes
+# Utility functions that provide basic operations on colors given as color codes
 
 def hex_to_rgb(hex_code):
     if hex_code.find('#') == 0:
