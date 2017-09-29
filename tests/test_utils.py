@@ -65,3 +65,19 @@ class TestUtils(unittest.TestCase):
                          [0, 255, 0])
         self.assertEqual(utils.hsl_to_rgb([240, 100, 50]),
                          [0, 0, 255])
+
+    def test_hsl_to_hex(self):
+        self.assertEqual(utils.hsl_to_hex([0, 100, 50]),
+                         '#ff0000')
+        self.assertEqual(utils.hsl_to_hex([30, 100, 50]),
+                         '#ff8000')
+        self.assertEqual(utils.hsl_to_hex([60, 100, 50]),
+                         '#ffff00')
+        self.assertEqual(utils.hsl_to_hex([120, 100, 50]),
+                         '#00ff00')
+        self.assertEqual(utils.hsl_to_hex([240, 100, 50]),
+                         '#0000ff')
+        self.assertEqual(utils.hsl_to_hex([83.653, 100, 59.215]),
+                         '#adff2f')
+        self.assertEqual(utils.hsl_to_hex([0, 53, 58.2352]),
+                         '#cd5c5c')

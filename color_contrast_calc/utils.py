@@ -52,3 +52,6 @@ def __remove_head_sharp(hex_code):
         return hex_code[1:]
 
     return hex_code
+
+def hsl_to_hex(hsl):
+    return rgb_to_hex(hsl_to_rgb(hsl))
