@@ -24,6 +24,29 @@ def normalize_hex(code, prefix = True):
 
     return '#' + lowered if prefix else lowered[1:]
 
+def hsl_to_rgb(hsl):
+    h, s, l = map(lambda c: c[0] / c[1], zip(hsl, (360.0, 100.0, 100.0)))
+
+    m2 = l * (s + 1) if l <= 0.5 else l + s - l * s
+    m1 = l * 2 - m2
+
+    adjusted_h = (h + 1 / 3.0, h, h - 1 / 3.0)
+    return list(map(lambda ah: round(__hue_to_rgb(m1, m2, ah) * 255),
+                    adjusted_h))
+
+def __hue_to_rgb(m1, m2, h):
+    if h < 0:
+        h += 1
+    if h > 1:
+        h -= 1
+    if h * 6 < 1:
+        return m1 + (m2 - m1) * h * 6
+    if h * 2 < 1:
+        return m2
+    if h * 3 < 2:
+        return m1 + (m2 - m1) * (2 / 3.0 - h) * 6
+    return m1
+
 def __remove_head_sharp(hex_code):
     if hex_code.startswith('#'):
         return hex_code[1:]

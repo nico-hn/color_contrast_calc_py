@@ -53,3 +53,15 @@ class TestUtils(unittest.TestCase):
                          'ffa500')
         self.assertEqual(utils.normalize_hex('fa0', False),
                          'ffaa00')
+
+    def test_hsl_to_rgb(self):
+        self.assertEqual(utils.hsl_to_rgb([0, 100, 50]),
+                         [255, 0, 0])
+        self.assertEqual(utils.hsl_to_rgb([30, 100, 50]),
+                         [255, 128, 0])
+        self.assertEqual(utils.hsl_to_rgb([60, 100, 50]),
+                         [255, 255, 0])
+        self.assertEqual(utils.hsl_to_rgb([120, 100, 50]),
+                         [0, 255, 0])
+        self.assertEqual(utils.hsl_to_rgb([240, 100, 50]),
+                         [0, 0, 255])
