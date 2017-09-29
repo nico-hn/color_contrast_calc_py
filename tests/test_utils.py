@@ -26,3 +26,30 @@ class TestUtils(unittest.TestCase):
                          '#ffa500')
         self.assertEqual(utils.rgb_to_hex([0, 0, 0]),
                          '#000000')
+
+    def test_normalize_hex(self):
+        self.assertEqual(utils.normalize_hex('#ffa500'),
+                         '#ffa500')
+        self.assertEqual(utils.normalize_hex('#FFA500'),
+                         '#ffa500')
+        self.assertEqual(utils.normalize_hex('#fa0'),
+                         '#ffaa00')
+        self.assertEqual(utils.normalize_hex('ffa500'),
+                         '#ffa500')
+        self.assertEqual(utils.normalize_hex('FFA500'),
+                         '#ffa500')
+        self.assertEqual(utils.normalize_hex('fa0'),
+                         '#ffaa00')
+
+        self.assertEqual(utils.normalize_hex('#ffa500', False),
+                         'ffa500')
+        self.assertEqual(utils.normalize_hex('#FFA500', False),
+                         'ffa500')
+        self.assertEqual(utils.normalize_hex('#fa0', False),
+                         'ffaa00')
+        self.assertEqual(utils.normalize_hex('ffa500', False),
+                         'ffa500')
+        self.assertEqual(utils.normalize_hex('FFA500', False),
+                         'ffa500')
+        self.assertEqual(utils.normalize_hex('fa0', False),
+                         'ffaa00')
