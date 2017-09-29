@@ -1,5 +1,7 @@
 # Utility functions that provide basic operations on colors given as color codes
 
+from functools import reduce
+
 def hex_to_rgb(hex_code):
     hex_part = __remove_head_sharp(hex_code)
 
@@ -55,3 +57,39 @@ def __remove_head_sharp(hex_code):
 
 def hsl_to_hex(hsl):
     return rgb_to_hex(hsl_to_rgb(hsl))
+
+def rgb_to_hsl(rgb):
+    return [__rgb_to_hue(rgb),
+            __rgb_to_saturation(rgb) * 100,
+            __rgb_to_lightness(rgb) * 100]
+
+def __rgb_to_lightness(rgb):
+    return (max(rgb) + min(rgb)) / 510.0
+
+def __rgb_to_saturation(rgb):
+    min_c = min(rgb)
+    max_c = max(rgb)
+
+    if min_c == max_c:
+        return 0
+
+    d = float(max_c - min_c)
+
+    if __rgb_to_lightness(rgb) <= 0.5:
+        return d / (max_c + min_c)
+    else:
+        return d / (510 - max_c - min_c)
+
+def __rgb_to_hue(rgb):
+    min_c = min(rgb)
+    max_c = max(rgb)
+
+    if min_c == max_c:
+        return 0
+
+    d = float(max_c - min_c)
+
+    mi = reduce(lambda m, c: m if rgb[m] > c[1] else c[0], enumerate(rgb), 0)
+    h = mi * 120 + (rgb[(mi + 1) % 3] - rgb[(mi + 2) % 3]) * 60 / d
+
+    return h + 360 if h < 0 else h

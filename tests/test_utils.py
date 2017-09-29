@@ -81,3 +81,42 @@ class TestUtils(unittest.TestCase):
                          '#adff2f')
         self.assertEqual(utils.hsl_to_hex([0, 53, 58.2352]),
                          '#cd5c5c')
+
+    def test_rgb_to_hsl(self):
+        hsl = utils.rgb_to_hsl([255, 0, 0])
+        expected = [0, 100, 50]
+        self.assertEqual(hsl, expected)
+
+        hsl = utils.rgb_to_hsl([255, 255, 0])
+        expected = [60, 100, 50]
+        self.assertEqual(hsl, expected)
+
+        hsl = utils.rgb_to_hsl([0, 255, 0])
+        expected = [120, 100, 50]
+        self.assertEqual(hsl, expected)
+
+        hsl = utils.rgb_to_hsl([0, 128, 0])
+        expected = [120, 100, 25]
+        for i, c in enumerate(expected):
+            self.assertAlmostEqual(hsl[i], c, 0)
+
+        hsl = utils.rgb_to_hsl([0, 255, 255])
+        expected = [180, 100, 50]
+        self.assertEqual(hsl, expected)
+
+        hsl = utils.rgb_to_hsl([0, 128, 128])
+        expected = [180, 100, 25]
+        for i, c in enumerate(expected):
+            self.assertAlmostEqual(hsl[i], c, 0)
+
+        hsl = utils.rgb_to_hsl([0, 0, 255])
+        expected = [240, 100, 50]
+        self.assertEqual(hsl, expected)
+
+        hsl = utils.rgb_to_hsl([0, 0, 0])
+        expected = [0, 0, 0]
+        self.assertEqual(hsl, expected)
+
+        hsl = utils.rgb_to_hsl([255, 255, 255])
+        expected = [0, 0, 100]
+        self.assertEqual(hsl, expected)
