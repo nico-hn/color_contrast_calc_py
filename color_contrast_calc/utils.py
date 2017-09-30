@@ -95,3 +95,9 @@ def _rgb_to_hue(rgb):
 
 def hex_to_hsl(hex_code):
     return rgb_to_hsl(hex_to_rgb(hex_code))
+
+def is_valid_rgb(rgb):
+    return len(rgb) == 3 and all(_valid_rgb_component(c) for c in rgb)
+
+def _valid_rgb_component(c):
+    return isinstance(c, int) and c >= 0 and c <= 255

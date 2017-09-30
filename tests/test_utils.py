@@ -130,3 +130,11 @@ class TestUtils(unittest.TestCase):
         for hex in hex_colors:
             hsl = utils.hex_to_hsl(hex)
             self.assertEqual(utils.hsl_to_hex(hsl), hex)
+
+    def test_is_valid_rgb(self):
+        self.assertEqual(utils.is_valid_rgb((255, 165, 0)), True)
+        self.assertEqual(utils.is_valid_rgb((256, 165, 0)), False)
+        self.assertEqual(utils.is_valid_rgb((165, 256, 0)), False)
+        self.assertEqual(utils.is_valid_rgb((255, 165, -1)), False)
+        self.assertEqual(utils.is_valid_rgb((255, 165)), False)
+        self.assertEqual(utils.is_valid_rgb((255, 165.5, 0)), False)
