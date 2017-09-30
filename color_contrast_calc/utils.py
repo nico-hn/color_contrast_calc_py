@@ -92,3 +92,6 @@ def __rgb_to_hue(rgb):
     h = mi * 120 + (rgb[(mi + 1) % 3] - rgb[(mi + 2) % 3]) * 60 / d
 
     return h + 360 if h < 0 else h
+
+def hex_to_hsl(hex_code):
+    return rgb_to_hsl(hex_to_rgb(hex_code))

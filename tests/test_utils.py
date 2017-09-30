@@ -120,3 +120,13 @@ class TestUtils(unittest.TestCase):
         hsl = utils.rgb_to_hsl([255, 255, 255])
         expected = [0, 0, 100]
         self.assertEqual(hsl, expected)
+
+    def test_hex_to_hsl(self):
+        hsl = utils.hex_to_hsl('#ff0000')
+        expected = [0, 100, 50]
+        self.assertEqual(hsl, expected)
+
+        hex_colors = ['#ffffff', '#808080', '#d2691e', '#cd5c5c', '#adff2f']
+        for hex in hex_colors:
+            hsl = utils.hex_to_hsl(hex)
+            self.assertEqual(utils.hsl_to_hex(hsl), hex)
