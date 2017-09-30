@@ -151,3 +151,15 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.is_valid_hsl((60, 100, -1)), False)
         self.assertEqual(utils.is_valid_hsl((60, 100, 101)), False)
         self.assertEqual(utils.is_valid_hsl(('60', 100, 101)), False)
+
+    def test_is_valid_hex(self):
+        self.assertEqual(utils.is_valid_hex('#ffa500'), True)
+        self.assertEqual(utils.is_valid_hex('#FFA500'), True)
+        self.assertEqual(utils.is_valid_hex('ffa500'), True)
+        self.assertEqual(utils.is_valid_hex('#999999'), True)
+        self.assertEqual(utils.is_valid_hex('#ff0'), True)
+        self.assertEqual(utils.is_valid_hex('ff0'), True)
+        self.assertEqual(utils.is_valid_hex('#101a500'), False)
+        self.assertEqual(utils.is_valid_hex('#fga500'), False)
+        self.assertEqual(utils.is_valid_hex('#faf0'), False)
+        self.assertEqual(utils.is_valid_hex('#fga'), False)
