@@ -33,7 +33,7 @@ def hsl_to_rgb(hsl):
     m1 = l * 2 - m2
 
     adjusted_h = (h + 1 / 3.0, h, h - 1 / 3.0)
-    return [round(__hue_to_rgb(m1, m2, ah) * 255) for ah in adjusted_h]
+    return tuple(round(__hue_to_rgb(m1, m2, ah) * 255) for ah in adjusted_h)
 
 def __hue_to_rgb(m1, m2, h):
     if h < 0:
