@@ -163,3 +163,17 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.is_valid_hex('#fga500'), False)
         self.assertEqual(utils.is_valid_hex('#faf0'), False)
         self.assertEqual(utils.is_valid_hex('#fga'), False)
+
+    def test_is_same_hex_color(self):
+        upper_yellow = '#FFFF00'
+        lower_yellow = '#ffff00'
+        short_yellow = '#ff0'
+        red = '#ff0000'
+
+        self.assertEqual(utils.is_same_hex_color(upper_yellow,
+                                                 lower_yellow), True)
+        self.assertEqual(utils.is_same_hex_color(lower_yellow,
+                                                 short_yellow), True)
+        self.assertEqual(utils.is_same_hex_color(lower_yellow,
+                                                 red), False)
+

@@ -120,3 +120,6 @@ def is_valid_hsl(hsl):
 
 def is_valid_hex(hex_code):
     return _HEX_RE.match(hex_code) is not None
+
+def is_same_hex_color(hex1, hex2):
+    return normalize_hex(hex1) == normalize_hex(hex2)
