@@ -2,6 +2,11 @@
 
 from . import utils
 
+class WCAGLevel:
+    A = 'A'
+    AA = 'AA'
+    AAA = 'AAA'
+
 def relative_luminance(rgb):
     if isinstance(rgb, str):
         rgb = utils.hex_to_rgb(rgb)
@@ -25,3 +30,13 @@ def contrast_ratio(color1, color2):
 def luminance_to_contrast_ratio(luminance1, luminance2):
     (l1, l2) = sorted((luminance1, luminance2), reverse = True)
     return (l1 + 0.05) / (l2 + 0.05)
+
+def ratio_to_level(ratio):
+    if ratio >= 7:
+        return WCAGLevel.AAA
+    if ratio >= 4.5:
+        return WCAGLevel.AA
+    if ratio >= 3:
+        return WCAGLevel.A
+
+    return '-'

@@ -36,3 +36,12 @@ class TestChecker(unittest.TestCase):
         self.assertEqual(black_ratio, _min_contrast)
         self.assertEqual(white_ratio, _min_contrast)
         self.assertAlmostEqual(yellow_ratio, 4.23, 2)
+
+    def test_ratio_to_level(self):
+        self.assertAlmostEqual(checker.ratio_to_level(8), 'AAA')
+        self.assertAlmostEqual(checker.ratio_to_level(7), 'AAA')
+        self.assertAlmostEqual(checker.ratio_to_level(6), 'AA')
+        self.assertAlmostEqual(checker.ratio_to_level(4.5), 'AA')
+        self.assertAlmostEqual(checker.ratio_to_level(4), 'A')
+        self.assertAlmostEqual(checker.ratio_to_level(3), 'A')
+        self.assertAlmostEqual(checker.ratio_to_level(2.9), '-')
