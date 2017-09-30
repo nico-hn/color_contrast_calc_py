@@ -6,10 +6,10 @@ def hex_to_rgb(hex_code):
     hex_part = __remove_head_sharp(hex_code)
 
     if len(hex_part) == 3:
-        return [int(c, 16) * 17 for c in hex_part]
+        return tuple(int(c, 16) * 17 for c in hex_part)
     elif len(hex_part) == 6:
         primaries = (hex_part[i:(i+2)] for i in (0, 2, 4))
-        return [int(c, 16) for c in primaries]
+        return tuple(int(c, 16) for c in primaries)
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
