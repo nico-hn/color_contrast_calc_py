@@ -123,3 +123,6 @@ def is_valid_hex(hex_code):
 
 def is_same_hex_color(hex1, hex2):
     return normalize_hex(hex1) == normalize_hex(hex2)
+
+def is_uppercase(str):
+    return str == str.upper()

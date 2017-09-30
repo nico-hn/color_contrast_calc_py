@@ -177,3 +177,9 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.is_same_hex_color(lower_yellow,
                                                  red), False)
 
+    def test_is_uppercase(self):
+        self.assertEqual(utils.is_uppercase('U'), True)
+        self.assertEqual(utils.is_uppercase('l'), False)
+        self.assertEqual(utils.is_uppercase('Ul'), False)
+        self.assertEqual(utils.is_uppercase('uL'), False)
+
