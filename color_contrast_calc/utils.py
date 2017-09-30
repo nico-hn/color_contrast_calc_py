@@ -1,6 +1,7 @@
 # Utility functions that provide basic operations on colors given as color codes
 
 from functools import reduce
+from numbers import Number
 
 def hex_to_rgb(hex_code):
     hex_part = _remove_head_sharp(hex_code)
@@ -101,3 +102,15 @@ def is_valid_rgb(rgb):
 
 def _valid_rgb_component(c):
     return isinstance(c, int) and c >= 0 and c <= 255
+
+def is_valid_hsl(hsl):
+    if len(hsl) != 3:
+        return False
+
+    for (i, u) in enumerate((360, 100, 100)):
+        c = hsl[i]
+
+        if not isinstance(c, Number) or c < 0 or c > u:
+            return False
+
+    return True

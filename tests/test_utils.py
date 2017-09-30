@@ -138,3 +138,16 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(utils.is_valid_rgb((255, 165, -1)), False)
         self.assertEqual(utils.is_valid_rgb((255, 165)), False)
         self.assertEqual(utils.is_valid_rgb((255, 165.5, 0)), False)
+
+    def test_is_valid_hsl(self):
+        self.assertEqual(utils.is_valid_hsl((0, 0, 0)), True)
+        self.assertEqual(utils.is_valid_hsl((360, 100, 100)), True)
+        self.assertEqual(utils.is_valid_hsl((60, 100, 60)), True)
+        self.assertEqual(utils.is_valid_hsl((0, 0, 100)), True)
+        self.assertEqual(utils.is_valid_hsl((-1, 100, 50)), False)
+        self.assertEqual(utils.is_valid_hsl((361, 100, 50)), False)
+        self.assertEqual(utils.is_valid_hsl((60 -1, 50)), False)
+        self.assertEqual(utils.is_valid_hsl((60, 101, 60)), False)
+        self.assertEqual(utils.is_valid_hsl((60, 100, -1)), False)
+        self.assertEqual(utils.is_valid_hsl((60, 100, 101)), False)
+        self.assertEqual(utils.is_valid_hsl(('60', 100, 101)), False)
