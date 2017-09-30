@@ -10,6 +10,19 @@ class TestChecker(unittest.TestCase):
     def setup(self):
         pass
 
+    def test_contrast_ratio(self):
+        yellow = (127, 127, 32)
+
+        self.assertEqual(checker.contrast_ratio(_black, _white), _max_contrast)
+        self.assertEqual(checker.contrast_ratio(_black, _black), _min_contrast)
+        self.assertEqual(checker.contrast_ratio(_white, _white), _min_contrast)
+        self.assertAlmostEqual(checker.contrast_ratio(_white, yellow),
+                               4.23, 2)
+        self.assertAlmostEqual(checker.contrast_ratio('#ffffff', '#7f7f20'),
+                               4.23, 2)
+        self.assertAlmostEqual(checker.contrast_ratio('#ffffff', yellow),
+                               4.23, 2)
+
     def test_luminance_to_contrast_ratio(self):
         black_l = checker.relative_luminance(_black)
         white_l = checker.relative_luminance(_white)

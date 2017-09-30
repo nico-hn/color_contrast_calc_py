@@ -18,6 +18,10 @@ def _tristimulus_value(primary_color):
     else:
         return pow((s + 0.055) / 1.055, 2.4)
 
+def contrast_ratio(color1, color2):
+    return luminance_to_contrast_ratio(relative_luminance(color1),
+                                       relative_luminance(color2))
+
 def luminance_to_contrast_ratio(luminance1, luminance2):
     (l1, l2) = sorted((luminance1, luminance2), reverse = True)
     return (l1 + 0.05) / (l2 + 0.05)
