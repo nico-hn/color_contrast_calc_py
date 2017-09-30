@@ -58,9 +58,9 @@ def hsl_to_hex(hsl):
     return rgb_to_hex(hsl_to_rgb(hsl))
 
 def rgb_to_hsl(rgb):
-    return [__rgb_to_hue(rgb),
+    return (__rgb_to_hue(rgb),
             __rgb_to_saturation(rgb) * 100,
-            __rgb_to_lightness(rgb) * 100]
+            __rgb_to_lightness(rgb) * 100)
 
 def __rgb_to_lightness(rgb):
     return (max(rgb) + min(rgb)) / 510.0
