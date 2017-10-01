@@ -8,5 +8,8 @@ setup(
     author='HASHIMOTO, Naoki',
     author_email='hashimoto.naoki@gmail.com',
     license='MIT',
+    install_requires=[
+        'numpy'
+    ],
     packages=find_packages(exclude=['tests*'])
 )
