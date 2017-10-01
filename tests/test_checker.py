@@ -45,3 +45,11 @@ class TestChecker(unittest.TestCase):
         self.assertAlmostEqual(checker.ratio_to_level(4), 'A')
         self.assertAlmostEqual(checker.ratio_to_level(3), 'A')
         self.assertAlmostEqual(checker.ratio_to_level(2.9), '-')
+
+    def test_level_to_ratio(self):
+        self.assertAlmostEqual(checker.level_to_ratio('AAA'), 7)
+        self.assertAlmostEqual(checker.level_to_ratio('AA'), 4.5)
+        self.assertAlmostEqual(checker.level_to_ratio('A'), 3)
+        self.assertAlmostEqual(checker.level_to_ratio(3), 7)
+        self.assertAlmostEqual(checker.level_to_ratio(2), 4.5)
+        self.assertAlmostEqual(checker.level_to_ratio(1), 3)

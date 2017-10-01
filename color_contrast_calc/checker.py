@@ -7,6 +7,15 @@ class WCAGLevel:
     AA = 'AA'
     AAA = 'AAA'
 
+_LEVEL_TO_RATIO = {
+    WCAGLevel.AAA: 7,
+    WCAGLevel.AA: 4.5,
+    WCAGLevel.A: 3,
+    3: 7,
+    2: 4.5,
+    1: 3
+}
+
 def relative_luminance(rgb):
     if isinstance(rgb, str):
         rgb = utils.hex_to_rgb(rgb)
@@ -40,3 +49,7 @@ def ratio_to_level(ratio):
         return WCAGLevel.A
 
     return '-'
+
+def level_to_ratio(level):
+    if level in _LEVEL_TO_RATIO:
+        return _LEVEL_TO_RATIO[level]
