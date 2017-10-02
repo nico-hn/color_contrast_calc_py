@@ -32,6 +32,11 @@ class TestColor(unittest.TestCase):
         self.assertEqual(yellow.hex, yellow_hex)
         self.assertEqual(yellow.name, yellow_hex)
 
+    def test_str(self):
+        yellow = Color((255, 255, 0), 'yellow')
+        yellow_rgb = '#ffff00'
+        self.assertEqual(str(yellow), yellow_rgb)
+
     def test_contrast_ratio_against(self):
         color = Color((127, 127, 32))
         white = Color((255, 255, 255))

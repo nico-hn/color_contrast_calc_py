@@ -13,6 +13,9 @@ class Color:
         self.name = name or self.hex
         self.relative_luminance = checker.relative_luminance(self.rgb)
 
+    def __str__(self):
+        return self.hex
+
     def contrast_ratio_against(self, other_color):
         if not isinstance(other_color, Color):
             return checker.contrast_ratio(self.rgb, other_color)
