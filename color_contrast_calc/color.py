@@ -41,6 +41,9 @@ class Color:
         elif isinstance(other_color, str):
             return self.hex == utils.normalize_hex(other_color)
 
+    def has_max_contrast(self):
+        return all(c in (0,255) for c in self.rgb)
+
     def has_min_contrast(self):
         return self.rgb == self.GRAY.rgb
 

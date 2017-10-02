@@ -111,6 +111,10 @@ class TestColor(unittest.TestCase):
         self.assertTrue(yellow.is_same_color(yellow_rgb))
         self.assertFalse(white.is_same_color(yellow_rgb))
 
+    def test_has_max_contrast(self):
+        self.assertTrue(Color((255, 255, 0)).has_max_contrast())
+        self.assertFalse(Color((255, 165, 0)).has_max_contrast())
+
     def test_has_min_contrast(self):
         gray = Color((128, 128, 128))
         orange = Color((255, 165, 0))
