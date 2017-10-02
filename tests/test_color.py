@@ -42,6 +42,13 @@ class TestColor(unittest.TestCase):
         self.assertEqual(undefined_color.name, undefined_color_hex)
         self.assertEqual(undefined_color.hex, undefined_color_hex)
 
+    def test_new_from_hsl(self):
+        self.assertEqual(Color.new_from_hsl((60, 100, 50)).hex, '#ffff00')
+        self.assertEqual(Color.new_from_hsl((60.0, 100.0, 50.0)).hex, '#ffff00')
+
+        self.assertEqual(Color.new_from_hsl((30, 100, 50)).hex, '#ff8000')
+        self.assertEqual(Color.new_from_hsl((30.0, 100.0, 50.0)).hex, '#ff8000')
+
     def test_propertyies(self):
         yellow_rgb = (255, 255, 0)
         yellow_hex = '#ffff00'

@@ -20,6 +20,10 @@ class Color:
 
         return Color(normalized_hex)
 
+    @classmethod
+    def new_from_hsl(cls, hsl, name = None):
+        return cls(utils.hsl_to_rgb(hsl), name)
+
     def __init__(self, rgb, name = None):
         if isinstance(rgb, str):
             self.rgb = utils.hex_to_rgb(rgb)
