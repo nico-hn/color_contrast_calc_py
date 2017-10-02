@@ -31,3 +31,17 @@ class TestColor(unittest.TestCase):
         self.assertEqual(yellow.rgb, yellow_rgb)
         self.assertEqual(yellow.hex, yellow_hex)
         self.assertEqual(yellow.name, yellow_hex)
+
+    def test_contrast_ratio_against(self):
+        color = Color((127, 127, 32))
+        white = Color((255, 255, 255))
+        expected_ratio = 4.23
+
+        ratio = color.contrast_ratio_against(white.rgb)
+        self.assertAlmostEqual(ratio, expected_ratio, 2)
+
+        ratio = color.contrast_ratio_against(white.rgb)
+        self.assertAlmostEqual(ratio, expected_ratio, 2)
+
+        ratio = color.contrast_ratio_against(white)
+        self.assertAlmostEqual(ratio, expected_ratio, 2)
