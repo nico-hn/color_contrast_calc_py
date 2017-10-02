@@ -1,6 +1,6 @@
 from . import utils
 from . import checker
-import converters as conv
+import color_contrast_calc.converters as conv
 
 class Color:
     def __init__(self, rgb, name = None):
@@ -58,6 +58,10 @@ class Color:
         contrast_ratio_against_black = self.contrast_ratio_against(self.BLACK)
 
         return contrast_ratio_against_white <= contrast_ratio_against_black
+
+    def __generate_new_color(self, calc, ratio, name = None):
+        new_rgb = calc.calc_rgb(self.rgb, ratio)
+        return self.__class__(new_rgb, name)
 
 Color.BLACK = Color((0, 0, 0), 'black')
 Color.GRAY = Color((128, 128, 128), 'gray')
