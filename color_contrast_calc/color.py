@@ -59,6 +59,9 @@ class Color:
 
         return contrast_ratio_against_white <= contrast_ratio_against_black
 
+    def new_contrast_color(self, ratio, name = None):
+        return self.__generate_new_color(conv.contrast, ratio, name)
+
     def __generate_new_color(self, calc, ratio, name = None):
         new_rgb = calc.calc_rgb(self.rgb, ratio)
         return self.__class__(new_rgb, name)

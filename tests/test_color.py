@@ -141,6 +141,32 @@ class TestColor(unittest.TestCase):
         self.assertTrue(Color((118, 118, 118)).is_light_color())
         self.assertFalse(Color((117, 117, 117)).is_light_color())
 
+    def test_new_contrast_color(self):
+        yellow = Color((255, 255, 0))
+        orange = Color((255, 165, 0))
+        lime = Color((0, 255, 0))
+        blue = Color((0, 0, 255))
+        white = Color((255, 255, 255))
+        black = Color((0, 0, 0))
+        neutral_gray = Color((118, 118, 118))
+        gray_rgb = (128, 128, 128)
+
+        self.assertEqual(yellow.new_contrast_color(100).rgb, yellow.rgb)
+        self.assertEqual(orange.new_contrast_color(100).rgb, orange.rgb)
+        self.assertEqual(lime.new_contrast_color(100).rgb, lime.rgb)
+        self.assertEqual(blue.new_contrast_color(100).rgb, blue.rgb)
+
+        self.assertEqual(yellow.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(orange.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(lime.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(blue.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(white.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(black.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(neutral_gray.new_contrast_color(0).rgb, gray_rgb)
+
+        self.assertEqual(orange.new_contrast_color(60).rgb, (204, 150, 51))
+        self.assertEqual(orange.new_contrast_color(120).rgb, (255, 173, 0))
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')
