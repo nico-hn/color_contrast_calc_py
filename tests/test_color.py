@@ -2,6 +2,7 @@ import unittest
 from color_contrast_calc.color import Color
 from color_contrast_calc.color import NAMED_COLORS
 from color_contrast_calc.color import NAME_TO_COLOR
+from color_contrast_calc.color import HEX_TO_COLOR
 
 class TestColor(unittest.TestCase):
     def setup(self):
@@ -303,3 +304,7 @@ class TestColor(unittest.TestCase):
         white = 'white'
         self.assertEqual(NAME_TO_COLOR[black].name, black)
         self.assertEqual(NAME_TO_COLOR[white].name, white)
+
+    def test_HEX_TO_COLOR(self):
+        self.assertEqual(HEX_TO_COLOR['#000000'].name, 'black')
+        self.assertEqual(HEX_TO_COLOR['#ffffff'].name, 'white')

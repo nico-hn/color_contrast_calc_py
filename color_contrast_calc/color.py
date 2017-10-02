@@ -104,3 +104,5 @@ with open(path.join(_here, 'color_keywords.json')) as f:
 NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)
 
 NAME_TO_COLOR = {color.name: color for color in NAMED_COLORS}
+
+HEX_TO_COLOR = {color.hex: color for color in NAMED_COLORS}
