@@ -142,3 +142,7 @@ def _generate_web_safe_colors():
     return tuple(colors)
 
 WEB_SAFE_COLORS = _generate_web_safe_colors()
+
+def hsl_colors(s = 100, l = 50, h_interval = 1):
+    hues = range(0, 361, h_interval)
+    return tuple(Color.new_from_hsl((h, s, l)) for h in hues)

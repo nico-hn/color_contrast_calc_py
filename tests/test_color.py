@@ -4,6 +4,7 @@ from color_contrast_calc.color import NAMED_COLORS
 from color_contrast_calc.color import NAME_TO_COLOR
 from color_contrast_calc.color import HEX_TO_COLOR
 from color_contrast_calc.color import WEB_SAFE_COLORS
+from color_contrast_calc.color import hsl_colors
 
 class TestColor(unittest.TestCase):
     def setup(self):
@@ -366,3 +367,34 @@ class TestColor(unittest.TestCase):
         middle_color = WEB_SAFE_COLORS[107]
         self.assertTrue(isinstance(middle_color, Color))
         self.assertEqual(middle_color.hex, '#66ffff')
+
+    def test_hsl_colors(self):
+        black = Color.from_name('black')
+        white = Color.from_name('white')
+        gray = Color.from_name('gray')
+        red = Color.from_name('red')
+        yellow = Color.from_name('yellow')
+
+        colors = hsl_colors()
+        self.assertEqual(len(colors), 361)
+        self.assertTrue(colors[0].is_same_color(red))
+        self.assertTrue(colors[-1].is_same_color(red))
+        self.assertTrue(colors[60].is_same_color(yellow))
+
+        colors = hsl_colors(h_interval = 15)
+        self.assertEqual(len(colors), 25)
+        self.assertTrue(colors[0].is_same_color(red))
+        self.assertTrue(colors[-1].is_same_color(red))
+        self.assertTrue(colors[4].is_same_color(yellow))
+
+        colors = hsl_colors(l = 0)
+        for c in colors:
+            self.assertTrue(c.is_same_color(black))
+
+        colors = hsl_colors(l = 100)
+        for c in colors:
+            self.assertTrue(c.is_same_color(white))
+
+        colors = hsl_colors(s = 0)
+        for c in colors:
+            self.assertTrue(c.is_same_color(gray))
