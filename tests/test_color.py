@@ -9,6 +9,14 @@ class TestColor(unittest.TestCase):
     def setup(self):
         pass
 
+    def test_from_name(self):
+        yellow = Color.from_name('yellow')
+        self.assertTrue(isinstance(yellow, Color))
+        self.assertEqual(yellow.name, 'yellow')
+        self.assertEqual(yellow.hex, '#ffff00')
+
+        self.assertIsNone(Color.from_name('kiiro'))
+
     def test_propertyies(self):
         yellow_rgb = (255, 255, 0)
         yellow_hex = '#ffff00'

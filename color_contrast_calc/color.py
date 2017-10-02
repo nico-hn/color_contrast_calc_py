@@ -5,6 +5,13 @@ from . import checker
 from . import converters as conv
 
 class Color:
+    @classmethod
+    def from_name(cls, name):
+        if not name in NAME_TO_COLOR:
+            return None
+
+        return NAME_TO_COLOR[name]
+
     def __init__(self, rgb, name = None):
         if isinstance(rgb, str):
             self.rgb = utils.hex_to_rgb(rgb)
