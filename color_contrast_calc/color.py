@@ -1,3 +1,5 @@
+from os import path
+import json
 from . import utils
 from . import checker
 from . import converters as conv
@@ -92,3 +94,11 @@ class Color:
 Color.BLACK = Color((0, 0, 0), 'black')
 Color.GRAY = Color((128, 128, 128), 'gray')
 Color.WHITE = Color((255, 255, 255), 'white')
+
+_here = path.abspath(path.dirname(__file__))
+
+
+with open(path.join(_here, 'color_keywords.json')) as f:
+    _color_keywords = json.loads(f.read())
+
+NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)

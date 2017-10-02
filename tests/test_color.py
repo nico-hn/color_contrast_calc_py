@@ -1,5 +1,7 @@
 import unittest
 from color_contrast_calc.color import Color
+from color_contrast_calc.color import NAMED_COLORS
+
 
 class TestColor(unittest.TestCase):
     def setup(self):
@@ -284,3 +286,14 @@ class TestColor(unittest.TestCase):
         self.assertTrue(isinstance(Color.BLACK, Color))
         self.assertEqual(Color.BLACK.name, 'black')
         self.assertEqual(Color.BLACK.hex, '#000000')
+
+    def test_NAMED_COLORS(self):
+        first_color = NAMED_COLORS[0]
+        last_color = NAMED_COLORS[-1]
+        self.assertTrue(isinstance(first_color, Color))
+        self.assertEqual(first_color.name, 'aliceblue')
+        self.assertEqual(first_color.hex, '#f0f8ff')
+        self.assertTrue(isinstance(last_color, Color))
+        self.assertEqual(last_color.name, 'yellowgreen')
+        self.assertEqual(last_color.hex, '#9acd32')
+        self.assertEqual(len(NAMED_COLORS), 147)
