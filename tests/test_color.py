@@ -133,6 +133,10 @@ class TestColor(unittest.TestCase):
         self.assertTrue(yellow.has_same_luminance(yellow))
         self.assertFalse(orange.has_same_luminance(yellow))
 
+    def test_is_light_color(self):
+        self.assertTrue(Color((118, 118, 118)).is_light_color())
+        self.assertFalse(Color((117, 117, 117)).is_light_color())
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')

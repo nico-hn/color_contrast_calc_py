@@ -50,6 +50,12 @@ class Color:
     def has_same_luminance(self, other_color):
         return self.relative_luminance == other_color.relative_luminance
 
+    def is_light_color(self):
+        contrast_ratio_against_white = self.contrast_ratio_against(self.WHITE)
+        contrast_ratio_against_black = self.contrast_ratio_against(self.BLACK)
+
+        return contrast_ratio_against_white <= contrast_ratio_against_black
+
 Color.BLACK = Color((0, 0, 0), 'black')
 Color.GRAY = Color((128, 128, 128), 'gray')
 Color.WHITE = Color((255, 255, 255), 'white')
