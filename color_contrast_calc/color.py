@@ -74,6 +74,9 @@ class Color:
     def new_saturate_color(self, ratio, name = None):
         return self.__generate_new_color(conv.saturate, ratio, name)
 
+    def new_grayscale_color(self, ratio = 100, name = None):
+        return self.__generate_new_color(conv.grayscale, ratio, name)
+
     def __generate_new_color(self, calc, ratio, name = None):
         new_rgb = calc.calc_rgb(self.rgb, ratio)
         return self.__class__(new_rgb, name)

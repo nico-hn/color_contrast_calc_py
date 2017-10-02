@@ -252,6 +252,16 @@ class TestColor(unittest.TestCase):
         self.assertEqual(orange.new_saturate_color(2357).rgb, red.rgb)
         self.assertEqual(orange.new_saturate_color(3000).rgb, red.rgb)
 
+    def test_new_grayscale_color(self):
+        orange = Color((255, 165, 0))
+
+        self.assertEqual(orange.new_grayscale_color(0).rgb, orange.rgb)
+
+        self.assertEqual(orange.new_grayscale_color().rgb, (172, 172, 172))
+        self.assertEqual(orange.new_grayscale_color(100).rgb, (172, 172, 172))
+
+        self.assertEqual(orange.new_grayscale_color(50).rgb, (214,169, 86))
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')
