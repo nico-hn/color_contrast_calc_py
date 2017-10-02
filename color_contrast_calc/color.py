@@ -12,6 +12,14 @@ class Color:
 
         return NAME_TO_COLOR[name]
 
+    @classmethod
+    def from_hex(cls, hex):
+        normalized_hex = utils.normalize_hex(hex)
+        if normalized_hex in HEX_TO_COLOR:
+            return HEX_TO_COLOR[normalized_hex]
+
+        return Color(normalized_hex)
+
     def __init__(self, rgb, name = None):
         if isinstance(rgb, str):
             self.rgb = utils.hex_to_rgb(rgb)
