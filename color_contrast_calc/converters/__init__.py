@@ -5,7 +5,7 @@ def rgb_clamp(vals):
 
 def _adjusted_round(n):
     if math.modf(n)[0] == 0.5:
-        return math.ceil(n)
+        return int(math.ceil(n))
     else:
-        return round(n)
+        return int(round(n))
 
