@@ -110,8 +110,8 @@ class Color:
         new_rgb = calc.calc_rgb(self.rgb, ratio)
         return self.__class__(new_rgb, name)
 
-_here = path.abspath(path.dirname(__file__))
 
+_here = path.abspath(path.dirname(__file__))
 
 with open(path.join(_here, 'color_keywords.json')) as f:
     _color_keywords = json.loads(f.read())
