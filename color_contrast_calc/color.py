@@ -113,6 +113,7 @@ class Color:
 
 _here = path.abspath(path.dirname(__file__))
 
+# named colors: https://www.w3.org/TR/SVG/types.html#ColorKeywords
 with open(path.join(_here, 'color_keywords.json')) as f:
     _color_keywords = json.loads(f.read())
 
