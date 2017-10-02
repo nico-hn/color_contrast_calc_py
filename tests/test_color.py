@@ -58,6 +58,31 @@ class TestColor(unittest.TestCase):
         self.assertEqual(steelblue.contrast_level(white), 'A')
         self.assertEqual(orange.contrast_level(white), '-')
 
+    def test_has_sufficient_contrast(self):
+        black = Color((0, 0, 0))
+        white  = Color((255, 255, 255))
+        orange = Color((255, 165, 0))
+        blueviolet = Color((138, 43, 226))
+
+        self.assertTrue(black.has_sufficient_contrast(white))
+        self.assertTrue(black.has_sufficient_contrast(white, 'A'))
+        self.assertTrue(black.has_sufficient_contrast(white, 'AA'))
+        self.assertTrue(black.has_sufficient_contrast(white, 'AAA'))
+
+        self.assertFalse(orange.has_sufficient_contrast(white))
+        self.assertFalse(orange.has_sufficient_contrast(white, 'A'))
+        self.assertFalse(orange.has_sufficient_contrast(white, 'AA'))
+        self.assertFalse(orange.has_sufficient_contrast(white, 'AAA'))
+
+        self.assertTrue(orange.has_sufficient_contrast(blueviolet, 'A'))
+        self.assertFalse(orange.has_sufficient_contrast(blueviolet))
+        self.assertFalse(orange.has_sufficient_contrast(blueviolet, 'AA'))
+        self.assertFalse(orange.has_sufficient_contrast(blueviolet, 'AAA'))
+
+        self.assertTrue(white.has_sufficient_contrast(blueviolet))
+        self.assertTrue(white.has_sufficient_contrast(blueviolet, 'AA'))
+        self.assertFalse(white.has_sufficient_contrast(blueviolet, 'AAA'))
+
     def test_is_same_color(self):
         yellow_rgb = (255, 255, 0)
         yellow_hex = '#ffff00'

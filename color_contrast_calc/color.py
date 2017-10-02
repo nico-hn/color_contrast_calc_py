@@ -25,6 +25,11 @@ class Color:
         ratio = self.contrast_ratio_against(other_color)
         return checker.ratio_to_level(ratio)
 
+    def has_sufficient_contrast(self, other_color,
+                                level = checker.WCAGLevel.AA):
+        ratio = checker.level_to_ratio(level)
+        return self.contrast_ratio_against(other_color) >= ratio
+
     def is_same_color(self, other_color):
         if isinstance(other_color, Color):
             return self.hex == other_color.hex
