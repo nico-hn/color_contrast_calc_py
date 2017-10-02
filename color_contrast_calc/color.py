@@ -24,3 +24,11 @@ class Color:
     def contrast_level(self, other_color):
         ratio = self.contrast_ratio_against(other_color)
         return checker.ratio_to_level(ratio)
+
+    def is_same_color(self, other_color):
+        if isinstance(other_color, Color):
+            return self.hex == other_color.hex
+        elif isinstance(other_color, tuple):
+            return self.hex == utils.rgb_to_hex(other_color)
+        elif isinstance(other_color, str):
+            return self.hex == utils.normalize_hex(other_color)

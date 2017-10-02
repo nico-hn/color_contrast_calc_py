@@ -57,3 +57,26 @@ class TestColor(unittest.TestCase):
         self.assertEqual(royalblue.contrast_level(white), 'AA')
         self.assertEqual(steelblue.contrast_level(white), 'A')
         self.assertEqual(orange.contrast_level(white), '-')
+
+    def test_is_same_color(self):
+        yellow_rgb = (255, 255, 0)
+        yellow_hex = '#ffff00'
+        yellow_short_hex = '#ff0'
+        white_rgb = (255, 255, 255)
+        yellow = Color(yellow_rgb, 'yellow')
+        yellow2 = Color(yellow_rgb, 'yellow2')
+        white = Color(white_rgb)
+
+        self.assertEqual(yellow.hex, yellow2.hex)
+        self.assertTrue(yellow.is_same_color(yellow2))
+
+        self.assertNotEqual(yellow.hex, white.hex)
+        self.assertFalse(yellow.is_same_color(white))
+
+        self.assertTrue(yellow.is_same_color(yellow_hex))
+        self.assertTrue(yellow.is_same_color(yellow_short_hex))
+        self.assertFalse(white.is_same_color(yellow_short_hex))
+        self.assertFalse(white.is_same_color(yellow_short_hex))
+
+        self.assertTrue(yellow.is_same_color(yellow_rgb))
+        self.assertFalse(white.is_same_color(yellow_rgb))
