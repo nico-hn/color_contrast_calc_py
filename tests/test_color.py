@@ -118,6 +118,14 @@ class TestColor(unittest.TestCase):
         self.assertTrue(gray.has_min_contrast())
         self.assertFalse(orange.has_min_contrast())
 
+    def test_has_higher_luminance(self):
+        yellow = Color((255, 255, 0))
+        orange = Color((255, 165, 0))
+
+        self.assertTrue(yellow.has_higher_luminance(orange))
+        self.assertFalse(orange.has_higher_luminance(yellow))
+        self.assertFalse(orange.has_higher_luminance(orange))
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')
