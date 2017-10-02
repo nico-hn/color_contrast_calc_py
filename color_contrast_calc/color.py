@@ -110,10 +110,6 @@ class Color:
         new_rgb = calc.calc_rgb(self.rgb, ratio)
         return self.__class__(new_rgb, name)
 
-Color.BLACK = Color((0, 0, 0), 'black')
-Color.GRAY = Color((128, 128, 128), 'gray')
-Color.WHITE = Color((255, 255, 255), 'white')
-
 _here = path.abspath(path.dirname(__file__))
 
 
@@ -146,3 +142,7 @@ WEB_SAFE_COLORS = _generate_web_safe_colors()
 def hsl_colors(s = 100, l = 50, h_interval = 1):
     hues = range(0, 361, h_interval)
     return tuple(Color.new_from_hsl((h, s, l)) for h in hues)
+
+Color.BLACK = Color.from_name('black')
+Color.GRAY = Color.from_name('gray')
+Color.WHITE = Color.from_name('white')
