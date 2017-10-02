@@ -20,3 +20,7 @@ class Color:
         other_luminance = other_color.relative_luminance
         return checker.luminance_to_contrast_ratio(self.relative_luminance,
                                                    other_luminance)
+
+    def contrast_level(self, other_color):
+        ratio = self.contrast_ratio_against(other_color)
+        return checker.ratio_to_level(ratio)

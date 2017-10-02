@@ -45,3 +45,15 @@ class TestColor(unittest.TestCase):
 
         ratio = color.contrast_ratio_against(white)
         self.assertAlmostEqual(ratio, expected_ratio, 2)
+
+    def test_contrast_level(self):
+        white = Color((255, 255, 255))
+        black = Color((0, 0, 0))
+        orange = Color((255, 165, 0))
+        royalblue = Color((65,105, 225))
+        steelblue = Color((70, 130, 180))
+
+        self.assertEqual(white.contrast_level(black), 'AAA')
+        self.assertEqual(royalblue.contrast_level(white), 'AA')
+        self.assertEqual(steelblue.contrast_level(white), 'A')
+        self.assertEqual(orange.contrast_level(white), '-')
