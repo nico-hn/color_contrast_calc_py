@@ -167,6 +167,27 @@ class TestColor(unittest.TestCase):
         self.assertEqual(orange.new_contrast_color(60).rgb, (204, 150, 51))
         self.assertEqual(orange.new_contrast_color(120).rgb, (255, 173, 0))
 
+    def test_new_brightness_color(self):
+        yellow = Color((255, 255, 0))
+        orange = Color((255, 165, 0))
+        lime = Color((0, 255, 0))
+        blue = Color((0, 0, 255))
+        white = Color((255, 255, 255))
+        black = Color((0, 0, 0))
+
+        self.assertEqual(yellow.new_brightness_color(100).rgb, yellow.rgb)
+        self.assertEqual(orange.new_brightness_color(100).rgb, orange.rgb)
+        self.assertEqual(lime.new_brightness_color(100).rgb, lime.rgb)
+        self.assertEqual(blue.new_brightness_color(100).rgb, blue.rgb)
+
+        self.assertEqual(yellow.new_brightness_color(0).rgb, black.rgb)
+        self.assertEqual(orange.new_brightness_color(0).rgb, black.rgb)
+        self.assertEqual(lime.new_brightness_color(0).rgb, black.rgb)
+        self.assertEqual(blue.new_brightness_color(0).rgb, black.rgb)
+
+        self.assertEqual(white.new_brightness_color(120).rgb, white.rgb)
+        self.assertEqual(yellow.new_brightness_color(120).rgb, yellow.rgb)
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')
