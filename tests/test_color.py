@@ -32,6 +32,14 @@ class TestColor(unittest.TestCase):
         self.assertEqual(yellow.hex, yellow_hex)
         self.assertEqual(yellow.name, yellow_hex)
 
+    def test_hsl(self):
+        yellow_rgb = (255, 255, 0)
+        yellow_hsl = (60, 100, 50)
+        yellow = Color(yellow_rgb)
+
+        for i, c in enumerate(yellow_hsl):
+            self.assertAlmostEqual(yellow.hsl()[i], c)
+
     def test_str(self):
         yellow = Color((255, 255, 0), 'yellow')
         yellow_rgb = '#ffff00'

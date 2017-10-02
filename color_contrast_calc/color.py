@@ -12,9 +12,16 @@ class Color:
         self.hex = utils.rgb_to_hex(self.rgb)
         self.name = name or self.hex
         self.relative_luminance = checker.relative_luminance(self.rgb)
+        self.__hsl = None
 
     def __str__(self):
         return self.hex
+
+    def hsl(self):
+        if self.__hsl is None:
+            self.__hsl = utils.rgb_to_hsl(self.rgb)
+
+        return self.__hsl
 
     def contrast_ratio_against(self, other_color):
         if not isinstance(other_color, Color):
