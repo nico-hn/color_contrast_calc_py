@@ -17,7 +17,7 @@ class TestColor(unittest.TestCase):
 
         self.assertIsNone(Color.from_name('kiiro'))
 
-    def test_from_nex(self):
+    def test_from_hex(self):
         yellow_normalized_hex = '#ffff00'
         yellow_name = 'yellow'
         undefined_color_hex = '#f3f2f1'
