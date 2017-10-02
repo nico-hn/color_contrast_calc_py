@@ -3,6 +3,7 @@ from color_contrast_calc.color import Color
 from color_contrast_calc.color import NAMED_COLORS
 from color_contrast_calc.color import NAME_TO_COLOR
 from color_contrast_calc.color import HEX_TO_COLOR
+from color_contrast_calc.color import WEB_SAFE_COLORS
 
 class TestColor(unittest.TestCase):
     def setup(self):
@@ -308,3 +309,20 @@ class TestColor(unittest.TestCase):
     def test_HEX_TO_COLOR(self):
         self.assertEqual(HEX_TO_COLOR['#000000'].name, 'black')
         self.assertEqual(HEX_TO_COLOR['#ffffff'].name, 'white')
+
+    def test_WEB_SAFE_COLORS(self):
+        self.assertEqual(len(WEB_SAFE_COLORS), 216)
+
+        first_color = WEB_SAFE_COLORS[0]
+        self.assertTrue(isinstance(first_color, Color))
+        self.assertEqual(first_color.name, 'black')
+        self.assertEqual(first_color.hex, '#000000')
+
+        last_color = WEB_SAFE_COLORS[-1]
+        self.assertTrue(isinstance(last_color, Color))
+        self.assertEqual(last_color.name, 'white')
+        self.assertEqual(last_color.hex, '#ffffff')
+
+        middle_color = WEB_SAFE_COLORS[107]
+        self.assertTrue(isinstance(middle_color, Color))
+        self.assertEqual(middle_color.hex, '#66ffff')
