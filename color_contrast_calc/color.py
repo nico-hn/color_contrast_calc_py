@@ -47,6 +47,9 @@ class Color:
     def has_higher_luminance(self, other_color):
         return self.relative_luminance > other_color.relative_luminance
 
+    def has_same_luminance(self, other_color):
+        return self.relative_luminance == other_color.relative_luminance
+
 Color.BLACK = Color((0, 0, 0), 'black')
 Color.GRAY = Color((128, 128, 128), 'gray')
 Color.WHITE = Color((255, 255, 255), 'white')
