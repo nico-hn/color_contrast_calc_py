@@ -1,6 +1,6 @@
 from . import utils
 from . import checker
-import color_contrast_calc.converters as conv
+from . import converters as conv
 
 class Color:
     def __init__(self, rgb, name = None):
