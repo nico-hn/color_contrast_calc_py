@@ -188,6 +188,32 @@ class TestColor(unittest.TestCase):
         self.assertEqual(white.new_brightness_color(120).rgb, white.rgb)
         self.assertEqual(yellow.new_brightness_color(120).rgb, yellow.rgb)
 
+    def test_new_invert_color(self):
+        yellow = Color((255, 255, 0))
+        orange = Color((255, 165, 0))
+        blue = Color((0, 0, 255))
+        royalblue = Color((65,105, 225))
+        gray = Color((128, 128, 128))
+
+        self.assertEqual(yellow.new_invert_color(0).rgb, yellow.rgb)
+        self.assertEqual(orange.new_invert_color(0).rgb, orange.rgb)
+        self.assertEqual(blue.new_invert_color(0).rgb, blue.rgb)
+        self.assertEqual(royalblue.new_invert_color(0).rgb, royalblue.rgb)
+        self.assertEqual(gray.new_invert_color(0).rgb, gray.rgb)
+
+        self.assertEqual(yellow.new_invert_color().rgb, blue.rgb)
+        self.assertEqual(yellow.new_invert_color(100).rgb, blue.rgb)
+        self.assertEqual(blue.new_invert_color(100).rgb, yellow.rgb)
+
+        self.assertEqual(orange.new_invert_color(100).rgb, (0, 90, 255))
+        self.assertEqual(royalblue.new_invert_color(100).rgb, (190, 150, 30))
+
+        self.assertEqual(yellow.new_invert_color(50).rgb, gray.rgb)
+        self.assertEqual(orange.new_invert_color(50).rgb, gray.rgb)
+        self.assertEqual(blue.new_invert_color(50).rgb, gray.rgb)
+        self.assertEqual(royalblue.new_invert_color(50).rgb, gray.rgb)
+        self.assertEqual(gray.new_invert_color(50).rgb, gray.rgb)
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')
