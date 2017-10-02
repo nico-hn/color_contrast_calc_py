@@ -235,6 +235,23 @@ class TestColor(unittest.TestCase):
         self.assertEqual(orange.new_hue_rotate_color(90).rgb, (0, 232, 90))
         self.assertEqual(blue.new_hue_rotate_color(90).rgb, (255, 0, 37))
 
+    def test_new_saturate_color(self):
+        red = Color((255, 0, 0))
+        orange = Color((255, 165, 0))
+        yellow = Color((255, 255, 0))
+        blue = Color((0, 0, 255))
+
+        self.assertEqual(orange.new_saturate_color(100).rgb, orange.rgb)
+        self.assertEqual(yellow.new_saturate_color(100).rgb, yellow.rgb)
+        self.assertEqual(blue.new_saturate_color(100).rgb, blue.rgb)
+
+        self.assertEqual(orange.new_saturate_color(0).rgb, (172, 172, 172))
+        self.assertEqual(yellow.new_saturate_color(0).rgb, (237, 237, 237))
+        self.assertEqual(blue.new_saturate_color(0).rgb, (18, 18, 18))
+
+        self.assertEqual(orange.new_saturate_color(2357).rgb, red.rgb)
+        self.assertEqual(orange.new_saturate_color(3000).rgb, red.rgb)
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')
