@@ -110,3 +110,18 @@ class TestColor(unittest.TestCase):
 
         self.assertTrue(yellow.is_same_color(yellow_rgb))
         self.assertFalse(white.is_same_color(yellow_rgb))
+
+    def test_WHITE(self):
+        self.assertTrue(isinstance(Color.WHITE, Color))
+        self.assertEqual(Color.WHITE.name, 'white')
+        self.assertEqual(Color.WHITE.hex, '#ffffff')
+
+    def test_GRAY(self):
+        self.assertTrue(isinstance(Color.GRAY, Color))
+        self.assertEqual(Color.GRAY.name, 'gray')
+        self.assertEqual(Color.GRAY.hex, '#808080')
+
+    def test_BLACK(self):
+        self.assertTrue(isinstance(Color.BLACK, Color))
+        self.assertEqual(Color.BLACK.name, 'black')
+        self.assertEqual(Color.BLACK.hex, '#000000')

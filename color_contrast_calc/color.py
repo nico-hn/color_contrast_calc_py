@@ -40,3 +40,7 @@ class Color:
             return self.hex == utils.rgb_to_hex(other_color)
         elif isinstance(other_color, str):
             return self.hex == utils.normalize_hex(other_color)
+
+Color.BLACK = Color((0, 0, 0), 'black')
+Color.GRAY = Color((128, 128, 128), 'gray')
+Color.WHITE = Color((255, 255, 255), 'white')
