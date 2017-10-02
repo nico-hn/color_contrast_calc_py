@@ -17,6 +17,7 @@ class Color:
     def __str__(self):
         return self.hex
 
+    @property
     def hsl(self):
         if self.__hsl is None:
             self.__hsl = utils.rgb_to_hsl(self.rgb)
