@@ -1,5 +1,5 @@
 import unittest
-from color_contrast_calc.threshold_finder.criteria import threshold_criteria
+from color_contrast_calc.threshold_finders.criteria import threshold_criteria
 from color_contrast_calc.color import Color
 
 class TestCriteria(unittest.TestCase):

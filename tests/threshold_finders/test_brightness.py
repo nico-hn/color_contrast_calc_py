@@ -1,5 +1,5 @@
 import unittest
-from color_contrast_calc.threshold_finder import brightness
+from color_contrast_calc.threshold_finders import brightness
 from color_contrast_calc.color import Color
 
 class TestBrightness(unittest.TestCase):

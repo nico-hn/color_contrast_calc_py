@@ -1,5 +1,5 @@
 import unittest
-from color_contrast_calc.threshold_finder import binary_search_width
+from color_contrast_calc.threshold_finders import binary_search_width
 
 class TestThresholdFinder(unittest.TestCase):
     def setup(self):
