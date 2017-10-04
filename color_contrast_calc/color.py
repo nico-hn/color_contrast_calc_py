@@ -144,7 +144,7 @@ def _generate_web_safe_colors():
                 else:
                     colors.append(Color(hex_code))
 
-    return colors
+    return tuple(colors)
 
 WEB_SAFE_COLORS = _generate_web_safe_colors()
 
