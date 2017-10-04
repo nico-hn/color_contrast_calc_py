@@ -15,3 +15,6 @@ class TestBrightness(unittest.TestCase):
 
         color = color.from_name('blueviolet')
         self.assertEqual(brightness.calc_upper_ratio_limit(color), 594)
+
+        color = Color((0, 180, 0))
+        self.assertEqual(brightness.calc_upper_ratio_limit(color), 142)
