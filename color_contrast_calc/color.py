@@ -125,7 +125,7 @@ _here = path.abspath(path.dirname(__file__))
 with open(path.join(_here, 'color_keywords.json')) as f:
     _color_keywords = json.loads(f.read())
 
-NAMED_COLORS = [Color(hex, name) for name, hex in _color_keywords]
+NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)
 
 NAME_TO_COLOR = {color.name: color for color in NAMED_COLORS}
 
