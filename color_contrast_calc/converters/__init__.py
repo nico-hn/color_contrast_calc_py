@@ -8,4 +8,3 @@ def _adjusted_round(n):
         return int(math.ceil(n))
     else:
         return int(round(n))
-
