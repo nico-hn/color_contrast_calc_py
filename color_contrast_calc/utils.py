@@ -4,7 +4,7 @@ from functools import reduce
 from numbers import Number
 import re
 
-_HEX_RE = re.compile('\A#?[0-9a-f]{3}([0-9a-f]{3})?\Z', re.IGNORECASE)
+_HEX_RE = re.compile(r'\A#?[0-9a-f]{3}([0-9a-f]{3})?\Z', re.IGNORECASE)
 
 def hex_to_rgb(hex_code):
     hex_part = _remove_head_sharp(hex_code)
