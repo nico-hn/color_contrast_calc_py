@@ -27,3 +27,4 @@ class TestBrightness(unittest.TestCase):
         self.assertEqual(brightness.calc_rgb(white, 120), white)
         self.assertEqual(brightness.calc_rgb(yellow, 120), yellow)
 
+        self.assertEqual(brightness.calc_rgb(orange, 40.3), (103, 66, 0))
