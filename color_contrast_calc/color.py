@@ -13,18 +13,18 @@ class Color:
         return NAME_TO_COLOR[name]
 
     @classmethod
-    def from_hex(cls, hex):
-        normalized_hex = utils.normalize_hex(hex)
+    def from_hex(cls, hex_code):
+        normalized_hex = utils.normalize_hex(hex_code)
         if normalized_hex in HEX_TO_COLOR:
             return HEX_TO_COLOR[normalized_hex]
 
         return Color(normalized_hex)
 
     @classmethod
-    def new_from_hsl(cls, hsl, name = None):
+    def new_from_hsl(cls, hsl, name=None):
         return cls(utils.hsl_to_rgb(hsl), name)
 
-    def __init__(self, rgb, name = None):
+    def __init__(self, rgb, name=None):
         if isinstance(rgb, str):
             self.rgb = utils.hex_to_rgb(rgb)
         else:
@@ -66,7 +66,7 @@ class Color:
         return checker.ratio_to_level(ratio)
 
     def has_sufficient_contrast(self, other_color,
-                                level = checker.WCAGLevel.AA):
+                                level=checker.WCAGLevel.AA):
         ratio = checker.level_to_ratio(level)
         return self.contrast_ratio_against(other_color) >= ratio
 
@@ -79,7 +79,7 @@ class Color:
             return self.hex == utils.normalize_hex(other_color)
 
     def has_max_contrast(self):
-        return all(c in (0,255) for c in self.rgb)
+        return all(c in (0, 255) for c in self.rgb)
 
     def has_min_contrast(self):
         return self.rgb == self.GRAY.rgb
@@ -96,25 +96,25 @@ class Color:
 
         return contrast_ratio_against_white <= contrast_ratio_against_black
 
-    def new_contrast_color(self, ratio, name = None):
+    def new_contrast_color(self, ratio, name=None):
         return self.__generate_new_color(conv.contrast, ratio, name)
 
-    def new_brightness_color(self, ratio, name = None):
+    def new_brightness_color(self, ratio, name=None):
         return self.__generate_new_color(conv.brightness, ratio, name)
 
-    def new_invert_color(self, ratio = 100, name = None):
+    def new_invert_color(self, ratio=100, name=None):
         return self.__generate_new_color(conv.invert, ratio, name)
 
-    def new_hue_rotate_color(self, degree, name = None):
+    def new_hue_rotate_color(self, degree, name=None):
         return self.__generate_new_color(conv.hue_rotate, degree, name)
 
-    def new_saturate_color(self, ratio, name = None):
+    def new_saturate_color(self, ratio, name=None):
         return self.__generate_new_color(conv.saturate, ratio, name)
 
-    def new_grayscale_color(self, ratio = 100, name = None):
+    def new_grayscale_color(self, ratio=100, name=None):
         return self.__generate_new_color(conv.grayscale, ratio, name)
 
-    def __generate_new_color(self, calc, ratio, name = None):
+    def __generate_new_color(self, calc, ratio, name=None):
         new_rgb = calc.calc_rgb(self.rgb, ratio)
         return self.__class__(new_rgb, name)
 
@@ -148,7 +148,7 @@ def _generate_web_safe_colors():
 
 WEB_SAFE_COLORS = _generate_web_safe_colors()
 
-def hsl_colors(s = 100, l = 50, h_interval = 1):
+def hsl_colors(s=100, l=50, h_interval=1):
     hues = range(0, 361, h_interval)
     return tuple(Color.new_from_hsl((h, s, l)) for h in hues)
 
