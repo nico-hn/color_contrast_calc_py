@@ -18,7 +18,7 @@ def hex_to_rgb(hex_code):
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
 
-def normalize_hex(code, prefix = True):
+def normalize_hex(code, prefix=True):
     if len(code) < 6:
         hex_part = _remove_head_sharp(code)
         code = ''.join(map(lambda c: c * 2, hex_part))
@@ -103,8 +103,8 @@ def hex_to_hsl(hex_code):
 def is_valid_rgb(rgb):
     return len(rgb) == 3 and all(_valid_rgb_component(c) for c in rgb)
 
-def _valid_rgb_component(c):
-    return isinstance(c, int) and c >= 0 and c <= 255
+def _valid_rgb_component(component):
+    return isinstance(component, int) and component >= 0 and component <= 255
 
 def is_valid_hsl(hsl):
     if len(hsl) != 3:
@@ -124,5 +124,5 @@ def is_valid_hex(hex_code):
 def is_same_hex_color(hex1, hex2):
     return normalize_hex(hex1) == normalize_hex(hex2)
 
-def is_uppercase(str):
-    return str == str.upper()
+def is_uppercase(string):
+    return string == string.upper()
