@@ -1,5 +1,6 @@
 from os import path
 import json
+from itertools import product
 from . import utils
 from . import checker
 from . import converters as conv
@@ -133,16 +134,14 @@ HEX_TO_COLOR = {color.hex: color for color in NAMED_COLORS}
 
 def _generate_web_safe_colors():
     colors = []
+    web_safe_values = [c * 17 for c in range(0, 16, 3)]
 
-    for r in range(0, 16, 3):
-        for g in range(0, 16, 3):
-            for b in range(0, 16, 3):
-                rgb = tuple(c * 17 for c in (r, g, b))
-                hex_code = utils.rgb_to_hex(rgb)
-                if hex_code in HEX_TO_COLOR:
-                    colors.append(HEX_TO_COLOR[hex_code])
-                else:
-                    colors.append(Color(hex_code))
+    for rgb in [tuple(c) for c in sorted(product(web_safe_values, repeat=3))]:
+        hex_code = utils.rgb_to_hex(rgb)
+        if hex_code in HEX_TO_COLOR:
+            colors.append(HEX_TO_COLOR[hex_code])
+        else:
+            colors.append(Color(hex_code))
 
     return tuple(colors)
 
