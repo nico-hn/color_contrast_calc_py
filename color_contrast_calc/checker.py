@@ -20,7 +20,7 @@ def relative_luminance(rgb):
     if isinstance(rgb, str):
         rgb = utils.hex_to_rgb(rgb)
 
-    (r, g, b) = map(lambda c: _tristimulus_value(c), rgb)
+    (r, g, b) = (_tristimulus_value(c) for c in rgb)
     return r * 0.2126 + g  * 0.7152 + b * 0.0722
 
 def _tristimulus_value(primary_color):
