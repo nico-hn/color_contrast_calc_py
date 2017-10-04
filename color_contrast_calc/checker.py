@@ -37,7 +37,7 @@ def contrast_ratio(color1, color2):
                                        relative_luminance(color2))
 
 def luminance_to_contrast_ratio(luminance1, luminance2):
-    (l1, l2) = sorted((luminance1, luminance2), reverse = True)
+    (l1, l2) = sorted((luminance1, luminance2), reverse=True)
     return (l1 + 0.05) / (l2 + 0.05)
 
 def ratio_to_level(ratio):
