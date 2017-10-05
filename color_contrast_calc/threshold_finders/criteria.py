@@ -1,5 +1,5 @@
 import math
-import color_contrast_calc.checker as checker
+from .. import checker
 
 class SearchDirection:
     def __init__(self, level):
