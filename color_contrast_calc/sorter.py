@@ -25,3 +25,13 @@ def parse_color_order(color_order):
         funcs[ci] = operator.neg if utils.is_uppercase(c) else operator.pos
 
     return {'pos': pos, 'funcs': funcs}
+
+def compile_components_sort_key_function(color_order):
+    order = parse_color_order(color_order)
+    component_positions = order['pos']
+    funcs = order['funcs']
+
+    def key_func(components):
+        return tuple(funcs[i](components[i]) for i in component_positions)
+
+    return key_func

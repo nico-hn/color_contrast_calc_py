@@ -54,3 +54,19 @@ class TestLightness(unittest.TestCase):
         descend = tuple(order['funcs'][i](1) for i in order['funcs'])
         self.assertEqual(order['pos'], (2, 0, 1))
         self.assertEqual(descend, (-1, -1, 1))
+
+    def test_compile_components_sort_key_function(self):
+        key_func = sorter.compile_components_sort_key_function('hsl')
+        self.assertEqual(key_func((1, 2, 3)), (1, 2, 3))
+
+        key_func = sorter.compile_components_sort_key_function('HSL')
+        self.assertEqual(key_func((1, 2, 3)), (-1, -2, -3))
+
+        key_func = sorter.compile_components_sort_key_function('lHs')
+        self.assertEqual(key_func((1, 2, 3)), (3, -1, 2))
+
+        key_func = sorter.compile_components_sort_key_function('rgb')
+        self.assertEqual(key_func((1, 2, 3)), (1, 2, 3))
+
+        key_func = sorter.compile_components_sort_key_function('bRG')
+        self.assertEqual(key_func((1, 2, 3)), (3, -1, -2))
