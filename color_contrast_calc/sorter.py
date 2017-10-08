@@ -35,3 +35,16 @@ def compile_components_sort_key_function(color_order):
         return tuple(funcs[i](components[i]) for i in component_positions)
 
     return key_func
+
+def compile_hex_sort_key_function(color_order):
+    components_sort_key_func = compile_components_sort_key_function(color_order)
+
+    if is_hsl_order(color_order):
+        to_components = utils.hex_to_hsl
+    else:
+        to_components = utils.hex_to_rgb
+
+    def key_func(hex):
+        return components_sort_key_func(to_components(hex))
+
+    return key_func

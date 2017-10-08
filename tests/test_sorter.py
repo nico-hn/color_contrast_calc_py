@@ -1,6 +1,7 @@
 import unittest
 from color_contrast_calc.color import Color
 from color_contrast_calc import sorter
+from color_contrast_calc import utils
 
 class TestLightness(unittest.TestCase):
     def setup(self):
@@ -70,3 +71,27 @@ class TestLightness(unittest.TestCase):
 
         key_func = sorter.compile_components_sort_key_function('bRG')
         self.assertEqual(key_func((1, 2, 3)), (3, -1, -2))
+
+    def test_compile_hex_sort_key_function(self):
+        hsl_hex = utils.hsl_to_hex((20, 80, 50))
+        rgb_hex = utils.rgb_to_hex((10, 165, 70))
+
+        key_func = sorter.compile_hex_sort_key_function('hsl')
+        for k, h in zip(key_func(hsl_hex), (20, 80, 50)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compile_hex_sort_key_function('HSL')
+        for k, h in zip(key_func(hsl_hex), (-20, -80, -50)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compile_hex_sort_key_function('lHs')
+        for k, h in zip(key_func(hsl_hex), (50, -20, 80)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compile_hex_sort_key_function('rgb')
+        for k, h in zip(key_func(rgb_hex), (10, 165, 70)):
+            self.assertEqual(k, h, 0)
+
+        key_func = sorter.compile_hex_sort_key_function('bRG')
+        for k, h in zip(key_func(rgb_hex), (70, -10, -165)):
+            self.assertEqual(k, h, 0)
