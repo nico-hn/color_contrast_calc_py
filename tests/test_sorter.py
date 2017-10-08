@@ -1,4 +1,5 @@
 import unittest
+import operator
 from color_contrast_calc.color import Color
 from color_contrast_calc import sorter
 from color_contrast_calc import utils
@@ -119,3 +120,25 @@ class TestLightness(unittest.TestCase):
         key_func = sorter.compile_color_sort_key_function('bRG')
         for k, h in zip(key_func(rgb), (70, -10, -165)):
             self.assertEqual(k, h, 0)
+
+    def test_compose_key_function(self):
+        hsl = Color.new_from_hsl((20, 80, 50))
+        rgb = Color((10, 165, 70))
+        hsl_func = sorter.compile_color_sort_key_function('lHs')
+        rgb_func = sorter.compile_color_sort_key_function('bRG')
+
+        key_func = sorter.compose_key_function(hsl_func)
+        for k, h in zip(key_func(hsl), (50, -20, 80)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compose_key_function(hsl_func, operator.itemgetter(0))
+        for k, h in zip(key_func([hsl]), (50, -20, 80)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compose_key_function(rgb_func)
+        for k, h in zip(key_func(rgb), (70, -10, -165)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compose_key_function(rgb_func, operator.itemgetter(0))
+        for k, h in zip(key_func([rgb]), (70, -10, -165)):
+            self.assertAlmostEqual(k, h, 0)

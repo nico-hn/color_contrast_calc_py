@@ -6,6 +6,15 @@ _HSL_RE = re.compile(r'[hsl]{3}', re.IGNORECASE)
 _RGB_COMPONENTS = 'rgb'
 _HSL_COMPONENTS = 'hsl'
 
+def compose_key_function(key_function, key_mapper=None):
+    if key_mapper is None:
+        return key_function
+
+    def composed_func(color):
+        return key_function(key_mapper(color))
+
+    return composed_func
+
 def is_hsl_order(color_order):
     return _HSL_RE.match(color_order) is not None
 
