@@ -28,3 +28,29 @@ class TestLightness(unittest.TestCase):
 
         pos = sorter.color_component_pos('bgr', rgb)
         self.assertEqual(pos, (2, 1, 0))
+
+    def test_parse_color_order(self):
+        order = sorter.parse_color_order('hsl')
+        descend = tuple(order['funcs'][i](1) for i in order['funcs'])
+        self.assertEqual(order['pos'], (0, 1, 2))
+        self.assertEqual(descend, (1, 1, 1))
+
+        order = sorter.parse_color_order('HSL')
+        descend = tuple(order['funcs'][i](1) for i in order['funcs'])
+        self.assertEqual(order['pos'], (0, 1, 2))
+        self.assertEqual(descend, (-1, -1, -1))
+
+        order = sorter.parse_color_order('lHs')
+        descend = tuple(order['funcs'][i](1) for i in order['funcs'])
+        self.assertEqual(order['pos'], (2, 0, 1))
+        self.assertEqual(descend, (-1, 1, 1))
+
+        order = sorter.parse_color_order('rgb')
+        descend = tuple(order['funcs'][i](1) for i in order['funcs'])
+        self.assertEqual(order['pos'], (0, 1, 2))
+        self.assertEqual(descend, (1, 1, 1))
+
+        order = sorter.parse_color_order('bRG')
+        descend = tuple(order['funcs'][i](1) for i in order['funcs'])
+        self.assertEqual(order['pos'], (2, 0, 1))
+        self.assertEqual(descend, (-1, -1, 1))

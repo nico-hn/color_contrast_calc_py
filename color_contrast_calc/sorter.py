@@ -1,5 +1,6 @@
 import operator
 import re
+from . import utils
 
 _HSL_RE = re.compile(r'[hsl]{3}', re.IGNORECASE)
 _RGB_COMPONENTS = 'rgb'
@@ -10,3 +11,17 @@ def is_hsl_order(color_order):
 
 def color_component_pos(color_order, ordered_components):
     return tuple(ordered_components.find(c) for c in color_order.lower())
+
+def parse_color_order(color_order):
+    if is_hsl_order((color_order)):
+        ordered_components = _HSL_COMPONENTS
+    else:
+        ordered_components = _RGB_COMPONENTS
+
+    pos = color_component_pos(color_order, ordered_components)
+    funcs = {}
+    for i, ci in enumerate(pos):
+        c = color_order[i]
+        funcs[ci] = operator.neg if utils.is_uppercase(c) else operator.pos
+
+    return {'pos': pos, 'funcs': funcs}
