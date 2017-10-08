@@ -48,3 +48,15 @@ def compile_hex_sort_key_function(color_order):
         return components_sort_key_func(to_components(hex))
 
     return key_func
+
+def compile_color_sort_key_function(color_order):
+    components_sort_key_func = compile_components_sort_key_function(color_order)
+
+    if is_hsl_order(color_order):
+        def key_func(color):
+            return components_sort_key_func(color.hsl)
+    else:
+        def key_func(color):
+            return components_sort_key_func(color.rgb)
+
+    return key_func

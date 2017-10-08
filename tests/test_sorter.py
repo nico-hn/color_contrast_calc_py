@@ -95,3 +95,27 @@ class TestLightness(unittest.TestCase):
         key_func = sorter.compile_hex_sort_key_function('bRG')
         for k, h in zip(key_func(rgb_hex), (70, -10, -165)):
             self.assertEqual(k, h, 0)
+
+    def test_compile_color_sort_key_function(self):
+        hsl = Color.new_from_hsl((20, 80, 50))
+        rgb = Color((10, 165, 70))
+
+        key_func = sorter.compile_color_sort_key_function('hsl')
+        for k, h in zip(key_func(hsl), (20, 80, 50)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compile_color_sort_key_function('HSL')
+        for k, h in zip(key_func(hsl), (-20, -80, -50)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compile_color_sort_key_function('lHs')
+        for k, h in zip(key_func(hsl), (50, -20, 80)):
+            self.assertAlmostEqual(k, h, 0)
+
+        key_func = sorter.compile_color_sort_key_function('rgb')
+        for k, h in zip(key_func(rgb), (10, 165, 70)):
+            self.assertEqual(k, h, 0)
+
+        key_func = sorter.compile_color_sort_key_function('bRG')
+        for k, h in zip(key_func(rgb), (70, -10, -165)):
+            self.assertEqual(k, h, 0)
