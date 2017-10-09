@@ -53,8 +53,8 @@ def compile_hex_sort_key_function(color_order):
     else:
         to_components = utils.hex_to_rgb
 
-    def key_func(hex):
-        return components_sort_key_func(to_components(hex))
+    def key_func(hex_code):
+        return components_sort_key_func(to_components(hex_code))
 
     return key_func
 
