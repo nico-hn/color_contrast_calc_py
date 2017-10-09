@@ -4,7 +4,7 @@ from color_contrast_calc.color import Color
 from color_contrast_calc import sorter
 from color_contrast_calc import utils
 
-class TestLightness(unittest.TestCase):
+class TestSorter(unittest.TestCase):
     def setup(self):
         pass
 
