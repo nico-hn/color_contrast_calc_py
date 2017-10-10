@@ -141,3 +141,25 @@ class TestSorterSortedHexInArray(TestSorterSortedColor):
         self.colors = [[Color.from_name(c).hex] for c in self.color_names]
         self.colors2 = [[Color.from_name(c).hex] for c in self.color_names2]
         self.key = operator.itemgetter(0)
+
+class TestSorterCompileKeyFunction(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def test_key_function_for_color(self):
+        rgb = Color((255, 165, 128))
+        key_func = sorter.compile_sort_key_function('bRg',
+                                                    sorter.key_types.COLOR)
+        self.assertEqual(key_func(rgb), (128, -255, 165))
+
+    def test_key_function_for_components(self):
+        rgb = (255, 165, 128)
+        key_func = sorter.compile_sort_key_function('bRg',
+                                                    sorter.key_types.COMPONENTS)
+        self.assertEqual(key_func(rgb), (128, -255, 165))
+
+    def test_key_function_for_hex(self):
+        rgb = '#ffa580' # same as Color((255, 165, 128)).hex
+        key_func = sorter.compile_sort_key_function('bRg',
+                                                    sorter.key_types.HEX)
+        self.assertEqual(key_func(rgb), (128, -255, 165))
