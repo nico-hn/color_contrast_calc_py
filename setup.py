@@ -11,5 +11,8 @@ setup(
     install_requires=[
         'numpy'
     ],
-    packages=find_packages(exclude=['tests*'])
+    packages=find_packages(exclude=['tests*']),
+    package_data={
+        'color_contrast_calc': ['color_keywords.json'],
+    }
 )
