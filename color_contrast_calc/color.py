@@ -4,6 +4,7 @@ from itertools import product
 from . import utils
 from . import checker
 from . import converters as conv
+from . import threshold_finders
 
 class Color:
     @classmethod
@@ -119,6 +120,12 @@ class Color:
         new_rgb = calc.calc_rgb(self.rgb, ratio)
         return self.__class__(new_rgb, name)
 
+    def find_brightness_threshold(self, other_color,
+                                  level=checker.WCAGLevel.AA):
+        if not isinstance(other_color, Color):
+            other_color = Color(other_color)
+
+        return threshold_finders.brightness.find(self, other_color, level)
 
 _here = path.abspath(path.dirname(__file__))
 
