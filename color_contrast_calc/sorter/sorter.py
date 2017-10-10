@@ -3,29 +3,27 @@ import operator
 import re
 from .. import utils
 from ..color import Color
+from . import key_types
 
 _HSL_RE = re.compile(r'[hsl]{3}', re.IGNORECASE)
 _RGB_COMPONENTS = 'rgb'
 _HSL_COMPONENTS = 'hsl'
 
 def sorted(colors, color_order='HSL', key=None):
-    key_value = _extract_key_value(colors[0], key)
-    key_func = compile_sort_key_function(color_order, key_value, key)
+    key_type = key_types.guess(colors[0], key)
+    key_func = compile_sort_key_function(color_order, key_type, key)
 
     return builtins.sorted(colors, key=key_func)
 
-def compile_sort_key_function(color_order, key_value, key_mapper=None):
-    if isinstance(key_value, Color):
+def compile_sort_key_function(color_order, key_type, key_mapper=None):
+    if key_type == key_types.COLOR:
         key_func = compile_color_sort_key_function(color_order)
-    elif isinstance(key_value, str):
+    elif key_type == key_types.HEX:
         key_func = compile_hex_sort_key_function(color_order)
     else:
         key_func = compile_components_sort_key_function(color_order)
 
     return compose_key_function(key_func, key_mapper)
-
-def _extract_key_value(color, key_mapper=None):
-    return color if key_mapper is None else key_mapper(color)
 
 def compose_key_function(key_function, key_mapper=None):
     if key_mapper is None:
