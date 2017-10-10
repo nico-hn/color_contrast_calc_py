@@ -1,8 +1,8 @@
 import builtins
 import operator
 import re
-from . import utils
-from .color import Color
+from .. import utils
+from ..color import Color
 
 _HSL_RE = re.compile(r'[hsl]{3}', re.IGNORECASE)
 _RGB_COMPONENTS = 'rgb'

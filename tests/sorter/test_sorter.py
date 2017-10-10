@@ -1,7 +1,7 @@
 import unittest
 import operator
 from color_contrast_calc.color import Color
-from color_contrast_calc import sorter
+from color_contrast_calc.sorter import sorter
 from color_contrast_calc import utils
 
 class TestSorter(unittest.TestCase):
