@@ -32,6 +32,8 @@ class TestSorterSortedColor(unittest.TestCase):
 
     def __assert_sorted_result(self, order, before, after):
         self.assertEqual(sorter.sorted(before, order, self.key), after)
+        self.assertEqual(sorter.sorted(before, order, self.key, reverse=True),
+                         list(reversed(after)))
 
     def test_rgb(self):
         black, gray, orange, yellow, springgreen, blue = self.colors

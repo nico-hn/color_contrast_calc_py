@@ -8,11 +8,11 @@ _HSL_RE = re.compile(r'[hsl]{3}', re.IGNORECASE)
 _RGB_COMPONENTS = 'rgb'
 _HSL_COMPONENTS = 'hsl'
 
-def sorted(colors, color_order='HSL', key=None):
+def sorted(colors, color_order='HSL', key=None, reverse=False):
     key_type = key_types.guess(colors[0], key)
     key_func = compile_sort_key_function(color_order, key_type, key)
 
-    return builtins.sorted(colors, key=key_func)
+    return builtins.sorted(colors, key=key_func, reverse=reverse)
 
 def compile_sort_key_function(color_order, key_type, key_mapper=None):
     if key_type == key_types.COLOR:
