@@ -1,10 +1,12 @@
 from os import path
 import json
 from itertools import product
+
 from . import utils
 from . import checker
 from . import converters as conv
 from . import threshold_finders
+
 
 class Color:
     @classmethod
@@ -134,6 +136,7 @@ class Color:
 
         return threshold_finders.lightness.find(self, other_color, level)
 
+
 _here = path.abspath(path.dirname(__file__))
 
 # named colors: https://www.w3.org/TR/SVG/types.html#ColorKeywords
@@ -145,6 +148,7 @@ NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)
 NAME_TO_COLOR = {color.name: color for color in NAMED_COLORS}
 
 HEX_TO_COLOR = {color.hex: color for color in NAMED_COLORS}
+
 
 def _generate_web_safe_colors():
     colors = []
@@ -159,11 +163,14 @@ def _generate_web_safe_colors():
 
     return tuple(colors)
 
+
 WEB_SAFE_COLORS = _generate_web_safe_colors()
+
 
 def hsl_colors(s=100, l=50, h_interval=1):
     hues = range(0, 361, h_interval)
     return tuple(Color.new_from_hsl((h, s, l)) for h in hues)
+
 
 Color.BLACK = Color.from_name('black')
 Color.GRAY = Color.from_name('gray')
