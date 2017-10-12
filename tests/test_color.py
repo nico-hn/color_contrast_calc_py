@@ -359,6 +359,44 @@ class TestColor(unittest.TestCase):
         self.assertAlmostEqual(new_contrast_ratio, target_ratio, 1)
 
 
+    def test_find_lightness_threshold(self):
+        yellow = Color((255, 255, 0))
+        orange = Color((255, 165, 0))
+
+        level = 'A'
+        target_ratio = 3.0
+
+        new_color = yellow.find_lightness_threshold(orange, level)
+        new_contrast_ratio = yellow.contrast_ratio_against(new_color)
+        self.assertTrue(orange.has_higher_luminance(new_color))
+        self.assertGreater(new_contrast_ratio, target_ratio)
+        self.assertAlmostEqual(new_contrast_ratio, target_ratio, 1)
+
+
+        new_color = orange.find_lightness_threshold(orange, level)
+        new_contrast_ratio = orange.contrast_ratio_against(new_color)
+        self.assertTrue(orange.has_higher_luminance(new_color))
+        self.assertGreater(new_contrast_ratio, target_ratio)
+        self.assertAlmostEqual(new_contrast_ratio, target_ratio, 1)
+
+
+        level = 'AA'
+        target_ratio = 4.5
+
+        new_color = yellow.find_lightness_threshold(orange, level)
+        new_contrast_ratio = yellow.contrast_ratio_against(new_color)
+        self.assertTrue(orange.has_higher_luminance(new_color))
+        self.assertGreater(new_contrast_ratio, target_ratio)
+        self.assertAlmostEqual(new_contrast_ratio, target_ratio, 1)
+
+
+        new_color = orange.find_lightness_threshold(orange, level)
+        new_contrast_ratio = orange.contrast_ratio_against(new_color)
+        self.assertTrue(orange.has_higher_luminance(new_color))
+        self.assertGreater(new_contrast_ratio, target_ratio)
+        self.assertAlmostEqual(new_contrast_ratio, target_ratio, 1)
+
+
     def test_WHITE(self):
         self.assertTrue(isinstance(Color.WHITE, Color))
         self.assertEqual(Color.WHITE.name, 'white')

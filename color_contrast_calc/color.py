@@ -127,6 +127,13 @@ class Color:
 
         return threshold_finders.brightness.find(self, other_color, level)
 
+    def find_lightness_threshold(self, other_color,
+                                 level=checker.WCAGLevel.AA):
+        if not isinstance(other_color, Color):
+            other_color = Color(other_color)
+
+        return threshold_finders.lightness.find(self, other_color, level)
+
 _here = path.abspath(path.dirname(__file__))
 
 # named colors: https://www.w3.org/TR/SVG/types.html#ColorKeywords
