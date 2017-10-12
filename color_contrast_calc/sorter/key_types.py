@@ -4,6 +4,7 @@ COLOR = 'COLOR'
 COMPONENTS = 'COMPONENTS'
 HEX = 'HEX'
 
+
 def guess(color, key_mapper=None):
     key = color if key_mapper is None else key_mapper(color)
 

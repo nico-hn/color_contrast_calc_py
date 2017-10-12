@@ -1,18 +1,22 @@
 import builtins
 import operator
 import re
+
 from .. import utils
 from . import key_types
+
 
 _HSL_RE = re.compile(r'[hsl]{3}', re.IGNORECASE)
 _RGB_COMPONENTS = 'rgb'
 _HSL_COMPONENTS = 'hsl'
+
 
 def sorted(colors, color_order='HSL', key=None, reverse=False):
     key_type = key_types.guess(colors[0], key)
     key_func = compile_sort_key_function(color_order, key_type, key)
 
     return builtins.sorted(colors, key=key_func, reverse=reverse)
+
 
 def compile_sort_key_function(color_order, key_type, key_mapper=None):
     if key_type == key_types.COLOR:
@@ -24,6 +28,7 @@ def compile_sort_key_function(color_order, key_type, key_mapper=None):
 
     return compose_key_function(key_func, key_mapper)
 
+
 def compose_key_function(key_function, key_mapper=None):
     if key_mapper is None:
         return key_function
@@ -33,11 +38,14 @@ def compose_key_function(key_function, key_mapper=None):
 
     return composed_func
 
+
 def is_hsl_order(color_order):
     return _HSL_RE.match(color_order) is not None
 
+
 def color_component_pos(color_order, ordered_components):
     return tuple(ordered_components.find(c) for c in color_order.lower())
+
 
 def parse_color_order(color_order):
     if is_hsl_order((color_order)):
@@ -53,6 +61,7 @@ def parse_color_order(color_order):
 
     return {'pos': pos, 'funcs': funcs}
 
+
 def compile_components_sort_key_function(color_order):
     order = parse_color_order(color_order)
     component_positions = order['pos']
@@ -62,6 +71,7 @@ def compile_components_sort_key_function(color_order):
         return tuple(funcs[i](components[i]) for i in component_positions)
 
     return key_func
+
 
 def compile_hex_sort_key_function(color_order):
     components_key_func = compile_components_sort_key_function(color_order)
@@ -75,6 +85,7 @@ def compile_hex_sort_key_function(color_order):
         return components_key_func(to_components(hex_code))
 
     return key_func
+
 
 def compile_color_sort_key_function(color_order):
     components_key_func = compile_components_sort_key_function(color_order)
