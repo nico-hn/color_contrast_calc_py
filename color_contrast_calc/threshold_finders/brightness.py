@@ -1,8 +1,10 @@
 import math
+
 from .. import checker
 from ..converters.brightness import calc_rgb
 from . import binary_search_width
 from .criteria import threshold_criteria
+
 
 def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     criteria = threshold_criteria(level, fixed_color, other_color)
@@ -17,16 +19,19 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     return _generate_satisfying_color(fixed_color, other_color, criteria,
                                       r, sufficient_r)
 
+
 def _upper_limit_color(fixed_color, other_color, max_ratio, level):
     limit_color = other_color.new_brightness_color(max_ratio)
 
     if _exceed_upper_limit(fixed_color, other_color, limit_color, level):
         return limit_color
 
+
 def _exceed_upper_limit(fixed_color, other_color, limit_color, level):
     other_has_higher_luminance = other_color.has_higher_luminance(fixed_color)
     sufficient_limit = limit_color.has_sufficient_contrast(fixed_color, level)
     return other_has_higher_luminance and not sufficient_limit
+
 
 def _calc_brightness_ratio(fixed_luminance, other_rgb, criteria, w):
     target_ratio = criteria.target_ratio
@@ -46,6 +51,7 @@ def _calc_brightness_ratio(fixed_luminance, other_rgb, criteria, w):
 
     return (r, sufficient_r)
 
+
 def _generate_satisfying_color(fixed_color, other_color,
                                criteria, r, sufficient_r):
     level = criteria.level
@@ -57,11 +63,13 @@ def _generate_satisfying_color(fixed_color, other_color,
 
     return nearest
 
+
 def _calc_contrast_ratio(fixed_luminance, other_rgb, r):
     new_rgb = calc_rgb(other_rgb, r)
     new_luminance = checker.relative_luminance(new_rgb)
 
     return checker.luminance_to_contrast_ratio(fixed_luminance, new_luminance)
+
 
 def calc_upper_ratio_limit(color):
     if color.is_same_color(color.__class__.BLACK):

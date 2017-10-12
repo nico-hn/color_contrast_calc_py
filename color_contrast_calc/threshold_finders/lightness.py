@@ -1,6 +1,8 @@
-from .. import checker, utils
+from .. import checker
+from .. import utils
 from .criteria import threshold_criteria, should_scan_darker_side
 from . import binary_search_width
+
 
 def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     criteria = threshold_criteria(level, fixed_color, other_color)
@@ -18,10 +20,12 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     return _generate_satisfying_color(fixed_color, other_color.hsl, criteria,
                                       l, sufficient_l)
 
+
 def _determine_minmax(fixed_color, other_color, init_l):
     scan_darker_side = should_scan_darker_side(fixed_color, other_color)
 
     return (init_l, 0) if scan_darker_side else (100, init_l) # (max, min)
+
 
 def _lightness_boundary_color(color, max_, min_, level):
     black = color.__class__.BLACK
@@ -32,6 +36,7 @@ def _lightness_boundary_color(color, max_, min_, level):
 
     if max_ == 100 and not color.has_sufficient_contrast(white, level):
         return white
+
 
 def _calc_lightness_ratio(fixed_color, other_hsl, criteria, max_, min_):
     h, s = other_hsl[0:2]
@@ -51,8 +56,10 @@ def _calc_lightness_ratio(fixed_color, other_hsl, criteria, max_, min_):
 
     return (l, sufficient_l)
 
+
 def _calc_contrast_ratio(fixed_color, hsl):
     return fixed_color.contrast_ratio_against(utils.hsl_to_rgb(hsl))
+
 
 def _generate_satisfying_color(fixed_color, other_hsl, criteria,
                                l, sufficient_l):
