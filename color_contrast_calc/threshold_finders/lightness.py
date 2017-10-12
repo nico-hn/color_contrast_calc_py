@@ -24,7 +24,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
 def _determine_minmax(fixed_color, other_color, init_l):
     scan_darker_side = should_scan_darker_side(fixed_color, other_color)
 
-    return (init_l, 0) if scan_darker_side else (100, init_l) # (max, min)
+    return (init_l, 0) if scan_darker_side else (100, init_l)  # (max, min)
 
 
 def _lightness_boundary_color(color, max_, min_, level):
