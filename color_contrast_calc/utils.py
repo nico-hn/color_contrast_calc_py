@@ -17,6 +17,8 @@ def hex_to_rgb(hex_code):
         primaries = (hex_part[i:(i+2)] for i in (0, 2, 4))
         return tuple(int(c, 16) for c in primaries)
 
+    return None
+
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
