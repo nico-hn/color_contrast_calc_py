@@ -37,6 +37,8 @@ def _lightness_boundary_color(color, max_, min_, level):
     if max_ == 100 and not color.has_sufficient_contrast(white, level):
         return white
 
+    return None
+
 
 def _calc_lightness_ratio(fixed_color, other_hsl, criteria, max_, min_):
     h, s = other_hsl[0:2]

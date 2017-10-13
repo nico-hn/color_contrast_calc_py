@@ -26,6 +26,8 @@ def _upper_limit_color(fixed_color, other_color, max_ratio, level):
     if _exceed_upper_limit(fixed_color, other_color, limit_color, level):
         return limit_color
 
+    return None
+
 
 def _exceed_upper_limit(fixed_color, other_color, limit_color, level):
     other_has_higher_luminance = other_color.has_higher_luminance(fixed_color)
