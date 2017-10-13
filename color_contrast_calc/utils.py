@@ -25,7 +25,7 @@ def rgb_to_hex(rgb):
 def normalize_hex(code, prefix=True):
     if len(code) < 6:
         hex_part = _remove_head_sharp(code)
-        code = ''.join(map(lambda c: c * 2, hex_part))
+        code = ''.join(c * 2 for c in hex_part)
 
     lowered = code.lower()
 
