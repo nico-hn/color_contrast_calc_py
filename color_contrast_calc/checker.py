@@ -63,3 +63,5 @@ def ratio_to_level(ratio):
 def level_to_ratio(level):
     if level in _LEVEL_TO_RATIO:
         return _LEVEL_TO_RATIO[level]
+
+    return None
