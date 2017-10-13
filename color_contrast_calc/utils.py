@@ -34,6 +34,8 @@ def normalize_hex(code, prefix=True):
     return '#' + lowered if prefix else lowered[1:]
 
 
+# https://www.w3.org/TR/css3-color/#hsl-color
+
 def hsl_to_rgb(hsl):
     h, s, l = (c / u for (c, u) in zip(hsl, (360.0, 100.0, 100.0)))
 
@@ -68,6 +70,13 @@ def _remove_head_sharp(hex_code):
 def hsl_to_hex(hsl):
     return rgb_to_hex(hsl_to_rgb(hsl))
 
+
+# References:
+# Agoston, Max K. (2005).
+# "Computer Graphics and Geometric Modeling: Implementation and Algorithms".
+# London: Springer
+#
+# https://accessibility.kde.org/hsl-adjusted.php#hue
 
 def rgb_to_hsl(rgb):
     return (_rgb_to_hue(rgb),

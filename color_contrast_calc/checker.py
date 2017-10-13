@@ -17,6 +17,8 @@ _LEVEL_TO_RATIO = {
 }
 
 
+# https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+
 def relative_luminance(rgb):
     if isinstance(rgb, str):
         rgb = utils.hex_to_rgb(rgb)
@@ -34,6 +36,8 @@ def _tristimulus_value(primary_color):
     else:
         return pow((s + 0.055) / 1.055, 2.4)
 
+
+# https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
 
 def contrast_ratio(color1, color2):
     return luminance_to_contrast_ratio(relative_luminance(color1),
