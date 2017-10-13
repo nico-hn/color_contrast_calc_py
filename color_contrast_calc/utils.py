@@ -1,4 +1,5 @@
-# Utility functions that provide basic operations on colors given as color codes
+# Utility functions that provide basic operations on colors given as
+# color codes.
 
 from functools import reduce
 from numbers import Number
