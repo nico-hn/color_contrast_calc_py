@@ -121,6 +121,13 @@ def hsl_to_hex(hsl):
 # https://accessibility.kde.org/hsl-adjusted.php#hue
 
 def rgb_to_hsl(rgb):
+    """Converts RGB value to HSL value
+
+    :param hsl: RGB value represented as a tuple of integers
+    :type hsl: (int, int, int)
+    :return: HSL value represented as a tuple of numbers
+    :rtype: (number, number, number)
+    """
     return (_rgb_to_hue(rgb),
             _rgb_to_saturation(rgb) * 100,
             _rgb_to_lightness(rgb) * 100)
