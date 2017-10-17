@@ -9,6 +9,13 @@ _HEX_RE = re.compile(r'\A#?[0-9a-f]{3}([0-9a-f]{3})?\Z', re.IGNORECASE)
 
 
 def hex_to_rgb(hex_code):
+    """Converts a hex color code string to a RGB value
+
+    :param hex_code: Hex color code such as "#ffff00"
+    :type hex_code: str
+    :return: RGB value represented as a tuple of integers
+    :rtype: (int, int, int)
+    """
     hex_part = _remove_head_sharp(hex_code)
 
     if len(hex_part) == 3:
