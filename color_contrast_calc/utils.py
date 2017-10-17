@@ -103,6 +103,13 @@ def _remove_head_sharp(hex_code):
 
 
 def hsl_to_hex(hsl):
+    """Converts HSL value to hex color code
+
+    :param hsl: HSL value represented as a tuple of numbers
+    :type hsl: (number, number, number)
+    :return: Hex color code such as "#ffff00"
+    :rtype: str
+    """
     return rgb_to_hex(hsl_to_rgb(hsl))
 
 
