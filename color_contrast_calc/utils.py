@@ -168,6 +168,13 @@ def _rgb_to_hue(rgb):
 
 
 def hex_to_hsl(hex_code):
+    """Converts hex color code to HSL value
+
+    :param hsl: Hex color code such as "#ffff00"
+    :type hsl: str
+    :return: HSL value represented as a tuple of numbers
+    :rtype: (number, number, number)
+    """
     return rgb_to_hsl(hex_to_rgb(hex_code))
 
 
