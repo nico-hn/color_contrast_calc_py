@@ -39,6 +39,17 @@ def rgb_to_hex(rgb):
 
 
 def normalize_hex(code, prefix=True):
+    """Normalize a hex color code to a 6 digits, lowercased one
+
+    :param code: Hex color code such as "#ffff00", "#ff0" or "FFFF00"
+    :type code: str
+    :param prefix: If set to False, "#" at the head of result is
+                   removed [optional]
+    :type prefix: bool
+    :return: 6-digit hexadecimal string in lowercase, with/without
+             leading "#" depending on the value of prefix
+    :rtype: str
+    """
     if len(code) < 6:
         hex_part = _remove_head_sharp(code)
         code = ''.join(c * 2 for c in hex_part)
