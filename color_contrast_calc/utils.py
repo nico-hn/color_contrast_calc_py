@@ -65,6 +65,13 @@ def normalize_hex(code, prefix=True):
 # https://www.w3.org/TR/css3-color/#hsl-color
 
 def hsl_to_rgb(hsl):
+    """Converts HSL value to RGB value
+
+    :param hsl: HSL value represented as a tuple of numbers
+    :type hsl: (number, number, number)
+    :return: RGB value represented as a tuple of integers
+    :rtype: (int, int, int)
+    """
     h, s, l = (c / u for (c, u) in zip(hsl, (360.0, 100.0, 100.0)))
 
     m2 = l * (s + 1) if l <= 0.5 else l + s - l * s
