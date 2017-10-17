@@ -28,6 +28,13 @@ def hex_to_rgb(hex_code):
 
 
 def rgb_to_hex(rgb):
+    """Converts a RGB value to a hex color code
+
+    :param rgb: RGB value represented as a tuple of integers
+    :type rgb: (int, int, int)
+    :return: Hex color code such as "#ffff00"
+    :rtype: str
+    """
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
 
 
