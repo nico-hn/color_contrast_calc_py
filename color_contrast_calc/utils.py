@@ -179,6 +179,13 @@ def hex_to_hsl(hex_code):
 
 
 def is_valid_rgb(rgb):
+    """Checks if a given tuple is a valid representation of RGB color
+
+    :param rgb: RGB value represented as a tuple of integers
+    :type rgb: (int, int, int)
+    :return: True if a valid RGB value is passed
+    :rtype: bool
+    """
     return len(rgb) == 3 and all(_valid_rgb_component(c) for c in rgb)
 
 
