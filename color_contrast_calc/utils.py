@@ -194,6 +194,13 @@ def _valid_rgb_component(component):
 
 
 def is_valid_hsl(hsl):
+    """Checks if a given tuple is a valid representation of HSL color
+
+    :param hsl: HSL value represented as a tuple of numbers
+    :type hsl: (number, number, number)
+    :return: True if a valid HSL value is passed
+    :rtype: bool
+    """
     if len(hsl) != 3:
         return False
 
