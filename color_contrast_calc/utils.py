@@ -214,6 +214,13 @@ def is_valid_hsl(hsl):
 
 
 def is_valid_hex(hex_code):
+    """Checks if a given string is a valid representation of RGB color
+
+    :param hex_code: RGB value in hex color code such as "#ffff00"
+    :type hex_code: str
+    :return: True if a vaild hex color code is passed
+    :rtype: bool
+    """
     return _HEX_RE.match(hex_code) is not None
 
 
