@@ -225,6 +225,17 @@ def is_valid_hex(hex_code):
 
 
 def is_same_hex_color(hex1, hex2):
+    """Checks if given two hex color codes represent a same color
+
+    :param hex1: RGB value in hex color code such as "#ffff00",
+                 "#ffff00", "#FFFF00" or "#ff0"
+    :type hex1: str
+    :param hex2: RGB value in hex color code such as "#ffff00",
+                 "#ffff00", "#FFFF00" or "#ff0"
+    :type hex2: str
+    :return: True if given two colors are same
+    :rtype: bool
+    """
     return normalize_hex(hex1) == normalize_hex(hex2)
 
 
