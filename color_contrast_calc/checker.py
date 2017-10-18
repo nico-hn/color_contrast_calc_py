@@ -20,6 +20,17 @@ _LEVEL_TO_RATIO = {
 # https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
 
 def relative_luminance(rgb):
+    """Calculates the relative luminance of a RGB color
+
+    The definition of relative luminance is given at
+    https://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef
+    :param rgb: RGB color given as a string or a tuple of integers.
+                Yellow, for example, can be given as "#ffff00" or
+                (255, 255, 0).
+    :type rgb: str or (int, int, int)
+    :return: Relative luminance of the passed color defined at
+    :rtype: number
+    """
     if isinstance(rgb, str):
         rgb = utils.hex_to_rgb(rgb)
 
