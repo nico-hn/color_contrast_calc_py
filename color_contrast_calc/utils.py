@@ -240,4 +240,11 @@ def is_same_hex_color(hex1, hex2):
 
 
 def is_uppercase(string):
+    """Checks if a given string is consists of uppercase letters
+
+    :param string: string to be checked
+    :type string: str
+    :return: True if letters in the passed string are all in uppercase
+    :rtype: bool
+    """
     return string == string.upper()
