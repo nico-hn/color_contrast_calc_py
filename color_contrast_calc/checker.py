@@ -51,6 +51,21 @@ def _tristimulus_value(primary_color):
 # https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
 
 def contrast_ratio(color1, color2):
+    """Calculates the contrast ratio of given colors
+
+    The definition of contrast ratio is given at
+    https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+    :param color1: RGB color given as a string or a tuple of integers.
+                   Yellow, for example, can be given as "#ffff00" or
+                   (255, 255, 0).
+    :type color1: str or (int, int, int)
+    :param color2: RGB color given as a string or a tuple of integers.
+                   Yellow, for example, can be given as "#ffff00" or
+                   (255, 255, 0).
+    :type color2: str or (int, int, int)
+    :return: Contrast ratio
+    :rtype: number
+    """
     return luminance_to_contrast_ratio(relative_luminance(color1),
                                        relative_luminance(color2))
 
