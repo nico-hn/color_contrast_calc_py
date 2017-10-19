@@ -98,6 +98,12 @@ class Color:
 
     @property
     def rgb_code(self):
+        """Returns a string representation of RGB value
+
+        :return: For example if the color is yellow, the return value
+                 is "rgb(255,255,0)".
+        :rtype: str
+        """
         if  self.__rgb_code is None:
             self.__rgb_code = 'rgb({:d},{:d},{:d})'.format(*self.rgb)
 
