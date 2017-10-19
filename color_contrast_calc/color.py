@@ -211,7 +211,7 @@ class Color:
 
         :param other_color: Another color
         :type other_color: Color
-        :return: True it the relative luminance of self and other_color
+        :return: True if the relative luminance of self and other_color
                  are same.
         :rtype: bool
         """
