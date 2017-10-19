@@ -196,6 +196,14 @@ class Color:
         return self.rgb == self.GRAY.rgb
 
     def has_higher_luminance(self, other_color):
+        """Checks if the color has higher luminance than another color.
+
+        :param other_color: Another color
+        :type other_color: Color
+        :return: True if the relative luminance of self is higher than
+                 that of other_color
+        :rtype: bool
+        """
         return self.relative_luminance > other_color.relative_luminance
 
     def has_same_luminance(self, other_color):
