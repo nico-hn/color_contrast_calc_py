@@ -390,6 +390,20 @@ WEB_SAFE_COLORS = _generate_web_safe_colors()
 
 
 def hsl_colors(s=100, l=50, h_interval=1):
+    """Returns a list of colors which share the same saturation and
+    lightness.
+
+    By default, so-called pure colors are returned.
+    :param s:  Ratio of saturation in percentage [optional]
+    :type s: number
+    :param l: Ratio of lightness in percentage [optional]
+    :type l: number
+    :param h_interval: Interval of hues in degrees.  By default, it
+                       returns 360 hues beginning from red. [optional]
+    :type h_interval: int
+    :return: List of colors
+    :rtype: tuple of Color
+    """
     hues = range(0, 361, h_interval)
     return tuple(Color.new_from_hsl((h, s, l)) for h in hues)
 
