@@ -27,6 +27,13 @@ class Color:
 
     @classmethod
     def from_hex(cls, hex_code):
+        """Returns an instance of Color for a hex color code
+
+        :param hex_code: Hex color code such as "#ffff00"
+        :type hex_code: str
+        :return: an instance of Color
+        :rtype: Color
+        """
         normalized_hex = utils.normalize_hex(hex_code)
         if normalized_hex in HEX_TO_COLOR:
             return HEX_TO_COLOR[normalized_hex]
