@@ -54,6 +54,18 @@ class Color:
         return cls(utils.hsl_to_rgb(hsl), name)
 
     def __init__(self, rgb, name=None):
+        """Creates an instance of Color
+
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :param rgb: RGB value represented as a tuple of integers or
+                    hex color code such as "#ffff00"
+        :type rgb: str or (int, int, int)
+        :return: an instance of Color
+        :rtype: Color
+        """
         if isinstance(rgb, str):
             self.rgb = utils.hex_to_rgb(rgb)
         else:
