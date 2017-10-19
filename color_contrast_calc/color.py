@@ -11,6 +11,15 @@ from . import threshold_finders
 class Color:
     @classmethod
     def from_name(cls, name):
+        """Returns an instance of Color for a predefined color name.
+
+        Color names are defined at
+        https://www.w3.org/TR/SVG/types.html#ColorKeywords
+        :param name: Name of color
+        :type name: str
+        :return: an instance of Color
+        :rtype: Color
+        """
         if not name in NAME_TO_COLOR:
             return None
 
