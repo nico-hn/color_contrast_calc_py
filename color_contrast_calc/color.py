@@ -126,6 +126,15 @@ class Color:
                                                    other_luminance)
 
     def contrast_level(self, other_color):
+        """Returns the level of contrast ratio defined by WCAG 2.0
+
+        :param other_color: Another instance of Color, RGB value or
+                            hex color code
+        :type other_color: Color or (int, int, int) or str
+        :return: "A", "AA" or "AAA" if the contrast ratio meets the
+                 criteria of WCAG 2.0, otherwise "-"
+        :rtype: str
+        """
         ratio = self.contrast_ratio_against(other_color)
         return checker.ratio_to_level(ratio)
 
