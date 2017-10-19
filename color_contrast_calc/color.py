@@ -218,6 +218,13 @@ class Color:
         return self.relative_luminance == other_color.relative_luminance
 
     def is_light_color(self):
+        """Checks if the contrast ratio against black is higher than
+           against white
+
+        :return: True if the contrast ratio against white is qual to or
+                 less than the ratio against black
+        :rtype: bool
+        """
         contrast_ratio_against_white = self.contrast_ratio_against(self.WHITE)
         contrast_ratio_against_black = self.contrast_ratio_against(self.BLACK)
 
