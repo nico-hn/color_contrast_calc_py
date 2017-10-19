@@ -42,6 +42,15 @@ class Color:
 
     @classmethod
     def new_from_hsl(cls, hsl, name=None):
+        """Creates an instance of Color from an HSL value
+
+        :param name: You can name the color to be created [optional]
+        :type name: str
+        :param hsl: HSL value represented as a tuple of numbers
+        :type hsl: (number, number, number)
+        :return: an instance of Color
+        :rtype: Color
+        """
         return cls(utils.hsl_to_rgb(hsl), name)
 
     def __init__(self, rgb, name=None):
