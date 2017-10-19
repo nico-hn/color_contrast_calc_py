@@ -44,10 +44,10 @@ class Color:
     def new_from_hsl(cls, hsl, name=None):
         """Creates an instance of Color from an HSL value
 
-        :param name: You can name the color to be created [optional]
-        :type name: str
         :param hsl: HSL value represented as a tuple of numbers
         :type hsl: (number, number, number)
+        :param name: You can name the color to be created [optional]
+        :type name: str
         :return: an instance of Color
         :rtype: Color
         """
