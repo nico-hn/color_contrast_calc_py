@@ -71,6 +71,15 @@ def contrast_ratio(color1, color2):
 
 
 def luminance_to_contrast_ratio(luminance1, luminance2):
+    """Calculates contrast ratio from a pair of relative luminance
+
+    :param luminance1: Relative luminance
+    :type luminance1: number
+    :param luminance2: Relative luminance
+    :type luminance2: number
+    :return: Contrast ratio
+    :rtype: number
+    """
     (l1, l2) = sorted((luminance1, luminance2), reverse=True)
     return (l1 + 0.05) / (l2 + 0.05)
 
