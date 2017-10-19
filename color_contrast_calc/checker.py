@@ -109,6 +109,14 @@ def ratio_to_level(ratio):
 
 
 def level_to_ratio(level):
+    """Returns a contrast ratio required to meet a given WCAG 2.0 level
+
+    N.B. The size of text is not taken into consideration.
+    :param level: "A", "AA" or "AAA"
+    :type level: str
+    :return: Contrast ratio
+    :rtype: number
+    """
     if level in _LEVEL_TO_RATIO:
         return _LEVEL_TO_RATIO[level]
 
