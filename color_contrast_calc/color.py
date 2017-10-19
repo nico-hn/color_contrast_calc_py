@@ -231,21 +231,87 @@ class Color:
         return contrast_ratio_against_white <= contrast_ratio_against_black
 
     def new_contrast_color(self, ratio, name=None):
+        """Returns a new instance of Color with adjusted contrast.
+
+        :param ratio: Value in percent
+        :type ratio: number
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :return: new color with adjusted contrast
+        :rtype: Color
+        """
         return self.__generate_new_color(conv.contrast, ratio, name)
 
     def new_brightness_color(self, ratio, name=None):
+        """Returns a new instance of Color with adjusted brightness.
+
+        :param ratio: Value in percent
+        :type ratio: number
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :return: new color with adjusted brightness
+        :rtype: Color
+        """
         return self.__generate_new_color(conv.brightness, ratio, name)
 
     def new_invert_color(self, ratio=100, name=None):
+        """Returns an inverted color as an instance of Color.
+
+        :param ratio: Value in degree
+        :type ratio: number
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :return: new inverted color
+        :rtype: Color
+        """
         return self.__generate_new_color(conv.invert, ratio, name)
 
     def new_hue_rotate_color(self, degree, name=None):
+        """Returns a hue rotation applied color as an instance of Color.
+
+        :param ratio: Value in percent
+        :type ratio: number
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :return: new hue rotation applied color
+        :rtype: Color
+        """
         return self.__generate_new_color(conv.hue_rotate, degree, name)
 
     def new_saturate_color(self, ratio, name=None):
+        """Returns a saturated color as an instance of Color.
+
+        :param ratio: Value in percent
+        :type ratio: number
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :return: new saturated color
+        :rtype: Color
+        """
         return self.__generate_new_color(conv.saturate, ratio, name)
 
     def new_grayscale_color(self, ratio=100, name=None):
+        """Returns a grayscale of the original color.
+
+        :param ratio: Value in percent
+        :type ratio: number
+        :param name: You can name the color to be created.
+                     Without this option, the value of normalized hex
+                     color code is assigned instead. [optional]
+        :type name: str
+        :return: new grayscale
+        :rtype: Color
+        """
         return self.__generate_new_color(conv.grayscale, ratio, name)
 
     def __generate_new_color(self, calc, ratio, name=None):
