@@ -185,6 +185,14 @@ class Color:
         return all(c in (0, 255) for c in self.rgb)
 
     def has_min_contrast(self):
+        """Checks if the color reachs already the min contrast.
+
+        The max contrast in this context means that of colors modified
+        by the operation defined at
+        https://www.w3.org/TR/filter-effects/#funcdef-contrast
+        :return: True if self is the same color as "#808080"
+        :rtype: bool
+        """
         return self.rgb == self.GRAY.rgb
 
     def has_higher_luminance(self, other_color):
