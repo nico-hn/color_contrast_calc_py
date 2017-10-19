@@ -110,6 +110,14 @@ class Color:
         return self.__rgb_code
 
     def contrast_ratio_against(self, other_color):
+        """Calculates the contrast ratio against another color
+
+        :param other_color: Another instance of Color, RGB value or
+                            hex color code
+        :type other_color: Color or (int, int, int) or str
+        :return: Contrast ratio
+        :rtype: number
+        """
         if not isinstance(other_color, Color):
             return checker.contrast_ratio(self.rgb, other_color)
 
