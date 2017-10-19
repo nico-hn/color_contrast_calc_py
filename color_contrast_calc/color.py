@@ -82,6 +82,15 @@ class Color:
 
     @property
     def hsl(self):
+        """Returns HSL value of the color
+
+        The value is calculated from the RGB value, so if you create
+        the instance by Color.new_from_hsl method, the value used to
+        create the color does not necessarily correspond to the value
+        of this property.
+        :return: HSL value represented as a tuple of numbers
+        :rtype: (number, number, number)
+        """
         if self.__hsl is None:
             self.__hsl = utils.rgb_to_hsl(self.rgb)
 
