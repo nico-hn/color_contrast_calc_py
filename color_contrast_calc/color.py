@@ -340,6 +340,19 @@ class Color:
 
     def find_lightness_threshold(self, other_color,
                                  level=checker.WCAGLevel.AA):
+        """Tries to find a color who has a satisfying contrast ratio.
+
+        The returned color is gained by modifying the lightness of
+        another color.  Even when a color that satisfies the specified
+        level is not found, it returns a new color anyway.
+        :param other_color: Color before the adjustment of lightness
+        :type other_color: Color or (int, int, int) or str
+        :param level: "A", "AA" or "AAA" [optional]
+        :type level: str
+        :return: New color whose brightness is adjusted from that of
+                 other_color
+        :rtype: Color
+        """
         if not isinstance(other_color, Color):
             other_color = Color(other_color)
 
