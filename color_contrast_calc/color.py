@@ -173,6 +173,15 @@ class Color:
             return False
 
     def has_max_contrast(self):
+        """Checks if the color reachs already the max contrast.
+
+        The max contrast in this context means that of colors modified
+        by the operation defined at
+        https://www.w3.org/TR/filter-effects/#funcdef-contrast
+        :return: True if self.new_contrast_color(r) where r is greater
+                 than 100 returns the same color as self.
+        :rtype: bool
+        """
         return all(c in (0, 255) for c in self.rgb)
 
     def has_min_contrast(self):
