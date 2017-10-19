@@ -155,6 +155,14 @@ class Color:
         return self.contrast_ratio_against(other_color) >= ratio
 
     def is_same_color(self, other_color):
+        """Checks it two colors have the same RGB value
+
+        :param other_color: Another instance of Color, RGB value or
+                            hex color code
+        :type other_color: Color or (int, int, int) or str
+        :return: True if other_color has the same RGB value
+        :rtype: bool
+        """
         if isinstance(other_color, Color):
             return self.hex == other_color.hex
         elif isinstance(other_color, tuple):
