@@ -207,6 +207,14 @@ class Color:
         return self.relative_luminance > other_color.relative_luminance
 
     def has_same_luminance(self, other_color):
+        """Checks if two colors has the same relative luminance.
+
+        :param other_color: Another color
+        :type other_color: Color
+        :return: True it the relative luminance of self and other_color
+                 are same.
+        :rtype: bool
+        """
         return self.relative_luminance == other_color.relative_luminance
 
     def is_light_color(self):
