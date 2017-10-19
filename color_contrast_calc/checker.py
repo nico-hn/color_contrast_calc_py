@@ -85,6 +85,19 @@ def luminance_to_contrast_ratio(luminance1, luminance2):
 
 
 def ratio_to_level(ratio):
+    """Rates a given contrast ratio according to the WCAG 2.0 criteria
+
+    The success criteria are given at
+    https://www.w3.org/TR/WCAG20/#visual-audio-contrast
+    https://www.w3.org/TR/WCAG20-TECHS/G183.html
+
+    N.B. The size of text is not taken into consideration.
+    :param ratio: Contrast ratio
+    :type ratio: number
+    :return: If one of criteria is satisfied, "A", "AA" or "AAA",
+             otherwise "-"
+    :rtype: str
+    """
     if ratio >= 7:
         return WCAGLevel.AAA
     if ratio >= 4.5:
