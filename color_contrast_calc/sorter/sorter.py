@@ -12,6 +12,26 @@ _HSL_COMPONENTS = 'hsl'
 
 
 def sorted(colors, color_order='HSL', key=None, reverse=False):
+    """Sort colors in the order specified by color_order.
+
+    Sort colors given as a list or tuple of Color instances or hex
+    color codes.  You can specify sorting order by giving a color_order
+    string, such as "HSL" or "RGB".  A component of color_order on the
+    left side has a higher sorting precedence, and an uppercase letter
+    means descending order.
+    :param colors: List of Color instances or items from which color
+                   hex codes can be retrieved.
+    :type colors: list or tuple
+    :param color_order: String such as "HSL", "RGB" or "lsH" [optional]
+    :type color_order: str
+    :param key: Function used to retrive key values from items to be
+                sorted [optional]
+    :type key: function or None
+    :param reverse: If set to True, reverse the sorting order [optional]
+    :type reverse: bool
+    :return: List of sorted colors.
+    :rtype: list of Color
+    """
     key_type = key_types.guess(colors[0], key)
     key_func = compile_sort_key_function(color_order, key_type, key)
 
