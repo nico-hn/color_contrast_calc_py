@@ -11,7 +11,7 @@ from . import threshold_finders
 class Color:
     @classmethod
     def from_name(cls, name):
-        """Returns an instance of Color for a predefined color name.
+        """Return an instance of Color for a predefined color name.
 
         Color names are defined at
         https://www.w3.org/TR/SVG/types.html#ColorKeywords
@@ -27,7 +27,7 @@ class Color:
 
     @classmethod
     def from_hex(cls, hex_code):
-        """Returns an instance of Color for a hex color code
+        """Return an instance of Color for a hex color code.
 
         :param hex_code: Hex color code such as "#ffff00"
         :type hex_code: str
@@ -42,10 +42,10 @@ class Color:
 
     @classmethod
     def new_from_hsl(cls, hsl, name=None):
-        """Creates an instance of Color from an HSL value
+        """Create an instance of Color from an HSL value.
 
         :param hsl: HSL value represented as a tuple of numbers
-        :type hsl: (number, number, number)
+        :type hsl: (float, float, float)
         :param name: You can name the color to be created [optional]
         :type name: str
         :return: an instance of Color
@@ -54,7 +54,7 @@ class Color:
         return cls(utils.hsl_to_rgb(hsl), name)
 
     def __init__(self, rgb, name=None):
-        """Creates an instance of Color
+        """Create an instance of Color.
 
         :param rgb: RGB value represented as a tuple of integers or
                     hex color code such as "#ffff00"
@@ -82,14 +82,14 @@ class Color:
 
     @property
     def hsl(self):
-        """Returns HSL value of the color
+        """Return HSL value of the color.
 
         The value is calculated from the RGB value, so if you create
         the instance by Color.new_from_hsl method, the value used to
         create the color does not necessarily correspond to the value
         of this property.
         :return: HSL value represented as a tuple of numbers
-        :rtype: (number, number, number)
+        :rtype: (float, float, float)
         """
         if self.__hsl is None:
             self.__hsl = utils.rgb_to_hsl(self.rgb)
@@ -98,7 +98,7 @@ class Color:
 
     @property
     def rgb_code(self):
-        """Returns a string representation of RGB value
+        """Return a string representation of RGB value.
 
         :return: For example if the color is yellow, the return value
                  is "rgb(255,255,0)".
@@ -110,13 +110,13 @@ class Color:
         return self.__rgb_code
 
     def contrast_ratio_against(self, other_color):
-        """Calculates the contrast ratio against another color
+        """Calculate the contrast ratio against another color.
 
         :param other_color: Another instance of Color, RGB value or
                             hex color code
         :type other_color: Color or (int, int, int) or str
         :return: Contrast ratio
-        :rtype: number
+        :rtype: float
         """
         if not isinstance(other_color, Color):
             return checker.contrast_ratio(self.rgb, other_color)
@@ -126,7 +126,7 @@ class Color:
                                                    other_luminance)
 
     def contrast_level(self, other_color):
-        """Returns the level of contrast ratio defined by WCAG 2.0
+        """Return the level of contrast ratio defined by WCAG 2.0.
 
         :param other_color: Another instance of Color, RGB value or
                             hex color code
@@ -140,7 +140,7 @@ class Color:
 
     def has_sufficient_contrast(self, other_color,
                                 level=checker.WCAGLevel.AA):
-        """Checks if the contrast ratio with another color meets
+        """Check if the contrast ratio with another color meets.
         a WCAG 2.0 criterion
 
         :param other_color: Another instance of Color, RGB value or
@@ -155,7 +155,7 @@ class Color:
         return self.contrast_ratio_against(other_color) >= ratio
 
     def is_same_color(self, other_color):
-        """Checks it two colors have the same RGB value
+        """Check it two colors have the same RGB value.
 
         :param other_color: Another instance of Color, RGB value or
                             hex color code
@@ -173,7 +173,7 @@ class Color:
             return False
 
     def has_max_contrast(self):
-        """Checks if the color reachs already the max contrast.
+        """Check if the color reachs already the max contrast..
 
         The max contrast in this context means that of colors modified
         by the operation defined at
@@ -185,7 +185,7 @@ class Color:
         return all(c in (0, 255) for c in self.rgb)
 
     def has_min_contrast(self):
-        """Checks if the color reachs already the min contrast.
+        """Check if the color reachs already the min contrast.
 
         The max contrast in this context means that of colors modified
         by the operation defined at
@@ -196,7 +196,7 @@ class Color:
         return self.rgb == self.GRAY.rgb
 
     def has_higher_luminance(self, other_color):
-        """Checks if the color has higher luminance than another color.
+        """Check if the color has higher luminance than another color.
 
         :param other_color: Another color
         :type other_color: Color
@@ -207,7 +207,7 @@ class Color:
         return self.relative_luminance > other_color.relative_luminance
 
     def has_same_luminance(self, other_color):
-        """Checks if two colors has the same relative luminance.
+        """Check if two colors has the same relative luminance.
 
         :param other_color: Another color
         :type other_color: Color
@@ -218,8 +218,8 @@ class Color:
         return self.relative_luminance == other_color.relative_luminance
 
     def is_light_color(self):
-        """Checks if the contrast ratio against black is higher than
-           against white
+        """Check if the contrast ratio against black is higher than
+           against white.
 
         :return: True if the contrast ratio against white is qual to or
                  less than the ratio against black
@@ -231,10 +231,10 @@ class Color:
         return contrast_ratio_against_white <= contrast_ratio_against_black
 
     def new_contrast_color(self, ratio, name=None):
-        """Returns a new instance of Color with adjusted contrast.
+        """Return a new instance of Color with adjusted contrast.
 
         :param ratio: Value in percent
-        :type ratio: number
+        :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
@@ -245,10 +245,10 @@ class Color:
         return self.__generate_new_color(conv.contrast, ratio, name)
 
     def new_brightness_color(self, ratio, name=None):
-        """Returns a new instance of Color with adjusted brightness.
+        """Return a new instance of Color with adjusted brightness.
 
         :param ratio: Value in percent
-        :type ratio: number
+        :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
@@ -259,10 +259,10 @@ class Color:
         return self.__generate_new_color(conv.brightness, ratio, name)
 
     def new_invert_color(self, ratio=100, name=None):
-        """Returns an inverted color as an instance of Color.
+        """Return an inverted color as an instance of Color.
 
         :param ratio: Value in degree
-        :type ratio: number
+        :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
@@ -273,10 +273,10 @@ class Color:
         return self.__generate_new_color(conv.invert, ratio, name)
 
     def new_hue_rotate_color(self, degree, name=None):
-        """Returns a hue rotation applied color as an instance of Color.
+        """Return a hue rotation applied color as an instance of Color.
 
         :param ratio: Value in percent
-        :type ratio: number
+        :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
@@ -287,10 +287,10 @@ class Color:
         return self.__generate_new_color(conv.hue_rotate, degree, name)
 
     def new_saturate_color(self, ratio, name=None):
-        """Returns a saturated color as an instance of Color.
+        """Return a saturated color as an instance of Color.
 
         :param ratio: Value in percent
-        :type ratio: number
+        :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
@@ -301,10 +301,10 @@ class Color:
         return self.__generate_new_color(conv.saturate, ratio, name)
 
     def new_grayscale_color(self, ratio=100, name=None):
-        """Returns a grayscale of the original color.
+        """Return a grayscale of the original color.
 
         :param ratio: Value in percent
-        :type ratio: number
+        :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
@@ -320,7 +320,7 @@ class Color:
 
     def find_brightness_threshold(self, other_color,
                                   level=checker.WCAGLevel.AA):
-        """Tries to find a color who has a satisfying contrast ratio.
+        """Try to find a color who has a satisfying contrast ratio.
 
         The returned color is gained by modifying the brightness of
         another color.  Even when a color that satisfies the specified
@@ -340,7 +340,7 @@ class Color:
 
     def find_lightness_threshold(self, other_color,
                                  level=checker.WCAGLevel.AA):
-        """Tries to find a color who has a satisfying contrast ratio.
+        """Try to find a color who has a satisfying contrast ratio.
 
         The returned color is gained by modifying the lightness of
         another color.  Even when a color that satisfies the specified
@@ -390,14 +390,14 @@ WEB_SAFE_COLORS = _generate_web_safe_colors()
 
 
 def hsl_colors(s=100, l=50, h_interval=1):
-    """Returns a list of colors which share the same saturation and
+    """Return a list of colors which share the same saturation and
     lightness.
 
     By default, so-called pure colors are returned.
     :param s:  Ratio of saturation in percentage [optional]
-    :type s: number
+    :type s: float
     :param l: Ratio of lightness in percentage [optional]
-    :type l: number
+    :type l: float
     :param h_interval: Interval of hues in degrees.  By default, it
                        returns 360 hues beginning from red. [optional]
     :type h_interval: int
