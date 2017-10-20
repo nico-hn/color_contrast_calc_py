@@ -9,7 +9,7 @@ env:
   global:
     - TEST_RUNNER=pytest
   matrix:
-    - TEST_RUNNER=py-test
+    - TEST_RUNNER=py.test
 matrix:
   include:
     - python:
