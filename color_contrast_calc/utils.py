@@ -9,7 +9,7 @@ _HEX_RE = re.compile(r'\A#?[0-9a-f]{3}([0-9a-f]{3})?\Z', re.IGNORECASE)
 
 
 def hex_to_rgb(hex_code):
-    """Converts a hex color code string to a RGB value
+    """Convert a hex color code string to a RGB value.
 
     :param hex_code: Hex color code such as "#ffff00"
     :type hex_code: str
@@ -28,7 +28,7 @@ def hex_to_rgb(hex_code):
 
 
 def rgb_to_hex(rgb):
-    """Converts a RGB value to a hex color code
+    """Convert a RGB value to a hex color code.
 
     :param rgb: RGB value represented as a tuple of integers
     :type rgb: (int, int, int)
@@ -39,7 +39,7 @@ def rgb_to_hex(rgb):
 
 
 def normalize_hex(code, prefix=True):
-    """Normalize a hex color code to a 6 digits, lowercased one
+    """Normalize a hex color code to a 6 digits, lowercased one.
 
     :param code: Hex color code such as "#ffff00", "#ff0" or "FFFF00"
     :type code: str
@@ -65,10 +65,10 @@ def normalize_hex(code, prefix=True):
 # https://www.w3.org/TR/css3-color/#hsl-color
 
 def hsl_to_rgb(hsl):
-    """Converts HSL value to RGB value
+    """Convert HSL value to RGB value.
 
     :param hsl: HSL value represented as a tuple of numbers
-    :type hsl: (number, number, number)
+    :type hsl: (float, float, float)
     :return: RGB value represented as a tuple of integers
     :rtype: (int, int, int)
     """
@@ -103,10 +103,10 @@ def _remove_head_sharp(hex_code):
 
 
 def hsl_to_hex(hsl):
-    """Converts HSL value to hex color code
+    """Convert HSL value to hex color code.
 
     :param hsl: HSL value represented as a tuple of numbers
-    :type hsl: (number, number, number)
+    :type hsl: (float, float, float)
     :return: Hex color code such as "#ffff00"
     :rtype: str
     """
@@ -121,12 +121,12 @@ def hsl_to_hex(hsl):
 # https://accessibility.kde.org/hsl-adjusted.php#hue
 
 def rgb_to_hsl(rgb):
-    """Converts RGB value to HSL value
+    """Convert RGB value to HSL value.
 
     :param hsl: RGB value represented as a tuple of integers
     :type hsl: (int, int, int)
     :return: HSL value represented as a tuple of numbers
-    :rtype: (number, number, number)
+    :rtype: (float, float, float)
     """
     return (_rgb_to_hue(rgb),
             _rgb_to_saturation(rgb) * 100,
@@ -168,18 +168,18 @@ def _rgb_to_hue(rgb):
 
 
 def hex_to_hsl(hex_code):
-    """Converts hex color code to HSL value
+    """Convert hex color code to HSL value.
 
     :param hsl: Hex color code such as "#ffff00"
     :type hsl: str
     :return: HSL value represented as a tuple of numbers
-    :rtype: (number, number, number)
+    :rtype: (float, float, float)
     """
     return rgb_to_hsl(hex_to_rgb(hex_code))
 
 
 def is_valid_rgb(rgb):
-    """Checks if a given tuple is a valid representation of RGB color
+    """Check if a given tuple is a valid representation of RGB color.
 
     :param rgb: RGB value represented as a tuple of integers
     :type rgb: (int, int, int)
@@ -194,10 +194,10 @@ def _valid_rgb_component(component):
 
 
 def is_valid_hsl(hsl):
-    """Checks if a given tuple is a valid representation of HSL color
+    """Check if a given tuple is a valid representation of HSL color.
 
     :param hsl: HSL value represented as a tuple of numbers
-    :type hsl: (number, number, number)
+    :type hsl: (float, float, float)
     :return: True if a valid HSL value is passed
     :rtype: bool
     """
@@ -214,7 +214,7 @@ def is_valid_hsl(hsl):
 
 
 def is_valid_hex(hex_code):
-    """Checks if a given string is a valid representation of RGB color
+    """Check if a given string is a valid representation of RGB color.
 
     :param hex_code: RGB value in hex color code such as "#ffff00"
     :type hex_code: str
@@ -225,7 +225,7 @@ def is_valid_hex(hex_code):
 
 
 def is_same_hex_color(hex1, hex2):
-    """Checks if given two hex color codes represent a same color
+    """Check if given two hex color codes represent a same color.
 
     :param hex1: RGB value in hex color code such as "#ffff00",
                  "#ffff00", "#FFFF00" or "#ff0"
@@ -240,11 +240,11 @@ def is_same_hex_color(hex1, hex2):
 
 
 def is_uppercase(string):
-    """Checks if a given string is consists of uppercase letters
+    """Check if a given string is consists of uppercase letters.
 
     :param string: string to be checked
     :type string: str
-    :return: True if letters in the passed string are all in uppercase
+    :return: True if letters in the passed string are all in uppercase.
     :rtype: bool
     """
     return string == string.upper()
