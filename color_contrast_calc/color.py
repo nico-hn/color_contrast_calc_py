@@ -303,7 +303,7 @@ class Color:
     def new_grayscale_color(self, ratio=100, name=None):
         """Return a grayscale of the original color.
 
-        :param ratio: Value in percent
+        :param ratio: Conversion ratio in percentage
         :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
