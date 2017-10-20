@@ -275,7 +275,7 @@ class Color:
     def new_hue_rotate_color(self, degree, name=None):
         """Return a hue rotation applied color as an instance of Color.
 
-        :param ratio: Value in percent
+        :param ratio: Degrees of rotation (0 to 360)
         :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
