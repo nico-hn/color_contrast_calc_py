@@ -402,10 +402,10 @@ def hsl_colors(s=100, l=50, h_interval=1):
                        returns 360 hues beginning from red. [optional]
     :type h_interval: int
     :return: List of colors
-    :rtype: tuple of Color
+    :rtype: list of Color
     """
     hues = range(0, 361, h_interval)
-    return tuple(Color.new_from_hsl((h, s, l)) for h in hues)
+    return [Color.new_from_hsl((h, s, l)) for h in hues]
 
 
 Color.BLACK = Color.from_name('black')
