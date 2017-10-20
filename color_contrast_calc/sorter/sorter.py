@@ -39,6 +39,18 @@ def sorted(colors, color_order='HSL', key=None, reverse=False):
 
 
 def compile_sort_key_function(color_order, key_type, key_mapper=None):
+    """Return a function to be used as key function of sorted().
+
+    :param color_order: String such as "HSL", "RGB" or "lsH" [optional]
+    :type color_order: str
+    :param key_type: "COLOR", "COMPONENTS" or "HEX"
+    :type key_type: str
+    :param key_mapper: Function used to retrive key values from items
+                       to be sorted. [optional]
+    :type key_mapper: function or None
+    :return: Function to be used as key function of sorted().
+    :rtype: function
+    """
     if key_type == key_types.COLOR:
         key_func = compile_color_sort_key_function(color_order)
     elif key_type == key_types.HEX:
