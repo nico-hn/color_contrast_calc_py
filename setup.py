@@ -9,7 +9,7 @@ setup(
     author_email='hashimoto.naoki@gmail.com',
     license='MIT',
     install_requires=[
-        'numpy'
+        'numpy>=1.3'
     ],
     packages=find_packages(exclude=['tests*']),
     package_data={
