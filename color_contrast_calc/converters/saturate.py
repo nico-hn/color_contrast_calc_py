@@ -16,6 +16,17 @@ _SATURATE_PART = np.array([[0.787, -0.715, -0.072],
 
 
 def calc_rgb(rgb, s):
+    """Return a saturated RGB value of passed color.
+
+    The calculation is based on the definition found at
+    https://www.w3.org/TR/filter-effects/#funcdef-saturate
+    :param rgb: The Original RGB value before the saturation.
+    :type rgb: (int, int, int)
+    :param s: Proprtion of the conversion in percentage
+    :type s: float
+    :return: Saturated RGB value
+    :rtype: (int, int, int)
+    """
     return rgb_clamp((_calc_saturation(s) * np.array(rgb)).sum(1))
 
 
