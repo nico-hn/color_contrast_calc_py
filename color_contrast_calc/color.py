@@ -247,7 +247,7 @@ class Color:
     def new_brightness_color(self, ratio, name=None):
         """Return a new instance of Color with adjusted brightness.
 
-        :param ratio: Value in percent
+        :param ratio: Adjustment ratio in percentage
         :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
