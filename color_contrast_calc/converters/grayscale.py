@@ -17,6 +17,18 @@ _RATIO_PART = np.array([[0.7874, -0.7152, -0.0722],
 
 
 def calc_rgb(rgb, s):
+    """Convert passed a passed color to grayscale.
+
+    THe calculation is based on the definition found at
+    https://www.w3.org/TR/filter-effects/#funcdef-grayscale
+    :param rgb: The Original RGB value before the conversion.
+    :type rgb: (int, int, int)
+    :param s: Conversion ratio in percentage
+    :type s: float
+    :return: RGB value of grayscale color
+    :rtype: (int, int, int)
+    """
+
     return rgb_clamp((_calc_grayscale(s) * np.array(rgb)).sum(1))
 
 
