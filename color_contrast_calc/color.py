@@ -289,7 +289,7 @@ class Color:
     def new_saturate_color(self, ratio, name=None):
         """Return a saturated color as an instance of Color.
 
-        :param ratio: Value in percent
+        :param ratio: Proprtion of the conversion in percentage
         :type ratio: float
         :param name: You can name the color to be created.
                      Without this option, the value of normalized hex
