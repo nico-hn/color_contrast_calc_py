@@ -1,5 +1,8 @@
-# Utility functions that provide basic operations on colors given as
-# color codes.
+'''Utility functions that provide basic operations on colors
+
+This module provides basic operations on colors given as RGB values
+(including their hex code presentations) or HSL values.
+'''
 
 from functools import reduce
 from numbers import Number

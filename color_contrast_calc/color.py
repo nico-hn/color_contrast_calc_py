@@ -1,3 +1,9 @@
+'''Provide Color class that represents specific colors
+
+This module also provides lists of predefined colors represented as
+instances of Color class.
+'''
+
 from os import path
 import json
 from itertools import product
