@@ -34,7 +34,7 @@ setup(
         'dev': ['pytest'],
         'test': ['pylint']
     },
-    packages=find_packages(exclude=['tests', 'docs']),
+    packages=find_packages(exclude=['tests', 'docs', 'examples']),
     package_data={
         'color_contrast_calc': ['color_keywords.json'],
     }
