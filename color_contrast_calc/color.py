@@ -11,7 +11,8 @@ from itertools import product
 from . import utils
 from . import checker
 from . import converters as conv
-from . import threshold_finders
+from .threshold_finders import brightness as brightness_finder
+from .threshold_finders import lightness as lightness_finder
 
 
 class Color:
@@ -342,7 +343,7 @@ class Color:
         if not isinstance(other_color, Color):
             other_color = Color(other_color)
 
-        return threshold_finders.brightness.find(self, other_color, level)
+        return brightness_finder.find(self, other_color, level)
 
     def find_lightness_threshold(self, other_color,
                                  level=checker.WCAGLevel.AA):
@@ -362,7 +363,7 @@ class Color:
         if not isinstance(other_color, Color):
             other_color = Color(other_color)
 
-        return threshold_finders.lightness.find(self, other_color, level)
+        return lightness_finder.find(self, other_color, level)
 
 
 _here = path.abspath(path.dirname(__file__))
