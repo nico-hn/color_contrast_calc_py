@@ -35,6 +35,16 @@ class TestSorterSortedColor(unittest.TestCase):
         self.assertEqual(sorter.sorted(before, order, self.key, reverse=True),
                          list(reversed(after)))
 
+    def test_default(self):
+        color_names = ('red', 'yellow', 'lime', 'cyan', 'fuchsia', 'blue')
+        colors = [Color.from_name(c) for c in color_names]
+        red, yellow, lime, cyan, fuchsia, blue = colors
+        default_order = [red, yellow, lime, cyan, blue, fuchsia]
+        rgb_order = [yellow, fuchsia, red, cyan, lime, blue]
+
+        self.assertEqual(sorter.sorted(colors), default_order)
+        self.assertEqual(sorter.sorted(colors, "RGB"), rgb_order)
+
     def test_rgb(self):
         black, gray, orange, yellow, springgreen, blue = self.colors
 

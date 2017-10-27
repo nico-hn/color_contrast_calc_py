@@ -11,7 +11,7 @@ _RGB_COMPONENTS = 'rgb'
 _HSL_COMPONENTS = 'hsl'
 
 
-def sorted(colors, color_order='HSL', key=None, reverse=False):
+def sorted(colors, color_order='hSL', key=None, reverse=False):
     """Sort colors in the order specified by color_order.
 
     Sort colors given as a list or tuple of Color instances or hex
