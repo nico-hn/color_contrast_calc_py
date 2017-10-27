@@ -10,9 +10,14 @@ from itertools import product
 
 from . import utils
 from . import checker
-from . import converters as conv
 from .threshold_finders import brightness as brightness_finder
 from .threshold_finders import lightness as lightness_finder
+from .converters import brightness as brightness_conv
+from .converters import contrast as contrast_conv
+from .converters import grayscale as grayscale_conv
+from .converters import hue_rotate as hue_rotate_conv
+from .converters import invert as invert_conv
+from .converters import saturate as saturate_conv
 
 
 class Color:
@@ -249,7 +254,7 @@ class Color:
         :return: new color with adjusted contrast
         :rtype: Color
         """
-        return self.__generate_new_color(conv.contrast, ratio, name)
+        return self.__generate_new_color(contrast_conv, ratio, name)
 
     def new_brightness_color(self, ratio, name=None):
         """Return a new instance of Color with adjusted brightness.
@@ -263,7 +268,7 @@ class Color:
         :return: new color with adjusted brightness
         :rtype: Color
         """
-        return self.__generate_new_color(conv.brightness, ratio, name)
+        return self.__generate_new_color(brightness_conv, ratio, name)
 
     def new_invert_color(self, ratio=100, name=None):
         """Return an inverted color as an instance of Color.
@@ -277,7 +282,7 @@ class Color:
         :return: new inverted color
         :rtype: Color
         """
-        return self.__generate_new_color(conv.invert, ratio, name)
+        return self.__generate_new_color(invert_conv, ratio, name)
 
     def new_hue_rotate_color(self, degree, name=None):
         """Return a hue rotation applied color as an instance of Color.
@@ -291,7 +296,7 @@ class Color:
         :return: new hue rotation applied color
         :rtype: Color
         """
-        return self.__generate_new_color(conv.hue_rotate, degree, name)
+        return self.__generate_new_color(hue_rotate_conv, degree, name)
 
     def new_saturate_color(self, ratio, name=None):
         """Return a saturated color as an instance of Color.
@@ -305,7 +310,7 @@ class Color:
         :return: new saturated color
         :rtype: Color
         """
-        return self.__generate_new_color(conv.saturate, ratio, name)
+        return self.__generate_new_color(saturate_conv, ratio, name)
 
     def new_grayscale_color(self, ratio=100, name=None):
         """Return a grayscale of the original color.
@@ -319,7 +324,7 @@ class Color:
         :return: new grayscale
         :rtype: Color
         """
-        return self.__generate_new_color(conv.grayscale, ratio, name)
+        return self.__generate_new_color(grayscale_conv, ratio, name)
 
     def __generate_new_color(self, calc, ratio, name=None):
         new_rgb = calc.calc_rgb(self.rgb, ratio)

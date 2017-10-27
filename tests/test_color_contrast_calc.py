@@ -11,3 +11,10 @@ class TestColorContrastCalc(unittest.TestCase):
 
         contrast_ratio = yellow.contrast_ratio_against(black)
         self.assertAlmostEqual(contrast_ratio, 19.56, 2)
+
+    def test_grayscale(self):
+        yellow = color_contrast_calc.color.Color.from_name('yellow')
+        orange = color_contrast_calc.color.Color.from_name('orange')
+
+        self.assertEqual(yellow.new_grayscale_color().hex, '#ededed')
+        self.assertEqual(orange.new_grayscale_color().hex, '#acacac')
