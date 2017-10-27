@@ -9,6 +9,8 @@ sufficient contrast, WCAG 2.0 in mind.
 Installation
 ------------
 
+(Not published yet on PyPI)
+
 .. code-block:: bash
 
     $ pip install color_contrast_calc
