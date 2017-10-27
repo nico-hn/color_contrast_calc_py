@@ -108,8 +108,8 @@ Then execute the script:
 Example 3: Grayscale of given colors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For getting grayscale, :class:`Color` has an instance method
-:meth:`new_grayscale_color`.
+For getting grayscale, ``Color`` has an instance method
+``new_grayscale_color``.
 For example, save the following code as grayscale.py
 
 .. code-block:: python
@@ -134,11 +134,11 @@ Then execute the script:
     The grayscale of #ffff00 (yellow) is #ededed
     The grayscale of #ffa500 (orange) is #acacac
 
-And other than :meth:`new_grayscale_color`, following instance methods
-are available for :class:`Color`:
+And other than ``new_grayscale_color``, following instance methods
+are available for ``Color``:
 
-* :meth:`new_brightness_color`
-* :meth:`new_contrast_color`
-* :meth:`new_hue_rotate_color`
-* :meth:`new_invert_color`
-* :meth:`new_saturate_color`
+* ``new_brightness_color``
+* ``new_contrast_color``
+* ``new_hue_rotate_color``
+* ``new_invert_color``
+* ``new_saturate_color``
