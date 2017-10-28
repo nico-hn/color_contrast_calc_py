@@ -142,3 +142,61 @@ are available for ``Color``:
 * ``new_hue_rotate_color``
 * ``new_invert_color``
 * ``new_saturate_color``
+
+Example 4: Sort colors
+^^^^^^^^^^^^^^^^^^^^^^
+
+You can sort colors using a function
+``color_contrast_calc.sorter.sorted``.
+
+For example, save the following code as sort_colors.py:
+
+.. code-block:: python
+
+    from color_contrast_calc.color import Color
+    import color_contrast_calc.sorter as sorter
+
+    color_names = ('red', 'yellow', 'lime', 'cyan', 'fuchsia', 'blue')
+    colors = [Color.from_name(c) for c in color_names]
+
+    # sort by hSL order.  An uppercase for a component of color means
+    # that component should be sorted in descending order.
+
+    hsl_ordered = sorter.sorted(colors, "hSL")
+    print ("Colors sorted in the order of hSL:")
+    print([c.name for c in hsl_ordered])
+
+    # sort by RGB order.
+
+    rgb_ordered = sorter.sorted(colors, "RGB")
+    print ("Colors sorted in the order of RGB:")
+    print([c.name for c in rgb_ordered])
+
+    # You can also change the precedence of components.
+
+    grb_ordered = sorter.sorted(colors, "GRB")
+    print ("Colors sorted in the order of GRB:")
+    print([c.name for c in grb_ordered])
+
+    # And you can directly sort hex color codes.
+
+    ## Hex color codes that correspond to the color_names given above.
+    hex_codes = ['#ff0000', '#ff0', '#00ff00', '#0ff', '#f0f', '#0000FF']
+
+    hsl_ordered = sorter.sorted(hex_codes, "hSL")
+    print("Hex codes sorted in the order of hSL:")
+    print(hsl_ordered)
+
+Then execute the script:
+
+.. code-block:: bash
+
+    $ python sort_colors.py
+    Colors sorted in the order of hSL:
+    ['red', 'yellow', 'lime', 'cyan', 'blue', 'fuchsia']
+    Colors sorted in the order of RGB:
+    ['yellow', 'fuchsia', 'red', 'cyan', 'lime', 'blue']
+    Colors sorted in the order of GRB:
+    ['yellow', 'cyan', 'lime', 'fuchsia', 'red', 'blue']
+    Hex codes sorted in the order of hSL:
+    ['#ff0000', '#ff0', '#00ff00', '#0ff', '#0000FF', '#f0f']
