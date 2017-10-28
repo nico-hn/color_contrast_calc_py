@@ -1,3 +1,11 @@
+'''This module is intended to be used internally, to provide two
+functions, ``color_contrast_calc.sorter.sorted`` and
+``color_contrast_calc.sorter.compile_sort_key_function``.
+
+The other functions defined in this module should not be considered
+as stable interfaces.
+'''
+
 import builtins
 import operator
 import re
