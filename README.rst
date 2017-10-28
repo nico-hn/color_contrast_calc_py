@@ -200,3 +200,70 @@ Then execute the script:
     ['yellow', 'cyan', 'lime', 'fuchsia', 'red', 'blue']
     Hex codes sorted in the order of hSL:
     ['#ff0000', '#ff0', '#00ff00', '#0ff', '#0000FF', '#f0f']
+
+Example 5: Lists of predefined colors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Two lists of colors are provided, one is for
+`named colors <https://www.w3.org/TR/SVG/types.html#ColorKeywords>`_,
+and the other for the web safe colors.
+
+And there is a function ``color_contrast_calc.color.hsl_colors`` that
+generates a list of HSL colors.
+
+For example, save the following code as color_lists.py:
+
+.. code-block:: python
+
+    import color_contrast_calc.color
+
+    # Named colors
+    named_colors = color_contrast_calc.color.NAMED_COLORS
+
+    print('The number of named colors: ', end='')
+    print(len(named_colors))
+    print('The first color of named colors: ', end='')
+    print(named_colors[0].name)
+    print('The last color of named colors: ', end='')
+    print(named_colors[-1].name)
+
+    # Web safe colors
+    web_safe_colors = color_contrast_calc.color.WEB_SAFE_COLORS
+
+    print('The number of web safe colors: ', end='')
+    print(len(web_safe_colors))
+    print('The first color of web safe colors: ', end='')
+    print(web_safe_colors[0].name)
+    print('The last color of web safe colors: ', end='')
+    print(web_safe_colors[-1].name)
+
+    # HSL colors
+    hsl_colors = color_contrast_calc.color.hsl_colors()
+
+    print('The number of HSL colors: ', end='')
+    print(len(hsl_colors))
+    print('The first color of HSL colors: ', end='')
+    print(hsl_colors[0].name)
+    print('The 60th color of HSL colors: ', end='')
+    print(hsl_colors[60].name)
+    print('The 120th color of HSL colors: ', end='')
+    print(hsl_colors[120].name)
+    print('The last color of HSL colors: ', end='')
+    print(hsl_colors[-1].name)
+
+Then execute the script:
+
+.. code-block:: bash
+
+    $ python color_lists.py
+    The number of named colors: 147
+    The first color of named colors: aliceblue
+    The last color of named colors: yellowgreen
+    The number of web safe colors: 216
+    The first color of web safe colors: black
+    The last color of web safe colors: white
+    The number of HSL colors: 361
+    The first color of HSL colors: #ff0000
+    The 60th color of HSL colors: #ffff00
+    The 120th color of HSL colors: #00ff00
+    The last color of HSL colors: #ff0000
