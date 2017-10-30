@@ -8,6 +8,7 @@ as a tuple of integers) or a hex color code such "#ffff00".
 from . import utils
 
 class WCAGLevel:
+    '''Class used as name space for contrast ratio related constants.'''
     A = 'A'
     AA = 'AA'
     AAA = 'AAA'
