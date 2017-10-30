@@ -1,4 +1,9 @@
-# Utility to check properties of given colors
+'''Utility to check properties of given colors.
+
+This module provides functions that check the relative luminance and
+contrast ratio of colors.  A color is given as RGB value (represented
+as a tuple of integers) or a hex color code such "#ffff00".
+'''
 
 from . import utils
 
