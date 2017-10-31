@@ -32,7 +32,7 @@ def color_from(color_value, name=None):
     """
     default_error_message = 'A color should be given as a tuple or string.'
     rgb_error_message = 'A RGB value should be given in form of (r, g, b).'
-    hex_error_message = 'A hex code is in form of "#xxxxxx" where0 <= x <= f.'
+
     if not isinstance(color_value, str) and not isinstance(color_value, tuple):
         raise InvalidColorRepresentationError(color_value,
                                               default_error_message)
@@ -43,6 +43,12 @@ def color_from(color_value, name=None):
         else:
             raise InvalidColorRepresentationError(color_value,
                                                   rgb_error_message)
+
+    return _color_from_str(color_value, name)
+
+
+def _color_from_str(color_value, name=None):
+    hex_error_message = 'A hex code is in form of "#xxxxxx" where0 <= x <= f.'
 
     if color_value in _NAME_TO_COLOR:
         return _NAME_TO_COLOR[color_value]
