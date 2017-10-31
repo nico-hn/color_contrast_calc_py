@@ -31,20 +31,25 @@ def color_from(color_value, name=None):
     :rtype: Color
     """
     default_error_message = 'A color should be given as a tuple or string.'
-    rgb_error_message = 'A RGB value should be given in form of (r, g, b).'
 
     if not isinstance(color_value, str) and not isinstance(color_value, tuple):
         raise InvalidColorRepresentationError(color_value,
                                               default_error_message)
 
     if isinstance(color_value, tuple):
-        if utils.is_valid_rgb(color_value):
-            return Color(color_value, name)
-        else:
-            raise InvalidColorRepresentationError(color_value,
-                                                  rgb_error_message)
+        return _color_from_rgb(color_value, name)
 
     return _color_from_str(color_value, name)
+
+
+def _color_from_rgb(color_value, name=None):
+    rgb_error_message = 'A RGB value should be given in form of (r, g, b).'
+
+    if utils.is_valid_rgb(color_value):
+        return Color(color_value, name)
+    else:
+        raise InvalidColorRepresentationError(color_value,
+                                              rgb_error_message)
 
 
 def _color_from_str(color_value, name=None):
