@@ -59,7 +59,5 @@ def _color_from_str(color_value, name=None):
         raise InvalidColorRepresentationError(color_value,
                                               hex_error_message)
 
-    if hex_code in _HEX_TO_COLOR:
-        return _HEX_TO_COLOR[hex_code]
-    else:
-        return Color(hex_code, name)
+    predefined_hex = hex_code in _HEX_TO_COLOR
+    return _HEX_TO_COLOR[hex_code] if predefined_hex else Color(hex_code, name)
