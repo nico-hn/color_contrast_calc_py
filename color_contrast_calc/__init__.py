@@ -53,7 +53,7 @@ def _color_from_rgb(color_value, name=None):
 
 
 def _color_from_str(color_value, name=None):
-    hex_error_message = 'A hex code is in form of "#xxxxxx" where0 <= x <= f.'
+    hex_error_message = 'A hex code is in form of "#xxxxxx" where 0 <= x <= f.'
 
     if color_value in _NAME_TO_COLOR:
         return _NAME_TO_COLOR[color_value]
