@@ -151,6 +151,9 @@ Example 4: Sort colors
 You can sort colors using a function
 ``color_contrast_calc.sorter.sorted``.
 
+And by passing the second argument to this function, you can also
+specify the sort order.
+
 For example, save the following code as sort_colors.py:
 
 .. code-block:: python
