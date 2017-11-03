@@ -214,7 +214,7 @@ Two lists of colors are provided, one is for
 and the other for the web safe colors.
 
 And there is a function ``color_contrast_calc.color.hsl_colors`` that
-generates a list of HSL colors.
+generates a list of HSL colors that share same saturation and lightness.
 
 For example, save the following code as color_lists.py:
 
