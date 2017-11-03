@@ -1,7 +1,7 @@
 ColorContrastCalc
 =================
 
-ColorContrastCalc is a utility that helps you choose colors with
+``ColorContrastCalc`` is a utility that helps you choose colors with
 sufficient contrast, WCAG 2.0 in mind.
 
 With this package, you can do following things:
@@ -29,7 +29,7 @@ Example 1: Calculate the contrast ratio between two colors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you want to calculate the contrast ratio between yellow and black,
-save the following code as yellow_black_contrast.py:
+save the following code as ``yellow_black_contrast.py``:
 
 .. code-block:: python
 
@@ -59,7 +59,7 @@ Example 2: Find colors that have enough contrast ratio with a given color
 
 If you want to find a combination of colors with sufficient contrast
 by changing the brightness/lightness of one of those colors, save the
-following code as yellow_orange_contrast.py:
+following code as ``yellow_orange_contrast.py``:
 
 .. code-block:: python
 
@@ -112,7 +112,7 @@ Example 3: Grayscale of given colors
 
 For getting grayscale, ``Color`` has an instance method
 ``new_grayscale_color``.
-For example, save the following code as grayscale.py
+For example, save the following code as ``grayscale.py``:
 
 .. code-block:: python
 
@@ -154,7 +154,7 @@ You can sort colors using a function
 And by passing the second argument to this function, you can also
 specify the sort order.
 
-For example, save the following code as sort_colors.py:
+For example, save the following code as ``sort_colors.py``:
 
 .. code-block:: python
 
@@ -216,7 +216,7 @@ and the other for the web safe colors.
 And there is a function ``color_contrast_calc.color.hsl_colors`` that
 generates a list of HSL colors that share same saturation and lightness.
 
-For example, save the following code as color_lists.py:
+For example, save the following code as ``color_lists.py``:
 
 .. code-block:: python
 
