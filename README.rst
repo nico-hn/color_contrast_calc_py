@@ -68,6 +68,7 @@ following code as yellow_orange_contrast.py:
     yellow = Color.from_name('yellow')
     orange = Color.from_name('orange')
 
+    report = 'The contrast ratio between {:s} and {:s} is {:f}'
 
     # Find brightness adjusted colors.
 
@@ -76,8 +77,6 @@ following code as yellow_orange_contrast.py:
 
     aa_orange = yellow.find_brightness_threshold(orange, 'AA')
     aa_contrast_ratio = yellow.contrast_ratio_against(aa_orange)
-
-    report = 'The contrast ratio between {:s} and {:s} is {:f}'
 
     print('# Brightness adjusted colors')
     print(report.format(yellow.hex, a_orange.hex, a_contrast_ratio))
@@ -91,8 +90,6 @@ following code as yellow_orange_contrast.py:
 
     aa_orange = yellow.find_lightness_threshold(orange, 'AA')
     aa_contrast_ratio = yellow.contrast_ratio_against(aa_orange)
-
-    report = 'The contrast ratio between {:s} and {:s} is {:f}'
 
     print('# Lightness adjusted colors')
     print(report.format(yellow.hex, a_orange.hex, a_contrast_ratio))
