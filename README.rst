@@ -158,7 +158,7 @@ For example, save the following code as sort_colors.py:
     from color_contrast_calc.color import Color
     import color_contrast_calc.sorter as sorter
 
-    color_names = ('red', 'yellow', 'lime', 'cyan', 'fuchsia', 'blue')
+    color_names = ['red', 'yellow', 'lime', 'cyan', 'fuchsia', 'blue']
     colors = [Color.from_name(c) for c in color_names]
 
     # sort by hSL order.  An uppercase for a component of color means
