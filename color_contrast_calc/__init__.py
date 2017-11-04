@@ -20,8 +20,8 @@ def color_from(color_value, name=None):
 
     As ``color_value``, you can pass a predefined name of color or,
     a RGB value represented as a tuple of integers or a hex code such
-    as "#ffff00".  ``name`` is assigned to the returned instance if it
-    does not have a name already assigned.
+    as (255, 255, 0) or "#ffff00".  ``name`` is assigned to the returned
+    instance if it does not have a name already assigned.
     :param color_value: Name of a predefined color or RGB value
     :type color_value: str or (int, int, int)
     :param name: Unless the instance has predefined name, the passed
