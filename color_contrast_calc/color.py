@@ -29,7 +29,7 @@ class Color:
         https://www.w3.org/TR/SVG/types.html#ColorKeywords
         :param name: Name of color
         :type name: str
-        :return: an instance of Color
+        :return: Instance of Color
         :rtype: Color
         """
         if not name in NAME_TO_COLOR:
@@ -251,7 +251,7 @@ class Color:
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
         :type name: str
-        :return: new color with adjusted contrast
+        :return: New color with adjusted contrast
         :rtype: Color
         """
         return self.__generate_new_color(contrast_conv, ratio, name)
@@ -265,7 +265,7 @@ class Color:
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
         :type name: str
-        :return: new color with adjusted brightness
+        :return: New color with adjusted brightness
         :rtype: Color
         """
         return self.__generate_new_color(brightness_conv, ratio, name)
@@ -279,7 +279,7 @@ class Color:
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
         :type name: str
-        :return: new inverted color
+        :return: New inverted color
         :rtype: Color
         """
         return self.__generate_new_color(invert_conv, ratio, name)
@@ -293,7 +293,7 @@ class Color:
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
         :type name: str
-        :return: new hue rotation applied color
+        :return: New hue rotation applied color
         :rtype: Color
         """
         return self.__generate_new_color(hue_rotate_conv, degree, name)
@@ -307,7 +307,7 @@ class Color:
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
         :type name: str
-        :return: new saturated color
+        :return: New saturated color
         :rtype: Color
         """
         return self.__generate_new_color(saturate_conv, ratio, name)
@@ -321,7 +321,7 @@ class Color:
                      Without this option, the value of normalized hex
                      color code is assigned instead. [optional]
         :type name: str
-        :return: new grayscale
+        :return: New grayscale color
         :rtype: Color
         """
         return self.__generate_new_color(grayscale_conv, ratio, name)
