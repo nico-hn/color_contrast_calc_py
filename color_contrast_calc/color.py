@@ -152,8 +152,8 @@ class Color:
 
     def has_sufficient_contrast(self, other_color,
                                 level=checker.WCAGLevel.AA):
-        """Check if the contrast ratio with another color meets.
-        a WCAG 2.0 criterion
+        """Check if the contrast ratio with another color meets a
+        WCAG 2.0 criterion.
 
         :param other_color: Another instance of Color, RGB value or
                             hex color code
