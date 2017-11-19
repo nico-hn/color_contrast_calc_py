@@ -126,8 +126,8 @@ def hsl_to_hex(hsl):
 def rgb_to_hsl(rgb):
     """Convert RGB value to HSL value.
 
-    :param hsl: RGB value represented as a tuple of integers
-    :type hsl: (int, int, int)
+    :param rgb: RGB value represented as a tuple of integers
+    :type rgb: (int, int, int)
     :return: HSL value represented as a tuple of numbers
     :rtype: (float, float, float)
     """
