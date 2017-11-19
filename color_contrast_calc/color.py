@@ -199,7 +199,7 @@ class Color:
     def has_min_contrast(self):
         """Check if the color reachs already the min contrast.
 
-        The max contrast in this context means that of colors modified
+        The min contrast in this context means that of colors modified
         by the operation defined at
         https://www.w3.org/TR/filter-effects/#funcdef-contrast
         :return: True if self is the same color as "#808080"
