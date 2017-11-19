@@ -18,8 +18,8 @@ class InvalidColorRepresentationError(Exception):
 def color_from(color_value, name=None):
     """Return an instance of Color.
 
-    As ``color_value``, you can pass a predefined name of color or,
-    a RGB value represented as a tuple of integers or a hex code such
+    As ``color_value``, you can pass a predefined color name, or
+    an RGB value represented as a tuple of integers or a hex code such
     as (255, 255, 0) or "#ffff00".  ``name`` is assigned to the returned
     instance if it does not have a name already assigned.
     :param color_value: Name of a predefined color or RGB value
