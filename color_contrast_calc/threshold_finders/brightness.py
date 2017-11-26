@@ -11,6 +11,22 @@ from .criteria import threshold_criteria
 
 
 def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
+    """Try to find a color who has a satisfying contrast ratio.
+
+    The color returned by this function will be created by changing the
+    brightness of ``other_color``.  Even when a color that satisfies the
+    specified level is not found, the function returns a new color
+    anyway.
+    :param fixed_color: The color which remains unchanged
+    :type fixed_color: Color
+    :param other_color: Color before the adjustment of brightness
+    :type other_color: Color
+    :param level: "A", "AA" or "AAA" [optional]
+    :type level: str
+    :return: New color whose brightness is adjusted from that of
+             ``other_color``
+    :rtype: Color
+    """
     criteria = threshold_criteria(level, fixed_color, other_color)
     w = calc_upper_ratio_limit(other_color) / 2.0
 
