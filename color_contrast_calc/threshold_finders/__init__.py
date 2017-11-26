@@ -1,3 +1,7 @@
+'''Collection of modules that implement the main logic of instance
+methods of Color, ``.find_*_threshold``.
+'''
+
 def binary_search_width(init_width, min_width):
     i = 1
     init_width = float(init_width)

@@ -1,3 +1,7 @@
+'''Module that implements the main logic of the instance method
+``Color.find_brightness_threshold``.
+'''
+
 import math
 
 from .. import checker

@@ -1,3 +1,7 @@
+'''Module that implements the main logic of the instance method
+``Color.find_lightness_threshold``.
+'''
+
 from .. import checker
 from .. import utils
 from .criteria import threshold_criteria, should_scan_darker_side
