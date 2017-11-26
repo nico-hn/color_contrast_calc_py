@@ -16,6 +16,10 @@ class TestColor(unittest.TestCase):
         self.assertEqual(yellow.name, 'yellow')
         self.assertEqual(yellow.hex, '#ffff00')
 
+        yellow = Color.from_name('Yellow')
+        self.assertEqual(yellow.name, 'yellow')
+        self.assertEqual(yellow.hex, '#ffff00')
+
         self.assertIsNone(Color.from_name('kiiro'))
 
     def test_from_hex(self):

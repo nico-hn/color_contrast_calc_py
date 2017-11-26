@@ -32,10 +32,12 @@ class Color:
         :return: Instance of Color
         :rtype: Color
         """
-        if not name in NAME_TO_COLOR:
+        normalized_name = name.lower()
+
+        if not normalized_name in NAME_TO_COLOR:
             return None
 
-        return NAME_TO_COLOR[name]
+        return NAME_TO_COLOR[normalized_name]
 
     @classmethod
     def from_hex(cls, hex_code):
