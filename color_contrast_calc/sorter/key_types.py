@@ -1,3 +1,11 @@
+'''Define constants used as a value of argument ``key_type`` of
+sorter.compile_sort_key_function().
+
+The constants COLOR, COMPONENTS and HEX correspond respectively to
+an instance of Color, an RGB or HSL value represented as a tuple of
+numbers and a hex color code represented as a string.
+'''
+
 from ..color import Color
 
 COLOR = 'COLOR'
