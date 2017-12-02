@@ -41,3 +41,5 @@ class TestColorContrastCalc(unittest.TestCase):
             color_from(invalid_hex)
         with self.assertRaises(InvalidColorRepresentationError):
             color_from(invalid_rgb)
+        with self.assertRaises(InvalidColorRepresentationError):
+            color_from(0)
