@@ -58,11 +58,10 @@ def _color_from_str(color_value, name=None):
     if color_value in _NAME_TO_COLOR:
         return _NAME_TO_COLOR[color_value]
 
-    if utils.is_valid_hex(color_value):
-        hex_code = utils.normalize_hex(color_value)
-    else:
+    if not utils.is_valid_hex(color_value):
         raise InvalidColorRepresentationError(color_value,
                                               hex_error_message)
 
+    hex_code = utils.normalize_hex(color_value)
     predefined_hex = hex_code in _HEX_TO_COLOR
     return _HEX_TO_COLOR[hex_code] if predefined_hex else Color(hex_code, name)
