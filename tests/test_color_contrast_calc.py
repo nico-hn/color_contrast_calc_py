@@ -29,11 +29,23 @@ class TestColorContrastCalc(unittest.TestCase):
         invalid_name = 'imaginaryblue'
         invalid_hex = '#ff00'
         invalid_rgb = (255, 256, 0)
+        unnamed_hex = '#767676'
+        unnamed_rgb = (118, 118, 118)
+        unnamed_gray = 'unnamed_gray'
 
         self.assertEqual(color_from(yellow_name).hex, yellow_hex)
         self.assertEqual(color_from(yellow_hex).hex, yellow_hex)
         self.assertEqual(color_from(yellow_short_hex).hex, yellow_hex)
         self.assertEqual(color_from(yellow_rgb).hex, yellow_hex)
+
+        self.assertEqual(color_from(unnamed_hex, unnamed_gray).rgb,
+                         unnamed_rgb)
+        self.assertEqual(color_from(unnamed_hex, unnamed_gray).name,
+                         unnamed_gray)
+        self.assertEqual(color_from(unnamed_rgb, unnamed_gray).hex,
+                         unnamed_hex)
+        self.assertEqual(color_from(unnamed_rgb, unnamed_gray).name,
+                         unnamed_gray)
 
         with self.assertRaises(InvalidColorRepresentationError):
             color_from(invalid_name)
