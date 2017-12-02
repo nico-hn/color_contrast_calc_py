@@ -43,7 +43,7 @@ def color_from(color_value, name=None):
 
 
 def _color_from_rgb(color_value, name=None):
-    rgb_error_message = 'A RGB value should be given in form of (r, g, b).'
+    rgb_error_message = 'An RGB value should be given in form of (r, g, b).'
 
     if utils.is_valid_rgb(color_value):
         return Color(color_value, name)
