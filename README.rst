@@ -33,10 +33,10 @@ save the following code as ``yellow_black_contrast.py``:
 
 .. code-block:: python
 
-    from color_contrast_calc.color import Color
+    import color_contrast_calc as calc
 
-    yellow = Color.from_name('yellow')
-    black = Color.from_name('black')
+    yellow = calc.color_from('yellow')
+    black = calc.color_from('black')
 
     contrast_ratio = yellow.contrast_ratio_against(black)
 
