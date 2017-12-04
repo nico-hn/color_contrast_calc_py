@@ -116,10 +116,10 @@ For example, save the following code as ``grayscale.py``:
 
 .. code-block:: python
 
-    from color_contrast_calc.color import Color
+    import color_contrast_calc as calc
 
-    yellow = Color.from_name('yellow')
-    orange = Color.from_name('orange')
+    yellow = calc.color_from('yellow')
+    orange = calc.color_from('orange')
 
     report = 'The grayscale of {:s} ({:s}) is {:s}'
 
