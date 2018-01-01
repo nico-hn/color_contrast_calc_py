@@ -7,8 +7,8 @@ sufficient contrast, WCAG 2.0 in mind.
 With this package, you can do following things:
 
 * Check the contrast ratio between two colors
-* Find (if exists) a color that has suffcient contrast to a given color
-* Create a new color from a given color by adjusting properies of the
+* Find (if exists) a color that has sufficient contrast to a given color
+* Create a new color from a given color by adjusting properties of the
   latter
 * Sort colors
 
