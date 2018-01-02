@@ -4,14 +4,14 @@ import color_contrast_calc.sorter as sorter
 color_names = ['red', 'yellow', 'lime', 'cyan', 'fuchsia', 'blue']
 colors = [calc.color_from(c) for c in color_names]
 
-# sort by hSL order.  An uppercase for a component of color means
+# Sort by hSL order.  An uppercase for a component of color means
 # that component should be sorted in descending order.
 
 hsl_ordered = sorter.sorted(colors, "hSL")
 print ("Colors sorted in the order of hSL:")
 print([c.name for c in hsl_ordered])
 
-# sort by RGB order.
+# Sort by RGB order.
 
 rgb_ordered = sorter.sorted(colors, "RGB")
 print ("Colors sorted in the order of RGB:")
