@@ -1,4 +1,3 @@
-
 '''This module is intended to be used internally, to provide two
 functions, ``color_contrast_calc.sorter.sorted`` and
 ``color_contrast_calc.sorter.compile_sort_key_function``.
