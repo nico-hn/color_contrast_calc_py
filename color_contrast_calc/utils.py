@@ -151,8 +151,8 @@ def _rgb_to_saturation(rgb):
 
     if _rgb_to_lightness(rgb) <= 0.5:
         return d / (max_c + min_c)
-    else:
-        return d / (510 - max_c - min_c)
+
+    return d / (510 - max_c - min_c)
 
 
 def _rgb_to_hue(rgb):

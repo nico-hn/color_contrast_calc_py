@@ -179,12 +179,12 @@ class Color:
         """
         if isinstance(other_color, Color):
             return self.hex == other_color.hex
-        elif isinstance(other_color, tuple):
+        if isinstance(other_color, tuple):
             return self.hex == utils.rgb_to_hex(other_color)
-        elif isinstance(other_color, str):
+        if isinstance(other_color, str):
             return self.hex == utils.normalize_hex(other_color)
-        else:
-            return False
+
+        return False
 
     def has_max_contrast(self):
         """Check if the color reachs already the max contrast..

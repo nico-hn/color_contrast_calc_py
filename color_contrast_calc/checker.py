@@ -50,8 +50,8 @@ def _tristimulus_value(primary_color):
 
     if s <= 0.03928:
         return s / 12.92
-    else:
-        return pow((s + 0.055) / 1.055, 2.4)
+
+    return pow((s + 0.055) / 1.055, 2.4)
 
 
 # https://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef

@@ -29,7 +29,7 @@ def guess(color, key_mapper=None):
 
     if isinstance(key, Color):
         return COLOR
-    elif isinstance(key, str):
+    if isinstance(key, str):
         return HEX
-    else:
-        return COMPONENTS
+
+    return COMPONENTS
