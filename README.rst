@@ -53,6 +53,36 @@ Then execute the script:
     The contrast ratio between yellow and black is 19.556000
     The contrast ratio between #ffff00 and #000000 is 19.556000
 
+Or it is also possible to calculate the contrast ratio of two colors
+from their hex color codes or RGB values.
+
+Save the following code as ``yellow_black_hex_contrast.py``:
+
+.. code-block:: python
+
+    from color_contrast_calc import checker
+
+    yellow = '#ff0'
+    black = '#000000'
+    # or
+    # yellow = (255, 255, 0)
+    # black = (0, 0, 0)
+
+    ratio = checker.contrast_ratio(yellow, black)
+    level = checker.ratio_to_level(ratio)
+
+    report = 'The contrast ratio between yellow and black: {:f}'
+
+    print(report.format(ratio))
+    print('Level: {:s}'.format(level))
+
+Then execute the script:
+
+.. code-block:: bash
+
+    $ python yellow_black_hex_contrast.py
+    The contrast ratio between yellow and black: 19.556000
+    Level: AAA
 
 Example 2: Find colors that have enough contrast ratio with a given color
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
