@@ -25,6 +25,44 @@ Installation
 Usage
 -----
 
+Representing a color
+--------------------
+
+To Represent a color, ``Color`` class defined under
+``color_contrast_calc.color`` is provided.  And most of the operations
+in this library use this class.
+
+For example, if you want to create an instance of ``Color`` for red,
+you may use a method color_contrast_calc.color_from().
+
+Save the following code as ``color_instance.py``
+
+.. code-block:: python
+
+    import color_contrast_calc as calc
+    from color_contrast_calc.color import Color
+
+    # Create an instance of Color from a hex code
+    # (You can pass 'red' or (255, 0, 0) instead of '#ff0000')
+    red = calc.color_from('#ff0000')
+
+    print(isinstance(red, Color))
+    print(red.name)
+    print(red.hex)
+    print(red.rgb)
+    print(red.hsl)
+
+Then execute the script:
+
+.. code-block:: bash
+
+    $ python color_instance.py
+    True
+    red
+    #ff0000
+    (255, 0, 0)
+    (0.0, 100.0, 50.0)
+
 Example 1: Calculate the contrast ratio between two colors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
