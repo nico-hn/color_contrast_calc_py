@@ -4,9 +4,10 @@ from .. import checker
 
 
 class SearchDirection:
-    def __init__(self, level):
+    def __init__(self, level, fixed_rgb):
         self.level = level
         self.target_ratio = checker.level_to_ratio(level)
+        self.fixed_luminance = checker.relative_luminance(fixed_rgb)
 
 
 class ToDarkerSide(SearchDirection):
@@ -27,9 +28,9 @@ class ToBrighterSide(SearchDirection):
 
 def threshold_criteria(level, fixed_color, other_color):
     if should_scan_darker_side(fixed_color, other_color):
-        return ToDarkerSide(level)
+        return ToDarkerSide(level, fixed_color.rgb)
 
-    return ToBrighterSide(level)
+    return ToBrighterSide(level, fixed_color.rgb)
 
 
 def should_scan_darker_side(fixed_color, other_color):
