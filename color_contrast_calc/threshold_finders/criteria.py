@@ -9,6 +9,14 @@ class SearchDirection:
         self.target_ratio = checker.level_to_ratio(level)
         self.fixed_luminance = checker.relative_luminance(fixed_rgb)
 
+    def has_sufficient_contrast(self, rgb):
+        return self.contrast_ratio(rgb) >= self.target_ratio
+
+    def contrast_ratio(self, rgb):
+        luminance = checker.relative_luminance(rgb)
+        return checker.luminance_to_contrast_ratio(self.fixed_luminance,
+                                                   luminance)
+
 
 class ToDarkerSide(SearchDirection):
     def round(self, r):
