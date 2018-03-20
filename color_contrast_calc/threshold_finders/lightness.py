@@ -66,7 +66,7 @@ def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
     sufficient_l = None
 
     for d in binary_search_width(max_ - min_, 0.01):
-        contrast_ratio = _calc_contrast_ratio(criteria, (h, s, l))
+        contrast_ratio = criteria.contrast_ratio(utils.hsl_to_rgb((h, s, l)))
 
         if contrast_ratio >= criteria.target_ratio:
             sufficient_l = l
@@ -77,10 +77,6 @@ def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
         l += d if criteria.increment_condition(contrast_ratio) else -d
 
     return (l, sufficient_l)
-
-
-def _calc_contrast_ratio(criteria, hsl):
-    return criteria.contrast_ratio(utils.hsl_to_rgb(hsl))
 
 
 def _generate_satisfying_color(fixed_color, other_hsl, criteria,
