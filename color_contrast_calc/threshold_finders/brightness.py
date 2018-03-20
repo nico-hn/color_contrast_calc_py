@@ -30,7 +30,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     criteria = threshold_criteria(level, fixed_color, other_color)
     w = calc_upper_ratio_limit(other_color) / 2.0
 
-    upper_color = _upper_limit_color(fixed_color, other_color, w * 2, level)
+    upper_color = _upper_limit_color(criteria, other_color, w * 2, level)
     if upper_color:
         return upper_color
     (r, sufficient_r) = _calc_brightness_ratio(other_color.rgb, criteria, w)
@@ -38,18 +38,19 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     return _generate_satisfying_color(other_color, criteria, r, sufficient_r)
 
 
-def _upper_limit_color(fixed_color, other_color, max_ratio, level):
+def _upper_limit_color(criteria, other_color, max_ratio, level):
     limit_color = other_color.new_brightness_color(max_ratio)
 
-    if _exceed_upper_limit(fixed_color, other_color, limit_color, level):
+    if _exceed_upper_limit(criteria, other_color, limit_color, level):
         return limit_color
 
     return None
 
 
-def _exceed_upper_limit(fixed_color, other_color, limit_color, level):
-    other_has_higher_luminance = other_color.has_higher_luminance(fixed_color)
-    sufficient_limit = limit_color.has_sufficient_contrast(fixed_color, level)
+def _exceed_upper_limit(criteria, other_color, limit_color, level):
+    other_luminance = other_color.relative_luminance
+    other_has_higher_luminance = other_luminance > criteria.fixed_luminance
+    sufficient_limit = criteria.has_sufficient_contrast(limit_color.rgb)
     return other_has_higher_luminance and not sufficient_limit
 
 
