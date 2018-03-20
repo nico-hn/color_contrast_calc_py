@@ -34,8 +34,8 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     if boundary_color:
         return boundary_color
 
-    l, sufficient_l = _calc_lightness_ratio(fixed_color, other_color.hsl,
-                                            criteria, max_, min_)
+    l, sufficient_l = _calc_lightness_ratio(other_color.hsl, criteria,
+                                            max_, min_)
 
     return _generate_satisfying_color(fixed_color, other_color.hsl, criteria,
                                       l, sufficient_l)
@@ -60,7 +60,7 @@ def _lightness_boundary_color(color, max_, min_, level):
     return None
 
 
-def _calc_lightness_ratio(fixed_color, other_hsl, criteria, max_, min_):
+def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
     h, s = other_hsl[0:2]
     l = (max_ + min_) / 2.0
     sufficient_l = None
