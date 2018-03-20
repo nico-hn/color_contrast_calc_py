@@ -83,9 +83,9 @@ def _generate_satisfying_color(fixed_color, other_hsl, criteria,
                                l, sufficient_l):
     h, s = other_hsl[0:2]
     level = criteria.level
-    nearest = fixed_color.__class__.new_from_hsl((h, s, l))
+    nearest = utils.hsl_to_rgb((h, s, l))
 
-    if sufficient_l and not criteria.has_sufficient_contrast(nearest.rgb):
-        return fixed_color.__class__.new_from_hsl((h, s, sufficient_l))
+    if sufficient_l and not criteria.has_sufficient_contrast(nearest):
+        return fixed_color.__class__(utils.hsl_to_rgb((h, s, sufficient_l)))
 
-    return nearest
+    return fixed_color.__class__(nearest)
