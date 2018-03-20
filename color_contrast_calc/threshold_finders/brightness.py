@@ -59,8 +59,7 @@ def _calc_brightness_ratio(other_rgb, criteria, w):
     sufficient_r = None
 
     for d in binary_search_width(w, 0.01):
-        contrast_ratio = _calc_contrast_ratio(criteria.fixed_luminance,
-                                              other_rgb, r)
+        contrast_ratio = _calc_contrast_ratio(criteria, other_rgb, r)
 
         if contrast_ratio >= target_ratio:
             sufficient_r = r
@@ -84,11 +83,8 @@ def _generate_satisfying_color(other_color, criteria, r, sufficient_r):
     return nearest
 
 
-def _calc_contrast_ratio(fixed_luminance, other_rgb, r):
-    new_rgb = calc_rgb(other_rgb, r)
-    new_luminance = checker.relative_luminance(new_rgb)
-
-    return checker.luminance_to_contrast_ratio(fixed_luminance, new_luminance)
+def _calc_contrast_ratio(criteria, other_rgb, r):
+    return criteria.contrast_ratio(calc_rgb(other_rgb, r))
 
 
 def calc_upper_ratio_limit(color):
