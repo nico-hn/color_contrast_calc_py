@@ -6,6 +6,7 @@ as a tuple of integers) or a hex color code such "#ffff00".
 '''
 
 from . import utils
+from . import const
 
 class WCAGLevel:
     '''Class used as name space for contrast ratio related constants.'''
@@ -127,3 +128,19 @@ def level_to_ratio(level):
         return _LEVEL_TO_RATIO[level]
 
     return None
+
+
+def is_light_color(rgb):
+    """Check if the contrast ratio against black is higher than
+       against white.
+
+    :param rgb: RGB color given as a string or a tuple of integers.
+    :type rgb: str or (int, int, int)
+    :return: True if the contrast ratio against white is qual to or
+             less than the ratio against black
+    :rtype: bool
+    """
+    lum = relative_luminance(rgb)
+    ratio_with_white = luminance_to_contrast_ratio(const.luminance.WHITE, lum)
+    ratio_with_black = luminance_to_contrast_ratio(const.luminance.BLACK, lum)
+    return ratio_with_white <= ratio_with_black
