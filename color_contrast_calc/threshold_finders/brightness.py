@@ -31,7 +31,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     criteria = threshold_criteria(level, fixed_color, other_color)
     w = calc_upper_ratio_limit(other_color.rgb) / 2.0
 
-    upper_color = _upper_limit_color(criteria, other_color, w * 2, level)
+    upper_color = _upper_limit_color(criteria, other_color, w * 2)
     if upper_color:
         return upper_color
     (r, sufficient_r) = _calc_brightness_ratio(other_color.rgb, criteria, w)
@@ -39,11 +39,13 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     return _generate_satisfying_color(other_color, criteria, r, sufficient_r)
 
 
-def _upper_limit_color(criteria, other_color, max_ratio, level):
-    limit_color = other_color.new_brightness_color(max_ratio)
+def _upper_limit_color(criteria, other_color, max_ratio):
+    color_class = other_color.__class__
+    other_rgb = other_color.rgb
+    limit_rgb = calc_rgb(other_rgb, max_ratio)
 
-    if _exceed_upper_limit(criteria, other_color.rgb, limit_color.rgb):
-        return limit_color
+    if _exceed_upper_limit(criteria, other_rgb, limit_rgb):
+        return color_class(limit_rgb)
 
     return None
 
