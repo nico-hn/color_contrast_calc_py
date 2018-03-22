@@ -34,11 +34,11 @@ class ToBrighterSide(SearchDirection):
         return self.target_ratio > contrast_ratio
 
 
-def threshold_criteria(level, fixed_color, other_color):
-    if should_scan_darker_side(fixed_color.rgb, other_color.rgb):
-        return ToDarkerSide(level, fixed_color.rgb)
+def threshold_criteria(level, fixed_rgb, other_rgb):
+    if should_scan_darker_side(fixed_rgb, other_rgb):
+        return ToDarkerSide(level, fixed_rgb)
 
-    return ToBrighterSide(level, fixed_color.rgb)
+    return ToBrighterSide(level, fixed_rgb)
 
 
 def should_scan_darker_side(fixed_rgb, other_rgb):

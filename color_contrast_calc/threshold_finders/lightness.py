@@ -27,7 +27,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     :rtype: Color
     """
     color_class = other_color.__class__
-    criteria = threshold_criteria(level, fixed_color, other_color)
+    criteria = threshold_criteria(level, fixed_color.rgb, other_color.rgb)
     init_l = other_color.hsl[2]
     max_, min_ = _determine_minmax(fixed_color.rgb, other_color.rgb, init_l)
 

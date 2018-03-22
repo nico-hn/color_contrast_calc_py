@@ -29,7 +29,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     :rtype: Color
     """
     color_class = other_color.__class__
-    criteria = threshold_criteria(level, fixed_color, other_color)
+    criteria = threshold_criteria(level, fixed_color.rgb, other_color.rgb)
     w = calc_upper_ratio_limit(other_color.rgb) / 2.0
 
     upper_rgb = _upper_limit_color(criteria, other_color.rgb, w * 2)

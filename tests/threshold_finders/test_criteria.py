@@ -8,9 +8,9 @@ class TestCriteria(unittest.TestCase):
 
     def test_criteria(self):
         target = 'AA'
-        orange = Color.from_name('orange')
-        yellow = Color.from_name('yellow')
-        darkgreen = Color.from_name('darkgreen')
+        orange = Color.from_name('orange').rgb
+        yellow = Color.from_name('yellow').rgb
+        darkgreen = Color.from_name('darkgreen').rgb
 
         direction = threshold_criteria(target, orange, yellow)
         self.assertTrue(direction.increment_condition(4.25))
