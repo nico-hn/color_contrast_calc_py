@@ -28,24 +28,25 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
              ``other_color``
     :rtype: Color
     """
+    color_class = other_color.__class__
     criteria = threshold_criteria(level, fixed_color, other_color)
     w = calc_upper_ratio_limit(other_color.rgb) / 2.0
 
-    upper_color = _upper_limit_color(criteria, other_color, w * 2)
-    if upper_color:
-        return upper_color
+    upper_rgb = _upper_limit_color(criteria, other_color.rgb, w * 2)
+    if upper_rgb:
+        return color_class(upper_rgb)
     (r, sufficient_r) = _calc_brightness_ratio(other_color.rgb, criteria, w)
 
-    return _generate_satisfying_color(other_color, criteria, r, sufficient_r)
+    satisfying_rgb = _generate_satisfying_color(other_color.rgb, criteria, r, sufficient_r)
+
+    return color_class(satisfying_rgb)
 
 
-def _upper_limit_color(criteria, other_color, max_ratio):
-    color_class = other_color.__class__
-    other_rgb = other_color.rgb
+def _upper_limit_color(criteria, other_rgb, max_ratio):
     limit_rgb = calc_rgb(other_rgb, max_ratio)
 
     if _exceed_upper_limit(criteria, other_rgb, limit_rgb):
-        return color_class(limit_rgb)
+        return limit_rgb
 
     return None
 
@@ -76,17 +77,15 @@ def _calc_brightness_ratio(other_rgb, criteria, w):
     return (r, sufficient_r)
 
 
-def _generate_satisfying_color(other_color, criteria, r, sufficient_r):
-    color_class = other_color.__class__
-    other_rgb = other_color.rgb
+def _generate_satisfying_color(other_rgb, criteria, r, sufficient_r):
     level = criteria.level
     nearest = calc_rgb(other_rgb, criteria.round(r))
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
 
     if sufficient_r and not satisfying_nearest:
-        return color_class(calc_rgb(other_rgb, criteria.round(sufficient_r)))
+        return calc_rgb(other_rgb, criteria.round(sufficient_r))
 
-    return color_class(nearest)
+    return nearest
 
 
 def calc_upper_ratio_limit(rgb):
