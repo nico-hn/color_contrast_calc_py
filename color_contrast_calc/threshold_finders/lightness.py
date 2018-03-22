@@ -31,7 +31,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     init_l = other_color.hsl[2]
     max_, min_ = _determine_minmax(fixed_color.rgb, other_color.rgb, init_l)
 
-    boundary_rgb = _lightness_boundary_color(fixed_color, max_, min_, level)
+    boundary_rgb = _lightness_boundary_rgb(fixed_color.rgb, max_, min_, level)
 
     if boundary_rgb:
         return color_class(boundary_rgb)
@@ -51,14 +51,14 @@ def _determine_minmax(fixed_rgb, other_rgb, init_l):
     return (init_l, 0) if scan_darker_side else (100, init_l)  # (max, min)
 
 
-def _lightness_boundary_color(color, max_, min_, level):
+def _lightness_boundary_rgb(rgb, max_, min_, level):
     black = const.rgb.BLACK
     white = const.rgb.WHITE
 
-    if min_ == 0 and not _has_sufficient_contrast(black, color.rgb, level):
+    if min_ == 0 and not _has_sufficient_contrast(black, rgb, level):
         return black
 
-    if max_ == 100 and not _has_sufficient_contrast(white, color.rgb, level):
+    if max_ == 100 and not _has_sufficient_contrast(white, rgb, level):
         return white
 
     return None
