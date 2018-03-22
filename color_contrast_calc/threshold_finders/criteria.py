@@ -42,8 +42,10 @@ def threshold_criteria(level, fixed_color, other_color):
 
 
 def should_scan_darker_side(fixed_color, other_color):
-    higher_luminance = fixed_color.has_higher_luminance(other_color)
-    same_luminance = fixed_color.has_same_luminance(other_color)
-    is_light_color = fixed_color.is_light_color()
+    fixed_luminance = checker.relative_luminance(fixed_color.rgb)
+    other_luminance = checker.relative_luminance(other_color.rgb)
+    higher_luminance = fixed_luminance > other_luminance
+    same_luminance = fixed_luminance == other_luminance
+    is_light_color = checker.is_light_color(fixed_color.rgb)
 
     return higher_luminance or (is_light_color and same_luminance)
