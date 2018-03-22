@@ -22,9 +22,9 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     :type other_color: Color
     :param level: "A", "AA" or "AAA" [optional]
     :type level: str
-    :return: New color whose lightness is adjusted from that of
+    :return: New RGB value whose lightness is adjusted from that of
              ``other_color``
-    :rtype: Color
+    :rtype: (int, int, int)
     """
     color_class = other_color.__class__
     criteria = threshold_criteria(level, fixed_color.rgb, other_color.rgb)
@@ -34,7 +34,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     boundary_rgb = _lightness_boundary_rgb(fixed_color.rgb, max_, min_, level)
 
     if boundary_rgb:
-        return color_class(boundary_rgb)
+        return boundary_rgb
 
     l, sufficient_l = _calc_lightness_ratio(other_color.hsl, criteria,
                                             max_, min_)
@@ -42,7 +42,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     satisfying_rgb = _generate_satisfying_rgb(other_color.hsl, criteria,
                                               l, sufficient_l)
 
-    return color_class(satisfying_rgb)
+    return satisfying_rgb
 
 
 def _determine_minmax(fixed_rgb, other_rgb, init_l):
