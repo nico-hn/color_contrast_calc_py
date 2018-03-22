@@ -39,8 +39,8 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     l, sufficient_l = _calc_lightness_ratio(other_color.hsl, criteria,
                                             max_, min_)
 
-    satisfying_rgb = _generate_satisfying_color(fixed_color, other_color.hsl, criteria,
-                                                l, sufficient_l)
+    satisfying_rgb = _generate_satisfying_rgb(other_color.hsl, criteria,
+                                              l, sufficient_l)
 
     return color_class(satisfying_rgb)
 
@@ -89,8 +89,7 @@ def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
     return (l, sufficient_l)
 
 
-def _generate_satisfying_color(fixed_color, other_hsl, criteria,
-                               l, sufficient_l):
+def _generate_satisfying_rgb(other_hsl, criteria, l, sufficient_l):
     h, s = other_hsl[0:2]
     level = criteria.level
     nearest = utils.hsl_to_rgb((h, s, l))
