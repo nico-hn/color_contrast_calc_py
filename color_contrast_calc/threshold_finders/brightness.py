@@ -75,14 +75,16 @@ def _calc_brightness_ratio(other_rgb, criteria, w):
 
 
 def _generate_satisfying_color(other_color, criteria, r, sufficient_r):
+    color_class = other_color.__class__
+    other_rgb = other_color.rgb
     level = criteria.level
-    nearest = other_color.new_brightness_color(criteria.round(r)).rgb
+    nearest = calc_rgb(other_rgb, criteria.round(r))
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
 
     if sufficient_r and not satisfying_nearest:
-        return other_color.new_brightness_color(criteria.round(sufficient_r))
+        return color_class(calc_rgb(other_rgb, criteria.round(sufficient_r)))
 
-    return other_color.__class__(nearest)
+    return color_class(nearest)
 
 
 def calc_upper_ratio_limit(rgb):
