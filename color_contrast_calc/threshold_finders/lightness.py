@@ -50,16 +50,22 @@ def _determine_minmax(fixed_rgb, other_rgb, init_l):
 
 def _lightness_boundary_color(color, max_, min_, level):
     color_class = color.__class__
-    black = color_class(const.rgb.BLACK)
-    white = color_class(const.rgb.WHITE)
+    black = const.rgb.BLACK
+    white = const.rgb.WHITE
 
-    if min_ == 0 and not color.has_sufficient_contrast(black, level):
-        return black
+    if min_ == 0 and not _has_sufficient_contrast(black, color.rgb, level):
+        return color_class(black)
 
-    if max_ == 100 and not color.has_sufficient_contrast(white, level):
-        return white
+    if max_ == 100 and not _has_sufficient_contrast(white, color.rgb, level):
+        return color_class(white)
 
     return None
+
+
+def _has_sufficient_contrast(fixed_rgb, other_rgb, level):
+    target_ratio = checker.level_to_ratio(level)
+    ratio = checker.contrast_ratio(fixed_rgb, other_rgb)
+    return ratio >= target_ratio
 
 
 def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
