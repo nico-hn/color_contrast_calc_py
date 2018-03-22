@@ -29,7 +29,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     :rtype: Color
     """
     criteria = threshold_criteria(level, fixed_color, other_color)
-    w = calc_upper_ratio_limit(other_color) / 2.0
+    w = calc_upper_ratio_limit(other_color.rgb) / 2.0
 
     upper_color = _upper_limit_color(criteria, other_color, w * 2, level)
     if upper_color:
@@ -85,9 +85,9 @@ def _generate_satisfying_color(other_color, criteria, r, sufficient_r):
     return nearest
 
 
-def calc_upper_ratio_limit(color):
-    if color.rgb == const.rgb.BLACK:
+def calc_upper_ratio_limit(rgb):
+    if rgb == const.rgb.BLACK:
         return 100
 
-    darkest = min(c for c in color.rgb if c != 0)
+    darkest = min(c for c in rgb if c != 0)
     return math.ceil((255.0 / darkest) * 100)

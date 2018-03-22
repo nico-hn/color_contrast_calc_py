@@ -74,7 +74,7 @@ class TestBrightness(unittest.TestCase):
         self.assertTrue(mintcream.has_higher_luminance(yellow))
 
         new_color = mintcream.new_brightness_color(105)
-        self.assertEqual(brightness.calc_upper_ratio_limit(mintcream), 105)
+        self.assertEqual(brightness.calc_upper_ratio_limit(mintcream.rgb), 105)
         self.assertTrue(new_color.is_same_color(white))
 
         new_color = brightness.find(yellow, mintcream, 'A')
@@ -88,13 +88,13 @@ class TestBrightness(unittest.TestCase):
 
     def test_calc_upper_ratio_limit(self):
         color = Color.from_name('black')
-        self.assertEqual(brightness.calc_upper_ratio_limit(color), 100)
+        self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 100)
 
         color = color.from_name('orange')
-        self.assertEqual(brightness.calc_upper_ratio_limit(color), 155)
+        self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 155)
 
         color = color.from_name('blueviolet')
-        self.assertEqual(brightness.calc_upper_ratio_limit(color), 594)
+        self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 594)
 
         color = Color((0, 180, 0))
-        self.assertEqual(brightness.calc_upper_ratio_limit(color), 142)
+        self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 142)
