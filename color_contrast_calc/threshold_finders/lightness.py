@@ -26,20 +26,23 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
              ``other_color``
     :rtype: Color
     """
+    color_class = other_color.__class__
     criteria = threshold_criteria(level, fixed_color, other_color)
     init_l = other_color.hsl[2]
     max_, min_ = _determine_minmax(fixed_color.rgb, other_color.rgb, init_l)
 
-    boundary_color = _lightness_boundary_color(fixed_color, max_, min_, level)
+    boundary_rgb = _lightness_boundary_color(fixed_color, max_, min_, level)
 
-    if boundary_color:
-        return boundary_color
+    if boundary_rgb:
+        return color_class(boundary_rgb)
 
     l, sufficient_l = _calc_lightness_ratio(other_color.hsl, criteria,
                                             max_, min_)
 
-    return _generate_satisfying_color(fixed_color, other_color.hsl, criteria,
-                                      l, sufficient_l)
+    satisfying_rgb = _generate_satisfying_color(fixed_color, other_color.hsl, criteria,
+                                                l, sufficient_l)
+
+    return color_class(satisfying_rgb)
 
 
 def _determine_minmax(fixed_rgb, other_rgb, init_l):
@@ -49,15 +52,14 @@ def _determine_minmax(fixed_rgb, other_rgb, init_l):
 
 
 def _lightness_boundary_color(color, max_, min_, level):
-    color_class = color.__class__
     black = const.rgb.BLACK
     white = const.rgb.WHITE
 
     if min_ == 0 and not _has_sufficient_contrast(black, color.rgb, level):
-        return color_class(black)
+        return black
 
     if max_ == 100 and not _has_sufficient_contrast(white, color.rgb, level):
-        return color_class(white)
+        return white
 
     return None
 
@@ -94,6 +96,6 @@ def _generate_satisfying_color(fixed_color, other_hsl, criteria,
     nearest = utils.hsl_to_rgb((h, s, l))
 
     if sufficient_l and not criteria.has_sufficient_contrast(nearest):
-        return fixed_color.__class__(utils.hsl_to_rgb((h, s, sufficient_l)))
+        return utils.hsl_to_rgb((h, s, sufficient_l))
 
-    return fixed_color.__class__(nearest)
+    return nearest
