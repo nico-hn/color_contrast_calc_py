@@ -350,7 +350,7 @@ class Color:
         if not isinstance(other_color, Color):
             other_color = Color(other_color)
 
-        return brightness_finder.find(self, other_color, level)
+        return Color(brightness_finder.find(self, other_color, level))
 
     def find_lightness_threshold(self, other_color,
                                  level=checker.WCAGLevel.AA):

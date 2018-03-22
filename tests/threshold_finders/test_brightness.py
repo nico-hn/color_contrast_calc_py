@@ -22,7 +22,8 @@ class TestBrightness(unittest.TestCase):
         fuchsia = Color.from_name('fuchsia')
 
         fixed_color = orange
-        new_color = brightness.find(fixed_color, fixed_color)
+        new_rgb = brightness.find(fixed_color, fixed_color)
+        new_color = Color(new_rgb)
         new_contrast_ratio = fixed_color.contrast_ratio_against(new_color)
         self.assertLess(fixed_color.contrast_ratio_against(fixed_color), 4.5)
         self.assertGreater(new_contrast_ratio, 4.5)
@@ -30,45 +31,52 @@ class TestBrightness(unittest.TestCase):
         self.assertEqual(new_color.hex, '#674200')
 
         fixed_color = orange
-        new_color = brightness.find(fixed_color, blueviolet)
+        new_rgb = brightness.find(fixed_color, blueviolet)
+        new_color = Color(new_rgb)
         new_contrast_ratio = fixed_color.contrast_ratio_against(new_color)
         self.assertGreater(new_contrast_ratio, 4.5)
         self.assertAlmostEqual(new_contrast_ratio, 4.5, 1)
         self.assertEqual(new_color.hex, '#6720a9')
 
         fixed_color = blue
-        new_color = brightness.find(fixed_color, orange)
+        new_rgb = brightness.find(fixed_color, orange)
+        new_color = Color(new_rgb)
         new_contrast_ratio = fixed_color.contrast_ratio_against(new_color)
         self.assertGreater(new_contrast_ratio, 4.5)
         self.assertAlmostEqual(new_contrast_ratio, 4.5, 1)
         self.assertEqual(new_color.hex, '#ffaa00')
 
         fixed_color = blueviolet
-        new_color = brightness.find(fixed_color, orange)
+        new_rgb = brightness.find(fixed_color, orange)
+        new_color = Color(new_rgb)
         new_contrast_ratio = fixed_color.contrast_ratio_against(new_color)
         self.assertGreater(new_contrast_ratio, 4.5)
         self.assertAlmostEqual(new_contrast_ratio, 4.5, 1)
         self.assertEqual(new_color.hex, '#ffe000')
 
         fixed_color = brown
-        new_color = brightness.find(fixed_color, fixed_color)
+        new_rgb = brightness.find(fixed_color, fixed_color)
+        new_color = Color(new_rgb)
         new_contrast_ratio = fixed_color.contrast_ratio_against(new_color)
         self.assertEqual(brown.hex, '#a52a2a')
         self.assertGreater(new_contrast_ratio, 4.5)
         self.assertAlmostEqual(new_contrast_ratio, 4.5, 1)
         self.assertEqual(new_color.hex, '#ffbebe')
 
-        new_color = brightness.find(white, darkgreen)
+        new_rgb = brightness.find(white, darkgreen)
+        new_color = Color(new_rgb)
         new_contrast_ratio = white.contrast_ratio_against(new_color)
         self.assertGreater(new_contrast_ratio, 4.5)
         self.assertAlmostEqual(new_contrast_ratio, 4.5, 1)
 
-        new_color = brightness.find(white, darkgreen, 'AAA')
+        new_rgb = brightness.find(white, darkgreen, 'AAA')
+        new_color = Color(new_rgb)
         new_contrast_ratio = white.contrast_ratio_against(new_color)
         self.assertGreater(new_contrast_ratio, 7)
         self.assertAlmostEqual(new_contrast_ratio, 7, 1)
 
-        new_color = brightness.find(green, blue)
+        new_rgb = brightness.find(green, blue)
+        new_color = Color(new_rgb)
         self.assertTrue(new_color.is_same_color(black))
 
         self.assertTrue(mintcream.has_higher_luminance(yellow))
@@ -77,13 +85,15 @@ class TestBrightness(unittest.TestCase):
         self.assertEqual(brightness.calc_upper_ratio_limit(mintcream.rgb), 105)
         self.assertTrue(new_color.is_same_color(white))
 
-        new_color = brightness.find(yellow, mintcream, 'A')
+        new_rgb = brightness.find(yellow, mintcream, 'A')
+        new_color = Color(new_rgb)
         self.assertTrue(new_color.is_same_color(white))
 
-        new_color = brightness.find(yellow, mintcream, 'AA')
+        new_rgb = brightness.find(yellow, mintcream, 'AA')
+        new_color = Color(new_rgb)
         self.assertTrue(new_color.is_same_color(white))
 
-        new_color = brightness.find(yellow, mintcream, 'AAA')
+        new_rgb = brightness.find(yellow, mintcream, 'AAA')
         self.assertTrue(new_color.is_same_color(white))
 
     def test_calc_upper_ratio_limit(self):

@@ -24,9 +24,9 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     :type other_color: Color
     :param level: "A", "AA" or "AAA" [optional]
     :type level: str
-    :return: New color whose brightness is adjusted from that of
+    :return: New RGB value whose brightness is adjusted from that of
              ``other_color``
-    :rtype: Color
+    :rtype: (int, int, int)
     """
     color_class = other_color.__class__
     criteria = threshold_criteria(level, fixed_color.rgb, other_color.rgb)
@@ -34,12 +34,12 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
 
     upper_rgb = _upper_limit_color(criteria, other_color.rgb, w * 2)
     if upper_rgb:
-        return color_class(upper_rgb)
+        return upper_rgb
     (r, sufficient_r) = _calc_brightness_ratio(other_color.rgb, criteria, w)
 
     satisfying_rgb = _generate_satisfying_color(other_color.rgb, criteria, r, sufficient_r)
 
-    return color_class(satisfying_rgb)
+    return satisfying_rgb
 
 
 def _upper_limit_color(criteria, other_rgb, max_ratio):
