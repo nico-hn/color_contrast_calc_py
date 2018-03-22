@@ -35,17 +35,17 @@ class ToBrighterSide(SearchDirection):
 
 
 def threshold_criteria(level, fixed_color, other_color):
-    if should_scan_darker_side(fixed_color, other_color):
+    if should_scan_darker_side(fixed_color.rgb, other_color.rgb):
         return ToDarkerSide(level, fixed_color.rgb)
 
     return ToBrighterSide(level, fixed_color.rgb)
 
 
-def should_scan_darker_side(fixed_color, other_color):
-    fixed_luminance = checker.relative_luminance(fixed_color.rgb)
-    other_luminance = checker.relative_luminance(other_color.rgb)
+def should_scan_darker_side(fixed_rgb, other_rgb):
+    fixed_luminance = checker.relative_luminance(fixed_rgb)
+    other_luminance = checker.relative_luminance(other_rgb)
     higher_luminance = fixed_luminance > other_luminance
     same_luminance = fixed_luminance == other_luminance
-    is_light_color = checker.is_light_color(fixed_color.rgb)
+    is_light_color = checker.is_light_color(fixed_rgb)
 
     return higher_luminance or (is_light_color and same_luminance)
