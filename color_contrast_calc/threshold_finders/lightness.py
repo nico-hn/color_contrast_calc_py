@@ -2,6 +2,7 @@
 ``Color.find_lightness_threshold``.
 '''
 
+from .. import const
 from .. import checker
 from .. import utils
 from .criteria import threshold_criteria, should_scan_darker_side
@@ -48,8 +49,9 @@ def _determine_minmax(fixed_color, other_color, init_l):
 
 
 def _lightness_boundary_color(color, max_, min_, level):
-    black = color.__class__.BLACK
-    white = color.__class__.WHITE
+    color_class = color.__class__
+    black = color_class(const.rgb.BLACK)
+    white = color_class(const.rgb.WHITE)
 
     if min_ == 0 and not color.has_sufficient_contrast(black, level):
         return black
