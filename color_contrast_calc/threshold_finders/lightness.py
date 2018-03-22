@@ -28,7 +28,7 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
     """
     criteria = threshold_criteria(level, fixed_color, other_color)
     init_l = other_color.hsl[2]
-    max_, min_ = _determine_minmax(fixed_color, other_color, init_l)
+    max_, min_ = _determine_minmax(fixed_color.rgb, other_color.rgb, init_l)
 
     boundary_color = _lightness_boundary_color(fixed_color, max_, min_, level)
 
@@ -42,8 +42,8 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
                                       l, sufficient_l)
 
 
-def _determine_minmax(fixed_color, other_color, init_l):
-    scan_darker_side = should_scan_darker_side(fixed_color.rgb, other_color.rgb)
+def _determine_minmax(fixed_rgb, other_rgb, init_l):
+    scan_darker_side = should_scan_darker_side(fixed_rgb, other_rgb)
 
     return (init_l, 0) if scan_darker_side else (100, init_l)  # (max, min)
 
