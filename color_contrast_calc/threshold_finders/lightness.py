@@ -9,40 +9,35 @@ from .criteria import threshold_criteria, should_scan_darker_side
 from . import binary_search_width
 
 
-def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
+def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     """Try to find a color who has a satisfying contrast ratio.
 
     The color returned by this function will be created by changing the
     lightness of ``other_color``.  Even when a color that satisfies the
     specified level is not found, the function returns a new color
     anyway.
-    :param fixed_color: The color which remains unchanged
-    :type fixed_color: Color
-    :param other_color: Color before the adjustment of lightness
-    :type other_color: Color
+    :param fixed_rgb: An RGB value which remains unchanged
+    :type fixed_rgb: (int, int, int)
+    :param other_rgb: An RGB value before the adjustment of lightness
+    :type other_rgb: (int, int, int)
     :param level: "A", "AA" or "AAA" [optional]
     :type level: str
     :return: New RGB value whose lightness is adjusted from that of
              ``other_color``
     :rtype: (int, int, int)
     """
-    color_class = other_color.__class__
-    criteria = threshold_criteria(level, fixed_color.rgb, other_color.rgb)
-    init_l = other_color.hsl[2]
-    max_, min_ = _determine_minmax(fixed_color.rgb, other_color.rgb, init_l)
-
-    boundary_rgb = _lightness_boundary_rgb(fixed_color.rgb, max_, min_, level)
+    criteria = threshold_criteria(level, fixed_rgb, other_rgb)
+    other_hsl = utils.rgb_to_hsl(other_rgb)
+    init_l = other_hsl[2]
+    max_, min_ = _determine_minmax(fixed_rgb, other_rgb, init_l)
+    boundary_rgb = _lightness_boundary_rgb(fixed_rgb, max_, min_, level)
 
     if boundary_rgb:
         return boundary_rgb
 
-    l, sufficient_l = _calc_lightness_ratio(other_color.hsl, criteria,
-                                            max_, min_)
+    l, sufficient_l = _calc_lightness_ratio(other_hsl, criteria, max_, min_)
 
-    satisfying_rgb = _generate_satisfying_rgb(other_color.hsl, criteria,
-                                              l, sufficient_l)
-
-    return satisfying_rgb
+    return _generate_satisfying_rgb(other_hsl, criteria, l, sufficient_l)
 
 
 def _determine_minmax(fixed_rgb, other_rgb, init_l):

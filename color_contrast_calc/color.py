@@ -370,7 +370,7 @@ class Color:
         if not isinstance(other_color, Color):
             other_color = Color(other_color)
 
-        return Color(lightness_finder.find(self, other_color, level))
+        return Color(lightness_finder.find(self.rgb, other_color.rgb, level))
 
 
 _here = path.abspath(path.dirname(__file__))
