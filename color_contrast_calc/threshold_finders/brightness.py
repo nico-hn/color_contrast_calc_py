@@ -11,35 +11,32 @@ from . import binary_search_width
 from .criteria import threshold_criteria
 
 
-def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
+def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     """Try to find a color who has a satisfying contrast ratio.
 
     The color returned by this function will be created by changing the
     brightness of ``other_color``.  Even when a color that satisfies the
     specified level is not found, the function returns a new color
     anyway.
-    :param fixed_color: The color which remains unchanged
-    :type fixed_color: Color
-    :param other_color: Color before the adjustment of brightness
-    :type other_color: Color
+    :param fixed_rgb: An RGB value which remains unchanged
+    :type fixed_rgb: (int, int, int)
+    :param other_rgb: An RGB value before the adjustment of brightness
+    :type other_rgb: (int, int, int)
     :param level: "A", "AA" or "AAA" [optional]
     :type level: str
     :return: New RGB value whose brightness is adjusted from that of
              ``other_color``
     :rtype: (int, int, int)
     """
-    color_class = other_color.__class__
-    criteria = threshold_criteria(level, fixed_color.rgb, other_color.rgb)
-    w = calc_upper_ratio_limit(other_color.rgb) / 2.0
+    criteria = threshold_criteria(level, fixed_rgb, other_rgb)
+    w = calc_upper_ratio_limit(other_rgb) / 2.0
 
-    upper_rgb = _upper_limit_color(criteria, other_color.rgb, w * 2)
+    upper_rgb = _upper_limit_color(criteria, other_rgb, w * 2)
     if upper_rgb:
         return upper_rgb
-    (r, sufficient_r) = _calc_brightness_ratio(other_color.rgb, criteria, w)
+    (r, sufficient_r) = _calc_brightness_ratio(other_rgb, criteria, w)
 
-    satisfying_rgb = _generate_satisfying_color(other_color.rgb, criteria, r, sufficient_r)
-
-    return satisfying_rgb
+    return _generate_satisfying_color(other_rgb, criteria, r, sufficient_r)
 
 
 def _upper_limit_color(criteria, other_rgb, max_ratio):
