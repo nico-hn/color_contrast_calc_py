@@ -4,6 +4,7 @@
 
 import math
 
+from .. import const
 from .. import checker
 from ..converters.brightness import calc_rgb
 from . import binary_search_width
@@ -85,7 +86,7 @@ def _generate_satisfying_color(other_color, criteria, r, sufficient_r):
 
 
 def calc_upper_ratio_limit(color):
-    if color.is_same_color(color.__class__.BLACK):
+    if color.rgb == const.rgb.BLACK:
         return 100
 
     darkest = min(c for c in color.rgb if c != 0)
