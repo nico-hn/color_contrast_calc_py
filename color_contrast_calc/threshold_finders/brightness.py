@@ -42,16 +42,16 @@ def find(fixed_color, other_color, level=checker.WCAGLevel.AA):
 def _upper_limit_color(criteria, other_color, max_ratio, level):
     limit_color = other_color.new_brightness_color(max_ratio)
 
-    if _exceed_upper_limit(criteria, other_color, limit_color, level):
+    if _exceed_upper_limit(criteria, other_color.rgb, limit_color.rgb):
         return limit_color
 
     return None
 
 
-def _exceed_upper_limit(criteria, other_color, limit_color, level):
-    other_luminance = other_color.relative_luminance
+def _exceed_upper_limit(criteria, other_rgb, limit_rgb):
+    other_luminance = checker.relative_luminance(other_rgb)
     other_has_higher_luminance = other_luminance > criteria.fixed_luminance
-    sufficient_limit = criteria.has_sufficient_contrast(limit_color.rgb)
+    sufficient_limit = criteria.has_sufficient_contrast(limit_rgb)
     return other_has_higher_luminance and not sufficient_limit
 
 
