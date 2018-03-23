@@ -18,9 +18,6 @@ _LEVEL_TO_RATIO = {
     WCAGLevel.AAA: 7,
     WCAGLevel.AA: 4.5,
     WCAGLevel.A: 3,
-    3: 7,
-    2: 4.5,
-    1: 3
 }
 
 
