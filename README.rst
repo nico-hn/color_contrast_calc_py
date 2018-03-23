@@ -25,6 +25,9 @@ Installation
 Usage
 -----
 
+Here are some examples that will give you a brief overview of the
+library.
+
 Representing a color
 --------------------
 
