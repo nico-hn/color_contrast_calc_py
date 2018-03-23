@@ -103,3 +103,23 @@ class TestLightness(unittest.TestCase):
         new_contrast_ratio = new_color.contrast_ratio_against(green)
         self.assertTrue(new_color.is_same_color(black))
         self.assertLess(new_contrast_ratio, 7.0)
+
+        new_rgb = lightness.find(white.rgb, orange.rgb, 6.5)
+        new_color = Color(new_rgb)
+        new_contrast_ratio = new_color.contrast_ratio_against(white)
+        self.assertEqual(new_color.hex, '#825400')
+        self.assertGreater(new_contrast_ratio, 6.5)
+        self.assertAlmostEqual(new_contrast_ratio, 6.5, 1)
+
+        new_rgb = lightness.find(white.rgb, green.rgb, 6.5)
+        new_color = Color(new_rgb)
+        new_contrast_ratio = new_color.contrast_ratio_against(white)
+        self.assertEqual(new_color.hex, '#006e00')
+        self.assertGreater(new_contrast_ratio, 6.5)
+        self.assertAlmostEqual(new_contrast_ratio, 6.5, 1)
+
+        new_rgb = lightness.find(green.rgb, blue.rgb, 6.5)
+        new_color = Color(new_rgb)
+        new_contrast_ratio = new_color.contrast_ratio_against(green)
+        self.assertTrue(new_color.is_same_color(black))
+        self.assertLess(new_contrast_ratio, 6.5)
