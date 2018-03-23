@@ -50,6 +50,10 @@ class TestChecker(unittest.TestCase):
         self.assertAlmostEqual(checker.level_to_ratio('AAA'), 7)
         self.assertAlmostEqual(checker.level_to_ratio('AA'), 4.5)
         self.assertAlmostEqual(checker.level_to_ratio('A'), 3)
+        self.assertAlmostEqual(checker.level_to_ratio(14.5), 14.5)
+        self.assertAlmostEqual(checker.level_to_ratio(14.5), 14.5)
+        self.assertEqual(checker.level_to_ratio(21.5), None)
+        self.assertEqual(checker.level_to_ratio(0.5), None)
 
     def test_is_light_color(self):
         self.assertTrue(checker.is_light_color((118, 118, 118)))

@@ -121,6 +121,9 @@ def level_to_ratio(level):
     :return: Contrast ratio
     :rtype: float
     """
+    if isinstance(level, (int, float)) and level >= 1.0 and level <= 21.0:
+        return level
+
     if level in _LEVEL_TO_RATIO:
         return _LEVEL_TO_RATIO[level]
 
