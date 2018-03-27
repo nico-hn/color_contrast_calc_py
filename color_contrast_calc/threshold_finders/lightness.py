@@ -47,21 +47,22 @@ def _determine_minmax(fixed_rgb, other_rgb, init_l):
 
 
 def _lightness_boundary_rgb(rgb, max_, min_, level):
-    black = const.rgb.BLACK
-    white = const.rgb.WHITE
+    black = const.luminance.BLACK
+    white = const.luminance.WHITE
 
     if min_ == 0 and not _has_sufficient_contrast(black, rgb, level):
-        return black
+        return const.rgb.BLACK
 
     if max_ == 100 and not _has_sufficient_contrast(white, rgb, level):
-        return white
+        return const.rgb.WHITE
 
     return None
 
 
-def _has_sufficient_contrast(fixed_rgb, other_rgb, level):
+def _has_sufficient_contrast(fixed_luminance, rgb, level):
     target_ratio = checker.level_to_ratio(level)
-    ratio = checker.contrast_ratio(fixed_rgb, other_rgb)
+    luminance = checker.relative_luminance(rgb)
+    ratio = checker.luminance_to_contrast_ratio(fixed_luminance, luminance)
     return ratio >= target_ratio
 
 
