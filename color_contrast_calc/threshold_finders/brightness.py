@@ -75,7 +75,6 @@ def _calc_brightness_ratio(other_rgb, criteria, w):
 
 
 def _generate_satisfying_color(other_rgb, criteria, r, sufficient_r):
-    level = criteria.level
     nearest = calc_rgb(other_rgb, criteria.round(r))
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
 

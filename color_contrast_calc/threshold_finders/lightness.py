@@ -86,7 +86,6 @@ def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
 
 def _generate_satisfying_rgb(other_hsl, criteria, l, sufficient_l):
     h, s = other_hsl[0:2]
-    level = criteria.level
     nearest = utils.hsl_to_rgb((h, s, l))
 
     if sufficient_l and not criteria.has_sufficient_contrast(nearest):
