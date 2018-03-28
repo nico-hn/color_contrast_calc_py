@@ -30,7 +30,7 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     other_hsl = utils.rgb_to_hsl(other_rgb)
     init_l = other_hsl[2]
     max_, min_ = _determine_minmax(fixed_rgb, other_rgb, init_l)
-    boundary_rgb = _lightness_boundary_rgb(fixed_rgb, max_, min_, level)
+    boundary_rgb = _lightness_boundary_rgb(fixed_rgb, max_, min_, criteria)
 
     if boundary_rgb:
         return boundary_rgb
@@ -46,24 +46,23 @@ def _determine_minmax(fixed_rgb, other_rgb, init_l):
     return (init_l, 0) if scan_darker_side else (100, init_l)  # (max, min)
 
 
-def _lightness_boundary_rgb(rgb, max_, min_, level):
+def _lightness_boundary_rgb(rgb, max_, min_, criteria):
     black = const.luminance.BLACK
     white = const.luminance.WHITE
 
-    if min_ == 0 and not _has_sufficient_contrast(black, rgb, level):
+    if min_ == 0 and not _has_sufficient_contrast(black, rgb, criteria):
         return const.rgb.BLACK
 
-    if max_ == 100 and not _has_sufficient_contrast(white, rgb, level):
+    if max_ == 100 and not _has_sufficient_contrast(white, rgb, criteria):
         return const.rgb.WHITE
 
     return None
 
 
-def _has_sufficient_contrast(fixed_luminance, rgb, level):
-    target_ratio = checker.level_to_ratio(level)
+def _has_sufficient_contrast(fixed_luminance, rgb, criteria):
     luminance = checker.relative_luminance(rgb)
     ratio = checker.luminance_to_contrast_ratio(fixed_luminance, luminance)
-    return ratio >= target_ratio
+    return ratio >= criteria.target_ratio
 
 
 def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
