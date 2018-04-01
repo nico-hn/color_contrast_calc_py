@@ -19,16 +19,24 @@ class SearchDirection:
 
 
 class ToDarkerSide(SearchDirection):
+    def __init__(self, level, fixed_rgb):
+        super().__init__(level, fixed_rgb)
+        self.__math_round = math.floor
+
     def round(self, ratio):
-        return math.floor(ratio * 10) / 10.0
+        return self.__math_round(ratio * 10) / 10.0
 
     def increment_condition(self, contrast_ratio):
         return contrast_ratio > self.target_ratio
 
 
 class ToBrighterSide(SearchDirection):
+    def __init__(self, level, fixed_rgb):
+        super().__init__(level, fixed_rgb)
+        self.__math_round = math.ceil
+
     def round(self, ratio):
-        return math.ceil(ratio * 10) / 10.0
+        return self.__math_round(ratio * 10) / 10.0
 
     def increment_condition(self, contrast_ratio):
         return self.target_ratio > contrast_ratio
