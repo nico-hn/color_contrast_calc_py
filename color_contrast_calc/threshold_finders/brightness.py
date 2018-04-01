@@ -7,7 +7,7 @@ import math
 from .. import const
 from .. import checker
 from ..converters.brightness import calc_rgb
-from . import binary_search_width, rgb_with_better_ratio
+from . import binary_search_width, rgb_with_better_ratio, find_ratio
 from .criteria import threshold_criteria
 
 
@@ -35,8 +35,8 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     if upper_rgb:
         return upper_rgb
 
-    (r, sufficient_r) = _round_ratios(_find_ratio(other_rgb, criteria, w, w),
-                                      criteria)
+    (r, sufficient_r) = _round_ratios(find_ratio(other_rgb, criteria, calc_rgb,
+                                                 w, w), criteria)
 
     return rgb_with_better_ratio(other_rgb, criteria,
                                  r, sufficient_r, calc_rgb)
@@ -56,25 +56,6 @@ def _exceed_upper_limit(criteria, other_rgb, limit_rgb):
     other_has_higher_luminance = other_luminance > criteria.fixed_luminance
     sufficient_limit = criteria.has_sufficient_contrast(limit_rgb)
     return other_has_higher_luminance and not sufficient_limit
-
-
-def _find_ratio(other_rgb, criteria, init_ratio, init_width):
-    target_ratio = criteria.target_ratio
-    r = init_ratio
-    sufficient_r = None
-
-    for d in binary_search_width(init_width, 0.01):
-        contrast_ratio = criteria.contrast_ratio(calc_rgb(other_rgb, r))
-
-        if contrast_ratio >= target_ratio:
-            sufficient_r = r
-
-        if contrast_ratio == target_ratio:
-            break
-
-        r += d if criteria.increment_condition(contrast_ratio) else -d
-
-    return (r, sufficient_r)
 
 
 def _round_ratios(ratios, criteria):

@@ -13,6 +13,25 @@ def binary_search_width(init_width, min_width):
         d = init_width / pow(2, i)
 
 
+def find_ratio(other_rgb, criteria, rgb_with_ratio, init_ratio, init_width):
+    target_ratio = criteria.target_ratio
+    r = init_ratio
+    sufficient_r = None
+
+    for d in binary_search_width(init_width, 0.01):
+        contrast_ratio = criteria.contrast_ratio(rgb_with_ratio(other_rgb, r))
+
+        if contrast_ratio >= target_ratio:
+            sufficient_r = r
+
+        if contrast_ratio == target_ratio:
+            break
+
+        r += d if criteria.increment_condition(contrast_ratio) else -d
+
+    return (r, sufficient_r)
+
+
 def rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r, calc_rgb):
     nearest = calc_rgb(other_rgb, r)
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
