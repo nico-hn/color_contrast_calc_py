@@ -36,7 +36,7 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
         return upper_rgb
     (r, sufficient_r) = _calc_brightness_ratio(other_rgb, criteria, w)
 
-    return _generate_satisfying_color(other_rgb, criteria, r, sufficient_r)
+    return _rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r)
 
 
 def _upper_limit_color(criteria, other_rgb, max_ratio):
@@ -74,7 +74,7 @@ def _calc_brightness_ratio(other_rgb, criteria, w):
     return (r, sufficient_r)
 
 
-def _generate_satisfying_color(other_rgb, criteria, r, sufficient_r):
+def _rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r):
     nearest = calc_rgb(other_rgb, criteria.round(r))
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
 
