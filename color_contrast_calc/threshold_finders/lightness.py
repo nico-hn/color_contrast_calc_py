@@ -40,6 +40,13 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     return _generate_satisfying_rgb(other_hsl, criteria, l, sufficient_l)
 
 
+def rgb_with_ratio(hsl, ratio):
+    if hsl[2] != ratio:
+        hsl = hsl[0:2] + (ratio,)
+
+    return utils.hsl_to_rgb(hsl)
+
+
 def _determine_minmax(fixed_rgb, other_rgb, init_l):
     scan_darker_side = should_scan_darker_side(fixed_rgb, other_rgb)
 
@@ -71,7 +78,7 @@ def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
     sufficient_l = None
 
     for d in binary_search_width(max_ - min_, 0.01):
-        contrast_ratio = criteria.contrast_ratio(utils.hsl_to_rgb((h, s, l)))
+        contrast_ratio = criteria.contrast_ratio(rgb_with_ratio(other_hsl, l))
 
         if contrast_ratio >= criteria.target_ratio:
             sufficient_l = l
@@ -86,9 +93,9 @@ def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
 
 def _generate_satisfying_rgb(other_hsl, criteria, l, sufficient_l):
     h, s = other_hsl[0:2]
-    nearest = utils.hsl_to_rgb((h, s, l))
+    nearest = rgb_with_ratio(other_hsl, l)
 
     if sufficient_l and not criteria.has_sufficient_contrast(nearest):
-        return utils.hsl_to_rgb((h, s, sufficient_l))
+        return rgb_with_ratio(other_hsl, sufficient_l)
 
     return nearest
