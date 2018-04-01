@@ -3,7 +3,7 @@ import math
 from .. import checker
 
 
-class SearchDirection:
+class SearchCriteria:
     def __init__(self, level, fixed_rgb, math_round):
         self.level = level
         self.target_ratio = checker.level_to_ratio(level)
@@ -22,12 +22,12 @@ class SearchDirection:
                                                    luminance)
 
 
-class ToDarkerSide(SearchDirection):
+class ToDarkerSide(SearchCriteria):
     def increment_condition(self, contrast_ratio):
         return contrast_ratio > self.target_ratio
 
 
-class ToBrighterSide(SearchDirection):
+class ToBrighterSide(SearchCriteria):
     def increment_condition(self, contrast_ratio):
         return self.target_ratio > contrast_ratio
 
