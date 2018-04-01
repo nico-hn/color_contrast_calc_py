@@ -19,24 +19,24 @@ def find_ratio(other_rgb, criteria, rgb_with_ratio, init_ratio, init_width):
     sufficient_r = None
 
     for d in binary_search_width(init_width, 0.01):
-        contrast_ratio = criteria.contrast_ratio(rgb_with_ratio(other_rgb, r))
+        new_ratio = criteria.contrast_ratio(rgb_with_ratio(other_rgb, r))
 
-        if contrast_ratio >= target_ratio:
+        if new_ratio >= target_ratio:
             sufficient_r = r
 
-        if contrast_ratio == target_ratio:
+        if new_ratio == target_ratio:
             break
 
-        r += d if criteria.increment_condition(contrast_ratio) else -d
+        r += d if criteria.increment_condition(new_ratio) else -d
 
     return (r, sufficient_r)
 
 
-def rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r, calc_rgb):
-    nearest = calc_rgb(other_rgb, r)
+def rgb_with_better_ratio(color, criteria, r, sufficient_r, rgb_with_ratio):
+    nearest = rgb_with_ratio(color, r)
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
 
     if sufficient_r and not satisfying_nearest:
-        return calc_rgb(other_rgb, sufficient_r)
+        return rgb_with_ratio(color, sufficient_r)
 
     return nearest
