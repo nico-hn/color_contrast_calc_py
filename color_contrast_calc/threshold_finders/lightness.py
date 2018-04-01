@@ -73,7 +73,6 @@ def _has_sufficient_contrast(fixed_luminance, rgb, criteria):
 
 
 def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
-    h, s = other_hsl[0:2]
     l = (max_ + min_) / 2.0
     sufficient_l = None
 
