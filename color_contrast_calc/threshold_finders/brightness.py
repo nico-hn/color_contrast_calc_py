@@ -6,7 +6,7 @@ import math
 
 from .. import const
 from .. import checker
-from ..converters.brightness import calc_rgb
+from ..converters.brightness import calc_rgb as rgb_with_ratio
 from . import rgb_with_better_ratio, find_ratio
 from .criteria import threshold_criteria
 
@@ -35,15 +35,15 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     if upper_rgb:
         return upper_rgb
 
-    ratios = find_ratio(other_rgb, criteria, calc_rgb, w, w)
+    ratios = find_ratio(other_rgb, criteria, rgb_with_ratio, w, w)
     (r, sufficient_r) = _round_ratios(ratios, criteria)
 
     return rgb_with_better_ratio(other_rgb, criteria,
-                                 r, sufficient_r, calc_rgb)
+                                 r, sufficient_r, rgb_with_ratio)
 
 
 def _upper_limit_color(criteria, other_rgb, max_ratio):
-    limit_rgb = calc_rgb(other_rgb, max_ratio)
+    limit_rgb = rgb_with_ratio(other_rgb, max_ratio)
 
     if _exceed_upper_limit(criteria, other_rgb, limit_rgb):
         return limit_rgb
