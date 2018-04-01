@@ -14,9 +14,9 @@ from .criteria import threshold_criteria
 def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     """Try to find a color who has a satisfying contrast ratio.
 
-    The color returned by this function will be created by changing the
-    brightness of ``other_color``.  Even when a color that satisfies the
-    specified level is not found, the function returns a new color
+    The color returned by this function will be created by changing
+    the brightness of ``other_rgb``.  Even when a color that satisfies
+    the specified level is not found, the function returns a new color
     anyway.
     :param fixed_rgb: An RGB value which remains unchanged
     :type fixed_rgb: (int, int, int)
