@@ -35,8 +35,8 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     if upper_rgb:
         return upper_rgb
 
-    (r, sufficient_r) = _round_ratios(find_ratio(other_rgb, criteria, calc_rgb,
-                                                 w, w), criteria)
+    ratios = find_ratio(other_rgb, criteria, calc_rgb, w, w)
+    (r, sufficient_r) = _round_ratios(ratios, criteria)
 
     return rgb_with_better_ratio(other_rgb, criteria,
                                  r, sufficient_r, calc_rgb)
