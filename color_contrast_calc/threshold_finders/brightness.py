@@ -7,7 +7,7 @@ import math
 from .. import const
 from .. import checker
 from ..converters.brightness import calc_rgb
-from . import binary_search_width, rgb_with_better_ratio, find_ratio
+from . import rgb_with_better_ratio, find_ratio
 from .criteria import threshold_criteria
 
 
