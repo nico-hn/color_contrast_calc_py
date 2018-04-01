@@ -32,11 +32,10 @@ def find_ratio(other_rgb, criteria, rgb_with_ratio, init_ratio, init_width):
     return (r, sufficient_r)
 
 
-def rgb_with_better_ratio(color, criteria, r, sufficient_r, rgb_with_ratio):
-    nearest = rgb_with_ratio(color, r)
-    satisfying_nearest = criteria.has_sufficient_contrast(nearest)
+def rgb_with_better_ratio(color, criteria, last_r, passing_r, rgb_with_ratio):
+    closest = rgb_with_ratio(color, last_r)
 
-    if sufficient_r and not satisfying_nearest:
-        return rgb_with_ratio(color, sufficient_r)
+    if passing_r and not criteria.has_sufficient_contrast(closest):
+        return rgb_with_ratio(color, passing_r)
 
-    return nearest
+    return closest
