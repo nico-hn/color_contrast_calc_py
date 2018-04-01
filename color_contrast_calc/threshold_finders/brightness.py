@@ -34,7 +34,9 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     upper_rgb = _upper_limit_color(criteria, other_rgb, w * 2)
     if upper_rgb:
         return upper_rgb
-    (r, sufficient_r) = _find_ratio(other_rgb, criteria, w)
+
+    (r, sufficient_r) = _round_ratios(_find_ratio(other_rgb, criteria, w),
+                                      criteria)
 
     return _rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r)
 
@@ -74,12 +76,16 @@ def _find_ratio(other_rgb, criteria, w):
     return (r, sufficient_r)
 
 
+def _round_ratios(ratios, criteria):
+    return tuple(criteria.round(r) if r != None else None for r in ratios)
+
+
 def _rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r):
-    nearest = calc_rgb(other_rgb, criteria.round(r))
+    nearest = calc_rgb(other_rgb, r)
     satisfying_nearest = criteria.has_sufficient_contrast(nearest)
 
     if sufficient_r and not satisfying_nearest:
-        return calc_rgb(other_rgb, criteria.round(sufficient_r))
+        return calc_rgb(other_rgb, sufficient_r)
 
     return nearest
 
