@@ -9,6 +9,9 @@ class SearchDirection:
         self.target_ratio = checker.level_to_ratio(level)
         self.fixed_luminance = checker.relative_luminance(fixed_rgb)
 
+    def round(self, ratio):
+        return self._math_round(ratio * 10) / 10.0
+
     def has_sufficient_contrast(self, rgb):
         return self.contrast_ratio(rgb) >= self.target_ratio
 
@@ -21,10 +24,7 @@ class SearchDirection:
 class ToDarkerSide(SearchDirection):
     def __init__(self, level, fixed_rgb):
         super().__init__(level, fixed_rgb)
-        self.__math_round = math.floor
-
-    def round(self, ratio):
-        return self.__math_round(ratio * 10) / 10.0
+        self._math_round = math.floor
 
     def increment_condition(self, contrast_ratio):
         return contrast_ratio > self.target_ratio
@@ -33,10 +33,7 @@ class ToDarkerSide(SearchDirection):
 class ToBrighterSide(SearchDirection):
     def __init__(self, level, fixed_rgb):
         super().__init__(level, fixed_rgb)
-        self.__math_round = math.ceil
-
-    def round(self, ratio):
-        return self.__math_round(ratio * 10) / 10.0
+        self._math_round = math.ceil
 
     def increment_condition(self, contrast_ratio):
         return self.target_ratio > contrast_ratio
