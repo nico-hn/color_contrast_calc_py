@@ -34,7 +34,7 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     upper_rgb = _upper_limit_color(criteria, other_rgb, w * 2)
     if upper_rgb:
         return upper_rgb
-    (r, sufficient_r) = _calc_brightness_ratio(other_rgb, criteria, w)
+    (r, sufficient_r) = _find_ratio(other_rgb, criteria, w)
 
     return _rgb_with_better_ratio(other_rgb, criteria, r, sufficient_r)
 
@@ -55,7 +55,7 @@ def _exceed_upper_limit(criteria, other_rgb, limit_rgb):
     return other_has_higher_luminance and not sufficient_limit
 
 
-def _calc_brightness_ratio(other_rgb, criteria, w):
+def _find_ratio(other_rgb, criteria, w):
     target_ratio = criteria.target_ratio
     r = w
     sufficient_r = None
