@@ -28,8 +28,7 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     """
     criteria = threshold_criteria(level, fixed_rgb, other_rgb)
     other_hsl = utils.rgb_to_hsl(other_rgb)
-    init_l = other_hsl[2]
-    max_, min_ = _determine_minmax(fixed_rgb, other_rgb, init_l)
+    max_, min_ = _determine_minmax(fixed_rgb, other_rgb, other_hsl[2])
     boundary_rgb = _lightness_boundary_rgb(fixed_rgb, max_, min_, criteria)
 
     if boundary_rgb:
