@@ -6,7 +6,7 @@ from .. import const
 from .. import checker
 from .. import utils
 from .criteria import threshold_criteria, should_scan_darker_side
-from . import binary_search_width, rgb_with_better_ratio
+from . import rgb_with_better_ratio, find_ratio
 
 
 def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
@@ -73,18 +73,5 @@ def _has_sufficient_contrast(fixed_luminance, rgb, criteria):
 
 
 def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
-    l = (max_ + min_) / 2.0
-    sufficient_l = None
-
-    for d in binary_search_width(max_ - min_, 0.01):
-        contrast_ratio = criteria.contrast_ratio(rgb_with_ratio(other_hsl, l))
-
-        if contrast_ratio >= criteria.target_ratio:
-            sufficient_l = l
-
-        if contrast_ratio == criteria.target_ratio:
-            break
-
-        l += d if criteria.increment_condition(contrast_ratio) else -d
-
-    return (l, sufficient_l)
+    return find_ratio(other_hsl, criteria, rgb_with_ratio,
+                      (max_ + min_) / 2.0, max_ - min_)
