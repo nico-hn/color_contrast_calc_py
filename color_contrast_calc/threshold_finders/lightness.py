@@ -34,11 +34,11 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     if boundary_rgb:
         return boundary_rgb
 
-    l, sufficient_l = find_ratio(other_hsl, criteria, rgb_with_ratio,
-                                 (max_ + min_) / 2.0, max_ - min_)
+    last_l, sufficient_l = find_ratio(other_hsl, criteria, rgb_with_ratio,
+                                      (max_ + min_) / 2.0, max_ - min_)
 
     return rgb_with_better_ratio(other_hsl, criteria,
-                                 l, sufficient_l, rgb_with_ratio)
+                                 last_l, sufficient_l, rgb_with_ratio)
 
 
 def rgb_with_ratio(hsl, ratio):
