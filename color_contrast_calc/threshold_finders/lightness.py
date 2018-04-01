@@ -34,7 +34,8 @@ def find(fixed_rgb, other_rgb, level=checker.WCAGLevel.AA):
     if boundary_rgb:
         return boundary_rgb
 
-    l, sufficient_l = _calc_lightness_ratio(other_hsl, criteria, max_, min_)
+    l, sufficient_l = find_ratio(other_hsl, criteria, rgb_with_ratio,
+                                 (max_ + min_) / 2.0, max_ - min_)
 
     return rgb_with_better_ratio(other_hsl, criteria,
                                  l, sufficient_l, rgb_with_ratio)
@@ -70,8 +71,3 @@ def _has_sufficient_contrast(fixed_luminance, rgb, criteria):
     luminance = checker.relative_luminance(rgb)
     ratio = checker.luminance_to_contrast_ratio(fixed_luminance, luminance)
     return ratio >= criteria.target_ratio
-
-
-def _calc_lightness_ratio(other_hsl, criteria, max_, min_):
-    return find_ratio(other_hsl, criteria, rgb_with_ratio,
-                      (max_ + min_) / 2.0, max_ - min_)
