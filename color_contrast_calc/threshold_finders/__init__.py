@@ -19,15 +19,15 @@ def find_ratio(other_rgb, criteria, rgb_with_ratio, init_ratio, init_width):
     passing_r = None
 
     for d in binary_search_width(init_width, 0.01):
-        new_ratio = criteria.contrast_ratio(rgb_with_ratio(other_rgb, r))
+        contrast = criteria.contrast_ratio(rgb_with_ratio(other_rgb, r))
 
-        if new_ratio >= target_contrast:
+        if contrast >= target_contrast:
             passing_r = r
 
-        if new_ratio == target_contrast:
+        if contrast == target_contrast:
             break
 
-        r += d if criteria.increment_condition(new_ratio) else -d
+        r += d if criteria.increment_condition(contrast) else -d
 
     return (r, passing_r)
 
