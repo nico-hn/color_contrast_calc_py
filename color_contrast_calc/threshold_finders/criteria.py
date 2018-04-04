@@ -6,7 +6,7 @@ from .. import checker
 class SearchCriteria:
     def __init__(self, level, fixed_rgb, math_round):
         self.level = level
-        self.target_ratio = checker.level_to_ratio(level)
+        self.target_contrast = checker.level_to_ratio(level)
         self.fixed_luminance = checker.relative_luminance(fixed_rgb)
         self._math_round = math_round
 
@@ -14,7 +14,7 @@ class SearchCriteria:
         return self._math_round(ratio * 10) / 10.0
 
     def has_sufficient_contrast(self, rgb):
-        return self.contrast_ratio(rgb) >= self.target_ratio
+        return self.contrast_ratio(rgb) >= self.target_contrast
 
     def contrast_ratio(self, rgb):
         luminance = checker.relative_luminance(rgb)
@@ -24,12 +24,12 @@ class SearchCriteria:
 
 class ToDarkerSide(SearchCriteria):
     def increment_condition(self, contrast_ratio):
-        return contrast_ratio > self.target_ratio
+        return contrast_ratio > self.target_contrast
 
 
 class ToBrighterSide(SearchCriteria):
     def increment_condition(self, contrast_ratio):
-        return self.target_ratio > contrast_ratio
+        return self.target_contrast > contrast_ratio
 
 
 def threshold_criteria(level, fixed_rgb, other_rgb):

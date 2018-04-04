@@ -70,4 +70,4 @@ def _lightness_boundary_rgb(rgb, max_, min_, criteria):
 def _has_sufficient_contrast(ref_luminance, rgb, criteria):
     luminance = checker.relative_luminance(rgb)
     ratio = checker.luminance_to_contrast_ratio(ref_luminance, luminance)
-    return ratio >= criteria.target_ratio
+    return ratio >= criteria.target_contrast
