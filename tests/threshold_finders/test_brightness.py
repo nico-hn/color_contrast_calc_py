@@ -81,7 +81,7 @@ class TestBrightness(unittest.TestCase):
 
         self.assertTrue(mintcream.has_higher_luminance(yellow))
 
-        new_color = mintcream.new_brightness_color(105)
+        new_color = mintcream.with_brightness(105)
         self.assertEqual(brightness.calc_upper_ratio_limit(mintcream.rgb), 105)
         self.assertTrue(new_color.is_same_color(white))
 

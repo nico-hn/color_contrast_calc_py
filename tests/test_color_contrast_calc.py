@@ -18,8 +18,8 @@ class TestColorContrastCalc(unittest.TestCase):
         yellow = color_contrast_calc.color.Color.from_name('yellow')
         orange = color_contrast_calc.color.Color.from_name('orange')
 
-        self.assertEqual(yellow.new_grayscale_color().hex, '#ededed')
-        self.assertEqual(orange.new_grayscale_color().hex, '#acacac')
+        self.assertEqual(yellow.with_grayscale().hex, '#ededed')
+        self.assertEqual(orange.with_grayscale().hex, '#acacac')
 
     def test_color_from(self):
         yellow_name = 'yellow'

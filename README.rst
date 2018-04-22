@@ -182,7 +182,7 @@ Example 3: Grayscale of given colors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For getting grayscale, ``Color`` has an instance method
-``new_grayscale_color``.
+``with_grayscale``.
 For example, save the following code as ``grayscale.py``:
 
 .. code-block:: python
@@ -195,9 +195,9 @@ For example, save the following code as ``grayscale.py``:
     report = 'The grayscale of {:s} ({:s}) is {:s}'
 
     print(report.format(yellow.hex, yellow.name,
-                        yellow.new_grayscale_color().hex))
+                        yellow.with_grayscale().hex))
     print(report.format(orange.hex, orange.name,
-                        orange.new_grayscale_color().hex))
+                        orange.with_grayscale().hex))
 
 Then execute the script:
 
@@ -207,14 +207,14 @@ Then execute the script:
     The grayscale of #ffff00 (yellow) is #ededed
     The grayscale of #ffa500 (orange) is #acacac
 
-And other than ``new_grayscale_color``, following instance methods
+And other than ``with_grayscale``, following instance methods
 are available for ``Color``:
 
-* ``new_brightness_color``
-* ``new_contrast_color``
-* ``new_hue_rotate_color``
-* ``new_invert_color``
-* ``new_saturate_color``
+* ``with_brightness``
+* ``with_contrast``
+* ``with_hue_rotate``
+* ``with_invert``
+* ``with_saturate``
 
 Example 4: Sort colors
 ^^^^^^^^^^^^^^^^^^^^^^

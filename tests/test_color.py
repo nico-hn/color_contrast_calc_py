@@ -204,7 +204,7 @@ class TestColor(unittest.TestCase):
         self.assertTrue(Color((118, 118, 118)).is_light_color())
         self.assertFalse(Color((117, 117, 117)).is_light_color())
 
-    def test_new_contrast_color(self):
+    def test_with_contrast(self):
         yellow = Color((255, 255, 0))
         orange = Color((255, 165, 0))
         lime = Color((0, 255, 0))
@@ -214,23 +214,23 @@ class TestColor(unittest.TestCase):
         neutral_gray = Color((118, 118, 118))
         gray_rgb = (128, 128, 128)
 
-        self.assertEqual(yellow.new_contrast_color(100).rgb, yellow.rgb)
-        self.assertEqual(orange.new_contrast_color(100).rgb, orange.rgb)
-        self.assertEqual(lime.new_contrast_color(100).rgb, lime.rgb)
-        self.assertEqual(blue.new_contrast_color(100).rgb, blue.rgb)
+        self.assertEqual(yellow.with_contrast(100).rgb, yellow.rgb)
+        self.assertEqual(orange.with_contrast(100).rgb, orange.rgb)
+        self.assertEqual(lime.with_contrast(100).rgb, lime.rgb)
+        self.assertEqual(blue.with_contrast(100).rgb, blue.rgb)
 
-        self.assertEqual(yellow.new_contrast_color(0).rgb, gray_rgb)
-        self.assertEqual(orange.new_contrast_color(0).rgb, gray_rgb)
-        self.assertEqual(lime.new_contrast_color(0).rgb, gray_rgb)
-        self.assertEqual(blue.new_contrast_color(0).rgb, gray_rgb)
-        self.assertEqual(white.new_contrast_color(0).rgb, gray_rgb)
-        self.assertEqual(black.new_contrast_color(0).rgb, gray_rgb)
-        self.assertEqual(neutral_gray.new_contrast_color(0).rgb, gray_rgb)
+        self.assertEqual(yellow.with_contrast(0).rgb, gray_rgb)
+        self.assertEqual(orange.with_contrast(0).rgb, gray_rgb)
+        self.assertEqual(lime.with_contrast(0).rgb, gray_rgb)
+        self.assertEqual(blue.with_contrast(0).rgb, gray_rgb)
+        self.assertEqual(white.with_contrast(0).rgb, gray_rgb)
+        self.assertEqual(black.with_contrast(0).rgb, gray_rgb)
+        self.assertEqual(neutral_gray.with_contrast(0).rgb, gray_rgb)
 
-        self.assertEqual(orange.new_contrast_color(60).rgb, (204, 150, 51))
-        self.assertEqual(orange.new_contrast_color(120).rgb, (255, 173, 0))
+        self.assertEqual(orange.with_contrast(60).rgb, (204, 150, 51))
+        self.assertEqual(orange.with_contrast(120).rgb, (255, 173, 0))
 
-    def test_new_brightness_color(self):
+    def test_with_brightness(self):
         yellow = Color((255, 255, 0))
         orange = Color((255, 165, 0))
         lime = Color((0, 255, 0))
@@ -238,92 +238,92 @@ class TestColor(unittest.TestCase):
         white = Color((255, 255, 255))
         black = Color((0, 0, 0))
 
-        self.assertEqual(yellow.new_brightness_color(100).rgb, yellow.rgb)
-        self.assertEqual(orange.new_brightness_color(100).rgb, orange.rgb)
-        self.assertEqual(lime.new_brightness_color(100).rgb, lime.rgb)
-        self.assertEqual(blue.new_brightness_color(100).rgb, blue.rgb)
+        self.assertEqual(yellow.with_brightness(100).rgb, yellow.rgb)
+        self.assertEqual(orange.with_brightness(100).rgb, orange.rgb)
+        self.assertEqual(lime.with_brightness(100).rgb, lime.rgb)
+        self.assertEqual(blue.with_brightness(100).rgb, blue.rgb)
 
-        self.assertEqual(yellow.new_brightness_color(0).rgb, black.rgb)
-        self.assertEqual(orange.new_brightness_color(0).rgb, black.rgb)
-        self.assertEqual(lime.new_brightness_color(0).rgb, black.rgb)
-        self.assertEqual(blue.new_brightness_color(0).rgb, black.rgb)
+        self.assertEqual(yellow.with_brightness(0).rgb, black.rgb)
+        self.assertEqual(orange.with_brightness(0).rgb, black.rgb)
+        self.assertEqual(lime.with_brightness(0).rgb, black.rgb)
+        self.assertEqual(blue.with_brightness(0).rgb, black.rgb)
 
-        self.assertEqual(white.new_brightness_color(120).rgb, white.rgb)
-        self.assertEqual(yellow.new_brightness_color(120).rgb, yellow.rgb)
+        self.assertEqual(white.with_brightness(120).rgb, white.rgb)
+        self.assertEqual(yellow.with_brightness(120).rgb, yellow.rgb)
 
-    def test_new_invert_color(self):
+    def test_with_invert(self):
         yellow = Color((255, 255, 0))
         orange = Color((255, 165, 0))
         blue = Color((0, 0, 255))
         royalblue = Color((65,105, 225))
         gray = Color((128, 128, 128))
 
-        self.assertEqual(yellow.new_invert_color(0).rgb, yellow.rgb)
-        self.assertEqual(orange.new_invert_color(0).rgb, orange.rgb)
-        self.assertEqual(blue.new_invert_color(0).rgb, blue.rgb)
-        self.assertEqual(royalblue.new_invert_color(0).rgb, royalblue.rgb)
-        self.assertEqual(gray.new_invert_color(0).rgb, gray.rgb)
+        self.assertEqual(yellow.with_invert(0).rgb, yellow.rgb)
+        self.assertEqual(orange.with_invert(0).rgb, orange.rgb)
+        self.assertEqual(blue.with_invert(0).rgb, blue.rgb)
+        self.assertEqual(royalblue.with_invert(0).rgb, royalblue.rgb)
+        self.assertEqual(gray.with_invert(0).rgb, gray.rgb)
 
-        self.assertEqual(yellow.new_invert_color().rgb, blue.rgb)
-        self.assertEqual(yellow.new_invert_color(100).rgb, blue.rgb)
-        self.assertEqual(blue.new_invert_color(100).rgb, yellow.rgb)
+        self.assertEqual(yellow.with_invert().rgb, blue.rgb)
+        self.assertEqual(yellow.with_invert(100).rgb, blue.rgb)
+        self.assertEqual(blue.with_invert(100).rgb, yellow.rgb)
 
-        self.assertEqual(orange.new_invert_color(100).rgb, (0, 90, 255))
-        self.assertEqual(royalblue.new_invert_color(100).rgb, (190, 150, 30))
+        self.assertEqual(orange.with_invert(100).rgb, (0, 90, 255))
+        self.assertEqual(royalblue.with_invert(100).rgb, (190, 150, 30))
 
-        self.assertEqual(yellow.new_invert_color(50).rgb, gray.rgb)
-        self.assertEqual(orange.new_invert_color(50).rgb, gray.rgb)
-        self.assertEqual(blue.new_invert_color(50).rgb, gray.rgb)
-        self.assertEqual(royalblue.new_invert_color(50).rgb, gray.rgb)
-        self.assertEqual(gray.new_invert_color(50).rgb, gray.rgb)
+        self.assertEqual(yellow.with_invert(50).rgb, gray.rgb)
+        self.assertEqual(orange.with_invert(50).rgb, gray.rgb)
+        self.assertEqual(blue.with_invert(50).rgb, gray.rgb)
+        self.assertEqual(royalblue.with_invert(50).rgb, gray.rgb)
+        self.assertEqual(gray.with_invert(50).rgb, gray.rgb)
 
-    def test_new_hue_rotate_color(self):
+    def test_with_hue_rotate(self):
         yellow = Color((255, 255, 0))
         orange = Color((255, 165, 0))
         blue = Color((0, 0, 255))
 
-        self.assertEqual(yellow.new_hue_rotate_color(0).rgb, yellow.rgb)
-        self.assertEqual(orange.new_hue_rotate_color(0).rgb, orange.rgb)
-        self.assertEqual(blue.new_hue_rotate_color(0).rgb, blue.rgb)
+        self.assertEqual(yellow.with_hue_rotate(0).rgb, yellow.rgb)
+        self.assertEqual(orange.with_hue_rotate(0).rgb, orange.rgb)
+        self.assertEqual(blue.with_hue_rotate(0).rgb, blue.rgb)
 
-        self.assertEqual(yellow.new_hue_rotate_color(360).rgb, yellow.rgb)
-        self.assertEqual(orange.new_hue_rotate_color(360).rgb, orange.rgb)
-        self.assertEqual(blue.new_hue_rotate_color(360).rgb, blue.rgb)
+        self.assertEqual(yellow.with_hue_rotate(360).rgb, yellow.rgb)
+        self.assertEqual(orange.with_hue_rotate(360).rgb, orange.rgb)
+        self.assertEqual(blue.with_hue_rotate(360).rgb, blue.rgb)
 
-        self.assertEqual(yellow.new_hue_rotate_color(180).rgb, (218, 218, 255))
-        self.assertEqual(orange.new_hue_rotate_color(180).rgb, (90, 180, 255))
-        self.assertEqual(blue.new_hue_rotate_color(180).rgb, (37, 37, 0))
+        self.assertEqual(yellow.with_hue_rotate(180).rgb, (218, 218, 255))
+        self.assertEqual(orange.with_hue_rotate(180).rgb, (90, 180, 255))
+        self.assertEqual(blue.with_hue_rotate(180).rgb, (37, 37, 0))
 
-        self.assertEqual(yellow.new_hue_rotate_color(90).rgb, (0, 255, 218))
-        self.assertEqual(orange.new_hue_rotate_color(90).rgb, (0, 232, 90))
-        self.assertEqual(blue.new_hue_rotate_color(90).rgb, (255, 0, 37))
+        self.assertEqual(yellow.with_hue_rotate(90).rgb, (0, 255, 218))
+        self.assertEqual(orange.with_hue_rotate(90).rgb, (0, 232, 90))
+        self.assertEqual(blue.with_hue_rotate(90).rgb, (255, 0, 37))
 
-    def test_new_saturate_color(self):
+    def test_with_saturate(self):
         red = Color((255, 0, 0))
         orange = Color((255, 165, 0))
         yellow = Color((255, 255, 0))
         blue = Color((0, 0, 255))
 
-        self.assertEqual(orange.new_saturate_color(100).rgb, orange.rgb)
-        self.assertEqual(yellow.new_saturate_color(100).rgb, yellow.rgb)
-        self.assertEqual(blue.new_saturate_color(100).rgb, blue.rgb)
+        self.assertEqual(orange.with_saturate(100).rgb, orange.rgb)
+        self.assertEqual(yellow.with_saturate(100).rgb, yellow.rgb)
+        self.assertEqual(blue.with_saturate(100).rgb, blue.rgb)
 
-        self.assertEqual(orange.new_saturate_color(0).rgb, (172, 172, 172))
-        self.assertEqual(yellow.new_saturate_color(0).rgb, (237, 237, 237))
-        self.assertEqual(blue.new_saturate_color(0).rgb, (18, 18, 18))
+        self.assertEqual(orange.with_saturate(0).rgb, (172, 172, 172))
+        self.assertEqual(yellow.with_saturate(0).rgb, (237, 237, 237))
+        self.assertEqual(blue.with_saturate(0).rgb, (18, 18, 18))
 
-        self.assertEqual(orange.new_saturate_color(2357).rgb, red.rgb)
-        self.assertEqual(orange.new_saturate_color(3000).rgb, red.rgb)
+        self.assertEqual(orange.with_saturate(2357).rgb, red.rgb)
+        self.assertEqual(orange.with_saturate(3000).rgb, red.rgb)
 
-    def test_new_grayscale_color(self):
+    def test_with_grayscale(self):
         orange = Color((255, 165, 0))
 
-        self.assertEqual(orange.new_grayscale_color(0).rgb, orange.rgb)
+        self.assertEqual(orange.with_grayscale(0).rgb, orange.rgb)
 
-        self.assertEqual(orange.new_grayscale_color().rgb, (172, 172, 172))
-        self.assertEqual(orange.new_grayscale_color(100).rgb, (172, 172, 172))
+        self.assertEqual(orange.with_grayscale().rgb, (172, 172, 172))
+        self.assertEqual(orange.with_grayscale(100).rgb, (172, 172, 172))
 
-        self.assertEqual(orange.new_grayscale_color(50).rgb, (214,169, 86))
+        self.assertEqual(orange.with_grayscale(50).rgb, (214,169, 86))
 
     def test_find_brightness_threshold(self):
         yellow = Color((255, 255, 0))

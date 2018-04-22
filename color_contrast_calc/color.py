@@ -192,7 +192,7 @@ class Color:
         The max contrast in this context means that of colors modified
         by the operation defined at
         https://www.w3.org/TR/filter-effects/#funcdef-contrast
-        :return: True if self.new_contrast_color(r) where r is greater
+        :return: True if self.with_contrast(r) where r is greater
                  than 100 returns the same color as self.
         :rtype: bool
         """
@@ -244,7 +244,7 @@ class Color:
 
         return contrast_ratio_against_white <= contrast_ratio_against_black
 
-    def new_contrast_color(self, ratio, name=None):
+    def with_contrast(self, ratio, name=None):
         """Return a new instance of Color with adjusted contrast.
 
         :param ratio: Adjustment ratio in percentage
@@ -258,7 +258,7 @@ class Color:
         """
         return self.__generate_new_color(contrast_conv, ratio, name)
 
-    def new_brightness_color(self, ratio, name=None):
+    def with_brightness(self, ratio, name=None):
         """Return a new instance of Color with adjusted brightness.
 
         :param ratio: Adjustment ratio in percentage
@@ -272,7 +272,7 @@ class Color:
         """
         return self.__generate_new_color(brightness_conv, ratio, name)
 
-    def new_invert_color(self, ratio=100, name=None):
+    def with_invert(self, ratio=100, name=None):
         """Return an inverted color as an instance of Color.
 
         :param ratio: Proportion of the conversion in percentage
@@ -286,7 +286,7 @@ class Color:
         """
         return self.__generate_new_color(invert_conv, ratio, name)
 
-    def new_hue_rotate_color(self, degree, name=None):
+    def with_hue_rotate(self, degree, name=None):
         """Return a hue rotation applied color as an instance of Color.
 
         :param ratio: Degrees of rotation (0 to 360)
@@ -300,7 +300,7 @@ class Color:
         """
         return self.__generate_new_color(hue_rotate_conv, degree, name)
 
-    def new_saturate_color(self, ratio, name=None):
+    def with_saturate(self, ratio, name=None):
         """Return a saturated color as an instance of Color.
 
         :param ratio: Proprtion of the conversion in percentage
@@ -314,7 +314,7 @@ class Color:
         """
         return self.__generate_new_color(saturate_conv, ratio, name)
 
-    def new_grayscale_color(self, ratio=100, name=None):
+    def with_grayscale(self, ratio=100, name=None):
         """Return a grayscale of the original color.
 
         :param ratio: Conversion ratio in percentage
