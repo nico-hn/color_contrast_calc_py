@@ -32,7 +32,7 @@ def color_from(color_value, name=None):
     """
     default_error_message = 'A color should be given as a tuple or string.'
 
-    if not isinstance(color_value, str) and not isinstance(color_value, tuple):
+    if not isinstance(color_value, (str, tuple)):
         raise InvalidColorRepresentationError(color_value,
                                               default_error_message)
 
