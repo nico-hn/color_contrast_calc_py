@@ -29,6 +29,7 @@ class TestColorContrastCalc(unittest.TestCase):
         invalid_name = 'imaginaryblue'
         invalid_hex = '#ff00'
         invalid_rgb = (255, 256, 0)
+        invalid_type = [255, 255, 0]
         unnamed_hex = '#767676'
         unnamed_rgb = (118, 118, 118)
         unnamed_gray = 'unnamed_gray'
@@ -53,5 +54,7 @@ class TestColorContrastCalc(unittest.TestCase):
             color_from(invalid_hex)
         with self.assertRaises(InvalidColorRepresentationError):
             color_from(invalid_rgb)
+        with self.assertRaises(InvalidColorRepresentationError):
+            color_from(invalid_type)
         with self.assertRaises(InvalidColorRepresentationError):
             color_from(0)
