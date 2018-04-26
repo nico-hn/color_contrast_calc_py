@@ -150,6 +150,14 @@ class Color:
 
     @property
     def common_name(self):
+        """Return a color keyword name or a hex color code.
+
+        A name defined at https://www.w3.org/TR/SVG/types.html will be
+        returned when the name corresponds to the hex color code of
+        the color.  Otherwise the hex color code will be returned.
+        :return: Color keyword name or hex color code
+        :rtype: str
+        """
         if self.hex in HEX_TO_COLOR:
             return HEX_TO_COLOR[self.hex].name
 
