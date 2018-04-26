@@ -104,6 +104,13 @@ class TestColor(unittest.TestCase):
 
         self.assertEqual(yellow.rgb_code, yellow_rgb_code)
 
+    def test_common_name(self):
+        yellow = Color('#ff0')
+        self.assertEqual(yellow.common_name, 'yellow')
+
+        unnamed_hex = '#123456'
+        self.assertEqual(Color(unnamed_hex).common_name, unnamed_hex)
+
     def test_str(self):
         yellow = Color((255, 255, 0), 'yellow')
         yellow_rgb = '#ffff00'

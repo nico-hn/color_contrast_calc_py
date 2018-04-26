@@ -125,6 +125,13 @@ class Color:
 
         return self.__rgb_code
 
+    @property
+    def common_name(self):
+        if self.hex in HEX_TO_COLOR:
+            return HEX_TO_COLOR[self.hex].name
+
+        return self.hex
+
     def contrast_ratio_against(self, other_color):
         """Calculate the contrast ratio against another color.
 
