@@ -67,7 +67,11 @@ class Color:
         :return: an instance of Color
         :rtype: Color
         """
-        return cls(utils.hsl_to_rgb(hsl), name)
+        hex = utils.hsl_to_hex(hsl)
+        if not name and hex in HEX_TO_COLOR:
+            return HEX_TO_COLOR[hex]
+
+        return cls(hex, name)
 
     def __init__(self, rgb, name=None):
         """Create an instance of Color.
