@@ -104,7 +104,7 @@ class TestSorter(unittest.TestCase):
             self.assertEqual(k, h, 0)
 
     def test_compile_color_sort_key_function(self):
-        hsl = Color.new_from_hsl((20, 80, 50))
+        hsl = Color.from_hsl((20, 80, 50))
         rgb = Color((10, 165, 70))
 
         key_func = sorter.compile_color_sort_key_function('hsl')
@@ -128,7 +128,7 @@ class TestSorter(unittest.TestCase):
             self.assertEqual(k, h, 0)
 
     def test_compose_key_function(self):
-        hsl = Color.new_from_hsl((20, 80, 50))
+        hsl = Color.from_hsl((20, 80, 50))
         rgb = Color((10, 165, 70))
         hsl_func = sorter.compile_color_sort_key_function('lHs')
         rgb_func = sorter.compile_color_sort_key_function('bRG')
