@@ -22,6 +22,29 @@ class TestColor(unittest.TestCase):
 
         self.assertIsNone(Color.from_name('kiiro'))
 
+    def test_from_rgb(self):
+        yellow_rgb = (255, 255, 0)
+        yellow_name = 'yellow'
+
+        yellow = Color.from_rgb(yellow_rgb)
+        self.assertTrue(isinstance(yellow, Color))
+        self.assertEqual(yellow.rgb, yellow_rgb)
+        self.assertEqual(yellow.name, yellow_name)
+
+        new_name = 'new_yellow'
+        new_yellow = Color.from_rgb(yellow_rgb, new_name)
+
+        self.assertEqual(new_yellow.rgb, yellow_rgb)
+        self.assertEqual(new_yellow.name, new_name)
+
+        unnamed_rgb = (123, 234, 123)
+        unnamed_hex = '#7bea7b'
+        new_color = Color.from_rgb(unnamed_rgb)
+
+        self.assertFalse(unnamed_hex in HEX_TO_COLOR)
+        self.assertEqual(new_color.hex, unnamed_hex)
+        self.assertEqual(new_color.name, unnamed_hex)
+
     def test_from_hex(self):
         yellow_normalized_hex = '#ffff00'
         yellow_name = 'yellow'
