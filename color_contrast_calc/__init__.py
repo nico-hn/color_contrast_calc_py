@@ -21,11 +21,13 @@ def color_from(color_value, name=None):
     As ``color_value``, you can pass a predefined color name, or
     an RGB value represented as a tuple of integers or a hex code such
     as (255, 255, 0) or "#ffff00".  ``name`` is assigned to the returned
-    instance if it does not have a name already assigned.
-    :param color_value: Name of a predefined color or RGB value
+    instance.
+    :param color_value: Name of a predefined color, hex color code or
+                        RGB value
     :type color_value: str or (int, int, int)
-    :param name: Unless the instance has predefined name, the passed
-                 name is set to self.name [optional]
+    :param name: Without specifying a name, a color keyword name (if
+                 exists) or the value of normalized hex color code is
+                 set to self.name [optional]
     :type name: str
     :return: Instance of Color
     :rtype: Color
@@ -45,10 +47,15 @@ def color_from(color_value, name=None):
 def _color_from_rgb(rgb_value, name=None):
     error_message = 'An RGB value should be given in form of (r, g, b).'
 
-    if utils.is_valid_rgb(rgb_value):
-        return Color(rgb_value, name)
-    else:
+    if not utils.is_valid_rgb(rgb_value):
         raise InvalidColorRepresentationError(rgb_value, error_message)
+
+    hex_code = utils.rgb_to_hex(rgb_value)
+
+    if not name and hex_code in _HEX_TO_COLOR:
+        return _HEX_TO_COLOR[hex_code]
+
+    return Color(rgb_value, name)
 
 
 def _color_from_str(color_value, name=None):
@@ -61,5 +68,8 @@ def _color_from_str(color_value, name=None):
         raise InvalidColorRepresentationError(color_value, error_message)
 
     hex_code = utils.normalize_hex(color_value)
-    predefined_hex = hex_code in _HEX_TO_COLOR
-    return _HEX_TO_COLOR[hex_code] if predefined_hex else Color(hex_code, name)
+
+    if not name and hex_code in _HEX_TO_COLOR:
+        return _HEX_TO_COLOR[hex_code]
+
+    return Color(hex_code, name)

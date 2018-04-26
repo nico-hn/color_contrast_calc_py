@@ -58,3 +58,15 @@ class TestColorContrastCalc(unittest.TestCase):
             color_from(invalid_type)
         with self.assertRaises(InvalidColorRepresentationError):
             color_from(0)
+
+        yellow = color_from(yellow_rgb)
+        named_yellow = color_from(yellow_rgb, 'named_yellow')
+        self.assertEqual(yellow.name, 'yellow')
+        self.assertEqual(named_yellow.name, 'named_yellow')
+
+        yellow = color_from('#ff0')
+        named_yellow = color_from('#ff0', 'named_yellow')
+        long_yellow = color_from('#ffff00', 'long_yellow')
+        self.assertEqual(yellow.name, 'yellow')
+        self.assertEqual(named_yellow.name, 'named_yellow')
+        self.assertEqual(long_yellow.name, 'long_yellow')
