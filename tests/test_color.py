@@ -69,6 +69,8 @@ class TestColor(unittest.TestCase):
         yellow_short_hex = '#ff0'
         yellow_name = 'yellow'
         yellow_hsl = (60, 100, 50)
+        unnamed_rgb = (123, 234, 123)
+        unnamed_hex = '#7bea7b'
 
         yellow = Color(yellow_rgb, yellow_name)
         self.assertEqual(yellow.rgb, yellow_rgb)
@@ -88,7 +90,12 @@ class TestColor(unittest.TestCase):
         yellow = Color(yellow_rgb)
         self.assertEqual(yellow.rgb, yellow_rgb)
         self.assertEqual(yellow.hex, yellow_hex)
-        self.assertEqual(yellow.name, yellow_hex)
+        self.assertEqual(yellow.name, yellow_name)
+
+        tmp_color = Color(unnamed_rgb)
+        self.assertEqual(tmp_color.rgb, unnamed_rgb)
+        self.assertEqual(tmp_color.hex, unnamed_hex)
+        self.assertEqual(tmp_color.name, unnamed_hex)
 
     def test_hsl(self):
         yellow_rgb = (255, 255, 0)

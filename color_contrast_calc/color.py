@@ -76,8 +76,9 @@ class Color:
                     hex color code such as "#ffff00"
         :type rgb: str or (int, int, int)
         :param name: You can name the color to be created.
-                     Without this option, the value of normalized hex
-                     color code is assigned instead. [optional]
+                     Without this option, a color keyword name (if
+                     exists) or the value of normalized hex color code
+                     is assigned instead. [optional]
         :type name: str
         :return: an instance of Color
         :rtype: Color
@@ -88,7 +89,7 @@ class Color:
             self.rgb = rgb
 
         self.hex = utils.rgb_to_hex(self.rgb)
-        self.name = name or self.hex
+        self.name = name or self.common_name
         self.relative_luminance = checker.relative_luminance(self.rgb)
         self.__hsl = None
         self.__rgb_code = None
