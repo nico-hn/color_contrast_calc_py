@@ -40,7 +40,7 @@ class Color:
         return NAME_TO_COLOR[normalized_name]
 
     @classmethod
-    def from_hex(cls, hex_code):
+    def from_hex(cls, hex_code, name=None):
         """Return an instance of Color for a hex color code.
 
         :param hex_code: Hex color code such as "#ffff00"
@@ -52,7 +52,7 @@ class Color:
         if normalized_hex in HEX_TO_COLOR:
             return HEX_TO_COLOR[normalized_hex]
 
-        return Color(normalized_hex)
+        return Color(normalized_hex, name)
 
     @classmethod
     def new_from_hsl(cls, hsl, name=None):
