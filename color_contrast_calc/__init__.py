@@ -42,25 +42,23 @@ def color_from(color_value, name=None):
     return _color_from_str(color_value, name)
 
 
-def _color_from_rgb(color_value, name=None):
-    rgb_error_message = 'An RGB value should be given in form of (r, g, b).'
+def _color_from_rgb(rgb_value, name=None):
+    error_message = 'An RGB value should be given in form of (r, g, b).'
 
-    if utils.is_valid_rgb(color_value):
-        return Color(color_value, name)
+    if utils.is_valid_rgb(rgb_value):
+        return Color(rgb_value, name)
     else:
-        raise InvalidColorRepresentationError(color_value,
-                                              rgb_error_message)
+        raise InvalidColorRepresentationError(rgb_value, error_message)
 
 
 def _color_from_str(color_value, name=None):
-    hex_error_message = 'A hex code is in form of "#xxxxxx" where 0 <= x <= f.'
+    error_message = 'A hex code is in form of "#xxxxxx" where 0 <= x <= f.'
 
     if color_value in _NAME_TO_COLOR:
         return _NAME_TO_COLOR[color_value]
 
     if not utils.is_valid_hex(color_value):
-        raise InvalidColorRepresentationError(color_value,
-                                              hex_error_message)
+        raise InvalidColorRepresentationError(color_value, error_message)
 
     hex_code = utils.normalize_hex(color_value)
     predefined_hex = hex_code in _HEX_TO_COLOR
