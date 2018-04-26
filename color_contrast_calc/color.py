@@ -45,11 +45,13 @@ class Color:
 
         :param hex_code: Hex color code such as "#ffff00"
         :type hex_code: str
+        :param name: You can name the color to be created [optional]
+        :type name: str
         :return: an instance of Color
         :rtype: Color
         """
         normalized_hex = utils.normalize_hex(hex_code)
-        if normalized_hex in HEX_TO_COLOR:
+        if not name and normalized_hex in HEX_TO_COLOR:
             return HEX_TO_COLOR[normalized_hex]
 
         return Color(normalized_hex, name)
