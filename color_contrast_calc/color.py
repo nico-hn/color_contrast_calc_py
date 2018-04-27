@@ -21,22 +21,6 @@ from .converters import saturate as saturate_conv
 
 
 class Color:
-    @classmethod
-    def from_name(cls, name):
-        return from_name(name)
-
-    @classmethod
-    def from_rgb(cls, rgb, name=None):
-        return from_rgb(rgb, name)
-
-    @classmethod
-    def from_hex(cls, hex_code, name=None):
-        return from_hex(hex_code, name)
-
-    @classmethod
-    def from_hsl(cls, hsl, name=None):
-        return from_hsl(hsl, name)
-
     def __init__(self, rgb, name=None):
         """Create an instance of Color.
 
