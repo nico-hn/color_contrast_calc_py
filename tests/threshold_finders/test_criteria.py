@@ -1,5 +1,6 @@
 import unittest
 from color_contrast_calc.threshold_finders.criteria import threshold_criteria
+import color_contrast_calc.color as color_module
 from color_contrast_calc.color import Color
 
 class TestCriteria(unittest.TestCase):
@@ -8,9 +9,9 @@ class TestCriteria(unittest.TestCase):
 
     def test_criteria(self):
         target = 'AA'
-        orange = Color.from_name('orange').rgb
-        yellow = Color.from_name('yellow').rgb
-        darkgreen = Color.from_name('darkgreen').rgb
+        orange = color_module.from_name('orange').rgb
+        yellow = color_module.from_name('yellow').rgb
+        darkgreen = color_module.from_name('darkgreen').rgb
 
         direction = threshold_criteria(target, orange, yellow)
         self.assertTrue(direction.increment_condition(4.25))

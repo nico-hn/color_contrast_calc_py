@@ -1,5 +1,6 @@
 import unittest
 import operator
+import color_contrast_calc.color as color_module
 from color_contrast_calc.color import Color
 from color_contrast_calc import utils
 import color_contrast_calc.sorter as sorter
@@ -26,8 +27,8 @@ class TestSorterSortedColor(unittest.TestCase):
         self.prepare_colors()
 
     def prepare_colors(self):
-        self.colors = [Color.from_name(c) for c in self.color_names]
-        self.colors2 = [Color.from_name(c) for c in self.color_names2]
+        self.colors = [color_module.from_name(c) for c in self.color_names]
+        self.colors2 = [color_module.from_name(c) for c in self.color_names2]
         self.key = None
 
     def __assert_sorted_result(self, order, before, after):
@@ -37,7 +38,7 @@ class TestSorterSortedColor(unittest.TestCase):
 
     def test_default(self):
         color_names = ('red', 'yellow', 'lime', 'cyan', 'fuchsia', 'blue')
-        colors = [Color.from_name(c) for c in color_names]
+        colors = [color_module.from_name(c) for c in color_names]
         red, yellow, lime, cyan, fuchsia, blue = colors
         default_order = [red, yellow, lime, cyan, blue, fuchsia]
         rgb_order = [yellow, fuchsia, red, cyan, lime, blue]
@@ -126,32 +127,32 @@ class TestSorterSortedColor(unittest.TestCase):
 
 class TestSorterSortedRGB(TestSorterSortedColor):
     def prepare_colors(self):
-        self.colors = [Color.from_name(c).rgb for c in self.color_names]
-        self.colors2 = [Color.from_name(c).hsl for c in self.color_names2]
+        self.colors = [color_module.from_name(c).rgb for c in self.color_names]
+        self.colors2 = [color_module.from_name(c).hsl for c in self.color_names2]
         self.key = None
 
 class TestSorterSortedHex(TestSorterSortedColor):
     def prepare_colors(self):
-        self.colors = [Color.from_name(c).hex for c in self.color_names]
-        self.colors2 = [Color.from_name(c).hex for c in self.color_names2]
+        self.colors = [color_module.from_name(c).hex for c in self.color_names]
+        self.colors2 = [color_module.from_name(c).hex for c in self.color_names2]
         self.key = None
 
 class TestSorterSortedColorInArray(TestSorterSortedColor):
     def prepare_colors(self):
-        self.colors = [[Color.from_name(c)] for c in self.color_names]
-        self.colors2 = [[Color.from_name(c)] for c in self.color_names2]
+        self.colors = [[color_module.from_name(c)] for c in self.color_names]
+        self.colors2 = [[color_module.from_name(c)] for c in self.color_names2]
         self.key = operator.itemgetter(0)
 
 class TestSorterSortedRGBInArray(TestSorterSortedColor):
     def prepare_colors(self):
-        self.colors = [[Color.from_name(c).rgb] for c in self.color_names]
-        self.colors2 = [[Color.from_name(c).hsl] for c in self.color_names2]
+        self.colors = [[color_module.from_name(c).rgb] for c in self.color_names]
+        self.colors2 = [[color_module.from_name(c).hsl] for c in self.color_names2]
         self.key = operator.itemgetter(0)
 
 class TestSorterSortedHexInArray(TestSorterSortedColor):
     def prepare_colors(self):
-        self.colors = [[Color.from_name(c).hex] for c in self.color_names]
-        self.colors2 = [[Color.from_name(c).hex] for c in self.color_names2]
+        self.colors = [[color_module.from_name(c).hex] for c in self.color_names]
+        self.colors2 = [[color_module.from_name(c).hex] for c in self.color_names2]
         self.key = operator.itemgetter(0)
 
 class TestSorterCompileKeyFunction(unittest.TestCase):

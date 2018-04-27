@@ -1,5 +1,6 @@
 import unittest
 from color_contrast_calc.threshold_finders import brightness
+import color_contrast_calc.color as color_module
 from color_contrast_calc.color import Color
 
 class TestBrightness(unittest.TestCase):
@@ -7,19 +8,19 @@ class TestBrightness(unittest.TestCase):
         pass
 
     def test_find(self):
-        black = Color.from_name('black')
-        white = Color.from_name('white')
-        brown = Color.from_name('brown')
-        orange = Color.from_name('orange')
-        mintcream = Color.from_name('mintcream')
-        yellow = Color.from_name('yellow')
-        springgreen = Color.from_name('springgreen')
-        green = Color.from_name('green')
-        darkgreen = Color.from_name('darkgreen')
-        blue = Color.from_name('blue')
-        azure = Color.from_name('azure')
-        blueviolet = Color.from_name('blueviolet')
-        fuchsia = Color.from_name('fuchsia')
+        black = color_module.from_name('black')
+        white = color_module.from_name('white')
+        brown = color_module.from_name('brown')
+        orange = color_module.from_name('orange')
+        mintcream = color_module.from_name('mintcream')
+        yellow = color_module.from_name('yellow')
+        springgreen = color_module.from_name('springgreen')
+        green = color_module.from_name('green')
+        darkgreen = color_module.from_name('darkgreen')
+        blue = color_module.from_name('blue')
+        azure = color_module.from_name('azure')
+        blueviolet = color_module.from_name('blueviolet')
+        fuchsia = color_module.from_name('fuchsia')
 
         fixed_color = orange
         new_rgb = brightness.find(fixed_color.rgb, fixed_color.rgb)
@@ -97,13 +98,13 @@ class TestBrightness(unittest.TestCase):
         self.assertTrue(new_color.is_same_color(white))
 
     def test_calc_upper_ratio_limit(self):
-        color = Color.from_name('black')
+        color = color_module.from_name('black')
         self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 100)
 
-        color = color.from_name('orange')
+        color = color_module.from_name('orange')
         self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 155)
 
-        color = color.from_name('blueviolet')
+        color = color_module.from_name('blueviolet')
         self.assertEqual(brightness.calc_upper_ratio_limit(color.rgb), 594)
 
         color = Color((0, 180, 0))

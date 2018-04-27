@@ -1,4 +1,5 @@
 import unittest
+import color_contrast_calc.color as color_module
 from color_contrast_calc.color import Color
 from color_contrast_calc.color import NAMED_COLORS
 from color_contrast_calc.color import NAME_TO_COLOR
@@ -11,16 +12,16 @@ class TestColor(unittest.TestCase):
         pass
 
     def test_from_name(self):
-        yellow = Color.from_name('yellow')
+        yellow = color_module.from_name('yellow')
         self.assertTrue(isinstance(yellow, Color))
         self.assertEqual(yellow.name, 'yellow')
         self.assertEqual(yellow.hex, '#ffff00')
 
-        yellow = Color.from_name('Yellow')
+        yellow = color_module.from_name('Yellow')
         self.assertEqual(yellow.name, 'yellow')
         self.assertEqual(yellow.hex, '#ffff00')
 
-        self.assertIsNone(Color.from_name('kiiro'))
+        self.assertIsNone(color_module.from_name('kiiro'))
 
     def test_from_rgb(self):
         yellow_rgb = (255, 255, 0)
@@ -501,11 +502,11 @@ class TestColor(unittest.TestCase):
         self.assertEqual(middle_color.hex, '#66ffff')
 
     def test_hsl_colors(self):
-        black = Color.from_name('black')
-        white = Color.from_name('white')
-        gray = Color.from_name('gray')
-        red = Color.from_name('red')
-        yellow = Color.from_name('yellow')
+        black = color_module.from_name('black')
+        white = color_module.from_name('white')
+        gray = color_module.from_name('gray')
+        red = color_module.from_name('red')
+        yellow = color_module.from_name('yellow')
 
         colors = hsl_colors()
         self.assertEqual(len(colors), 361)
