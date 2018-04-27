@@ -23,21 +23,7 @@ from .converters import saturate as saturate_conv
 class Color:
     @classmethod
     def from_name(cls, name):
-        """Return an instance of Color for a predefined color name.
-
-        Color names are defined at
-        https://www.w3.org/TR/SVG/types.html#ColorKeywords
-        :param name: Name of color
-        :type name: str
-        :return: Instance of Color
-        :rtype: Color
-        """
-        normalized_name = name.lower()
-
-        if not normalized_name in NAME_TO_COLOR:
-            return None
-
-        return NAME_TO_COLOR[normalized_name]
+        return from_name(name)
 
     @classmethod
     def from_rgb(cls, rgb, name=None):
@@ -411,6 +397,24 @@ class Color:
             other_color = Color(other_color)
 
         return Color(lightness_finder.find(self.rgb, other_color.rgb, level))
+
+
+def from_name(name):
+    """Return an instance of Color for a predefined color name.
+
+    Color names are defined at
+    https://www.w3.org/TR/SVG/types.html#ColorKeywords
+    :param name: Name of color
+    :type name: str
+    :return: Instance of Color
+    :rtype: Color
+    """
+    normalized_name = name.lower()
+
+    if not normalized_name in NAME_TO_COLOR:
+        return None
+
+    return NAME_TO_COLOR[normalized_name]
 
 
 _here = path.abspath(path.dirname(__file__))
