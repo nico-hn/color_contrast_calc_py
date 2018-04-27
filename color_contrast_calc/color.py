@@ -27,21 +27,7 @@ class Color:
 
     @classmethod
     def from_rgb(cls, rgb, name=None):
-        """Return an instance of Color for a hex color code.
-
-        :param rgb: RGB value represented as a tuple of integers such
-                    such as (255, 255, 0)
-        :type rgb: (int, int, int)
-        :param name: You can name the color to be created [optional]
-        :type name: str
-        :return: an instance of Color
-        :rtype: Color
-        """
-        hex_code = utils.rgb_to_hex(rgb)
-        if not name and hex_code in HEX_TO_COLOR:
-            return HEX_TO_COLOR[hex_code]
-
-        return Color(rgb, name)
+        return from_rgb(rgb, name)
 
     @classmethod
     def from_hex(cls, hex_code, name=None):
@@ -415,6 +401,24 @@ def from_name(name):
         return None
 
     return NAME_TO_COLOR[normalized_name]
+
+
+def from_rgb(rgb, name=None):
+    """Return an instance of Color for a hex color code.
+
+    :param rgb: RGB value represented as a tuple of integers such
+                such as (255, 255, 0)
+    :type rgb: (int, int, int)
+    :param name: You can name the color to be created [optional]
+    :type name: str
+    :return: an instance of Color
+    :rtype: Color
+    """
+    hex_code = utils.rgb_to_hex(rgb)
+    if not name and hex_code in HEX_TO_COLOR:
+        return HEX_TO_COLOR[hex_code]
+
+    return Color(rgb, name)
 
 
 _here = path.abspath(path.dirname(__file__))
