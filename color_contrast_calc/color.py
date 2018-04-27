@@ -478,6 +478,6 @@ def hsl_colors(s=100, l=50, h_interval=1):
     return [Color.from_hsl((h, s, l)) for h in hues]
 
 
-Color.BLACK = Color.from_name('black')
-Color.GRAY = Color.from_name('gray')
-Color.WHITE = Color.from_name('white')
+Color.BLACK = from_name('black')
+Color.GRAY = from_name('gray')
+Color.WHITE = from_name('white')
