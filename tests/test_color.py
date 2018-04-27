@@ -81,11 +81,11 @@ class TestColor(unittest.TestCase):
         self.assertEqual(new_yellow.name, new_yellow_name)
 
     def test_from_hsl(self):
-        self.assertEqual(Color.from_hsl((60, 100, 50)).hex, '#ffff00')
-        self.assertEqual(Color.from_hsl((60.0, 100.0, 50.0)).hex, '#ffff00')
+        self.assertEqual(color_module.from_hsl((60, 100, 50)).hex, '#ffff00')
+        self.assertEqual(color_module.from_hsl((60.0, 100.0, 50.0)).hex, '#ffff00')
 
-        self.assertEqual(Color.from_hsl((30, 100, 50)).hex, '#ff8000')
-        self.assertEqual(Color.from_hsl((30.0, 100.0, 50.0)).hex, '#ff8000')
+        self.assertEqual(color_module.from_hsl((30, 100, 50)).hex, '#ff8000')
+        self.assertEqual(color_module.from_hsl((30.0, 100.0, 50.0)).hex, '#ff8000')
 
     def test_propertyies(self):
         yellow_rgb = (255, 255, 0)
