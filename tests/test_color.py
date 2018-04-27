@@ -53,30 +53,30 @@ class TestColor(unittest.TestCase):
         undefined_color_name = 'undefined_color'
         new_yellow_name = 'new_yellow'
 
-        yellow = Color.from_hex(yellow_normalized_hex)
+        yellow = color_module.from_hex(yellow_normalized_hex)
         self.assertTrue(isinstance(yellow, Color))
         self.assertEqual(yellow.name, yellow_name)
         self.assertEqual(yellow.hex, yellow_normalized_hex)
 
-        yellow = Color.from_hex('#FFFF00')
+        yellow = color_module.from_hex('#FFFF00')
         self.assertTrue(isinstance(yellow, Color))
         self.assertEqual(yellow.name, yellow_name)
         self.assertEqual(yellow.hex, yellow_normalized_hex)
 
-        yellow = Color.from_hex('#ff0')
+        yellow = color_module.from_hex('#ff0')
         self.assertTrue(isinstance(yellow, Color))
         self.assertEqual(yellow.name, yellow_name)
         self.assertEqual(yellow.hex, yellow_normalized_hex)
 
-        undefined_color = Color.from_hex(undefined_color_hex)
+        undefined_color = color_module.from_hex(undefined_color_hex)
         self.assertTrue(isinstance(undefined_color, Color))
         self.assertEqual(undefined_color.name, undefined_color_hex)
         self.assertEqual(undefined_color.hex, undefined_color_hex)
 
-        undefined_color = Color.from_hex(undefined_color_hex, undefined_color_name)
+        undefined_color = color_module.from_hex(undefined_color_hex, undefined_color_name)
         self.assertEqual(undefined_color.name, undefined_color_name)
 
-        new_yellow = Color.from_hex('#ff0', new_yellow_name)
+        new_yellow = color_module.from_hex('#ff0', new_yellow_name)
         self.assertEqual(new_yellow.hex, yellow_normalized_hex)
         self.assertEqual(new_yellow.name, new_yellow_name)
 
