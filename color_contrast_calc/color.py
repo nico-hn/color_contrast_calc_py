@@ -31,20 +31,7 @@ class Color:
 
     @classmethod
     def from_hex(cls, hex_code, name=None):
-        """Return an instance of Color for a hex color code.
-
-        :param hex_code: Hex color code such as "#ffff00"
-        :type hex_code: str
-        :param name: You can name the color to be created [optional]
-        :type name: str
-        :return: an instance of Color
-        :rtype: Color
-        """
-        normalized_hex = utils.normalize_hex(hex_code)
-        if not name and normalized_hex in HEX_TO_COLOR:
-            return HEX_TO_COLOR[normalized_hex]
-
-        return Color(normalized_hex, name)
+        return from_hex(hex_code, name)
 
     @classmethod
     def from_hsl(cls, hsl, name=None):
@@ -419,6 +406,23 @@ def from_rgb(rgb, name=None):
         return HEX_TO_COLOR[hex_code]
 
     return Color(rgb, name)
+
+
+def from_hex(hex_code, name=None):
+    """Return an instance of Color for a hex color code.
+
+    :param hex_code: Hex color code such as "#ffff00"
+    :type hex_code: str
+    :param name: You can name the color to be created [optional]
+    :type name: str
+    :return: an instance of Color
+    :rtype: Color
+    """
+    normalized_hex = utils.normalize_hex(hex_code)
+    if not name and normalized_hex in HEX_TO_COLOR:
+        return HEX_TO_COLOR[normalized_hex]
+
+    return Color(normalized_hex, name)
 
 
 _here = path.abspath(path.dirname(__file__))
