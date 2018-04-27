@@ -35,20 +35,7 @@ class Color:
 
     @classmethod
     def from_hsl(cls, hsl, name=None):
-        """Create an instance of Color from an HSL value.
-
-        :param hsl: HSL value represented as a tuple of numbers
-        :type hsl: (float, float, float)
-        :param name: You can name the color to be created [optional]
-        :type name: str
-        :return: an instance of Color
-        :rtype: Color
-        """
-        hex_code = utils.hsl_to_hex(hsl)
-        if not name and hex_code in HEX_TO_COLOR:
-            return HEX_TO_COLOR[hex_code]
-
-        return cls(hex_code, name)
+        return from_hsl(hsl, name)
 
     def __init__(self, rgb, name=None):
         """Create an instance of Color.
@@ -423,6 +410,23 @@ def from_hex(hex_code, name=None):
         return HEX_TO_COLOR[normalized_hex]
 
     return Color(normalized_hex, name)
+
+
+def from_hsl(hsl, name=None):
+    """Create an instance of Color from an HSL value.
+
+    :param hsl: HSL value represented as a tuple of numbers
+    :type hsl: (float, float, float)
+    :param name: You can name the color to be created [optional]
+    :type name: str
+    :return: an instance of Color
+    :rtype: Color
+    """
+    hex_code = utils.hsl_to_hex(hsl)
+    if not name and hex_code in HEX_TO_COLOR:
+        return HEX_TO_COLOR[hex_code]
+
+    return Color(hex_code, name)
 
 
 _here = path.abspath(path.dirname(__file__))
