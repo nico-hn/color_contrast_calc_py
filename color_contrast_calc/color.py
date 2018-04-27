@@ -70,7 +70,7 @@ class Color:
         """Return HSL value of the color.
 
         The value is calculated from the RGB value, so if you create
-        the instance by Color.from_hsl method, the value used to
+        the instance by color.from_hsl method, the value used to
         create the color does not necessarily correspond to the value
         of this property.
         :return: HSL value represented as a tuple of numbers
@@ -475,7 +475,7 @@ def hsl_colors(s=100, l=50, h_interval=1):
     :rtype: list of Color
     """
     hues = range(0, 361, h_interval)
-    return [Color.from_hsl((h, s, l)) for h in hues]
+    return [from_hsl((h, s, l)) for h in hues]
 
 
 Color.BLACK = from_name('black')
