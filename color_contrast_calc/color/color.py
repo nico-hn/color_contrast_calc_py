@@ -341,19 +341,6 @@ class Color:
         return Color(lightness_finder.find(self.rgb, other_color.rgb, level))
 
 
-_here = path.abspath(path.dirname(__file__))
-
-# named colors: https://www.w3.org/TR/SVG/types.html#ColorKeywords
-with open(path.join(_here, '../color_keywords.json')) as f:
-    _color_keywords = json.loads(f.read())
-
-NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)
-
-NAME_TO_COLOR = {color.name: color for color in NAMED_COLORS}
-
-HEX_TO_COLOR = {color.hex: color for color in NAMED_COLORS}
-
-
 def _generate_web_safe_colors():
     colors = []
     web_safe_values = [c * 17 for c in range(0, 16, 3)]
@@ -367,6 +354,18 @@ def _generate_web_safe_colors():
 
     return tuple(colors)
 
+
+_here = path.abspath(path.dirname(__file__))
+
+# named colors: https://www.w3.org/TR/SVG/types.html#ColorKeywords
+with open(path.join(_here, '../color_keywords.json')) as f:
+    _color_keywords = json.loads(f.read())
+
+NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)
+
+NAME_TO_COLOR = {color.name: color for color in NAMED_COLORS}
+
+HEX_TO_COLOR = {color.hex: color for color in NAMED_COLORS}
 
 WEB_SAFE_COLORS = _generate_web_safe_colors()
 
