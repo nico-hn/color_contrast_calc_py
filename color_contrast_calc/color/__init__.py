@@ -8,16 +8,16 @@ from os import path
 import json
 from itertools import product
 
-from . import utils
-from . import checker
-from .threshold_finders import brightness as brightness_finder
-from .threshold_finders import lightness as lightness_finder
-from .converters import brightness as brightness_conv
-from .converters import contrast as contrast_conv
-from .converters import grayscale as grayscale_conv
-from .converters import hue_rotate as hue_rotate_conv
-from .converters import invert as invert_conv
-from .converters import saturate as saturate_conv
+from .. import utils
+from .. import checker
+from ..threshold_finders import brightness as brightness_finder
+from ..threshold_finders import lightness as lightness_finder
+from ..converters import brightness as brightness_conv
+from ..converters import contrast as contrast_conv
+from ..converters import grayscale as grayscale_conv
+from ..converters import hue_rotate as hue_rotate_conv
+from ..converters import invert as invert_conv
+from ..converters import saturate as saturate_conv
 
 
 class Color:
@@ -416,7 +416,7 @@ def from_hsl(hsl, name=None):
 _here = path.abspath(path.dirname(__file__))
 
 # named colors: https://www.w3.org/TR/SVG/types.html#ColorKeywords
-with open(path.join(_here, 'color_keywords.json')) as f:
+with open(path.join(_here, '../color_keywords.json')) as f:
     _color_keywords = json.loads(f.read())
 
 NAMED_COLORS = tuple(Color(hex, name) for name, hex in _color_keywords)
