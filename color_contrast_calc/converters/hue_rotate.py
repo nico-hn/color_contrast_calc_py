@@ -22,7 +22,7 @@ SIN_PART = np.array([[-0.213, -0.715, 0.928],
 def calc_rgb(rgb, deg):
     """Return a hue rotation applied RGB value of passed color.
 
-    THe calculation is based on the definition found at
+    The calculation is based on the definition found at
     https://www.w3.org/TR/filter-effects/#funcdef-hue-rotate
     :param rgb: The Original RGB value before the rotation.
     :type rgb: (int, int, int)

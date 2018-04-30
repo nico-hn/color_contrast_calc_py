@@ -7,7 +7,7 @@ from . import rgb_clamp
 def calc_rgb(rgb, ratio=100):
     """Return contrast adjusted RGB value of passed color.
 
-    THe calculation is based on the definition found at
+    The calculation is based on the definition found at
     https://www.w3.org/TR/filter-effects/#funcdef-contrast
     :param rgb: The Original RGB value before the adjustment.
     :type rgb: (int, int, int)
