@@ -1,7 +1,7 @@
 import unittest
 import color_contrast_calc
 from color_contrast_calc import color_from
-from color_contrast_calc import InvalidColorRepresentationError
+from color_contrast_calc.color import InvalidColorRepresentationError
 
 class TestColorContrastCalc(unittest.TestCase):
     def setUp(self):
