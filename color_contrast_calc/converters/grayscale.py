@@ -1,3 +1,10 @@
+'''Implement a function that corresponds to a CSS filter grayscale().
+
+* https://www.w3.org/TR/filter-effects/#funcdef-grayscale
+* https://www.w3.org/TR/filter-effects/#grayscaleEquivalent
+* https://www.w3.org/TR/SVG/filters.html#feColorMatrixElement
+'''
+
 # https://www.w3.org/TR/filter-effects/#funcdef-grayscale
 # https://www.w3.org/TR/filter-effects/#grayscaleEquivalent
 # https://www.w3.org/TR/SVG/filters.html#feColorMatrixElement

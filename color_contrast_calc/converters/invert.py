@@ -1,3 +1,10 @@
+'''Implement a function that corresponds to a CSS filter invert().
+
+* https://www.w3.org/TR/filter-effects/#funcdef-invert
+* https://www.w3.org/TR/filter-effects-1/#invertEquivalent
+* https://www.w3.org/TR/SVG/filters.html#TransferFunctionElementAttributes
+'''
+
 # https://www.w3.org/TR/filter-effects/#funcdef-invert
 # https://www.w3.org/TR/filter-effects-1/#invertEquivalent
 # https://www.w3.org/TR/SVG/filters.html#TransferFunctionElementAttributes

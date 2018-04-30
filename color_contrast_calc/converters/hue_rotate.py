@@ -1,3 +1,8 @@
+'''Implement a function that corresponds to a CSS filter hue-rotate().
+
+* https://www.w3.org/TR/filter-effects/#funcdef-hue-rotate
+* https://www.w3.org/TR/SVG/filters.html#TransferFunctionElementAttributes
+'''
 # https://www.w3.org/TR/filter-effects/#funcdef-hue-rotate
 # https://www.w3.org/TR/SVG/filters.html#TransferFunctionElementAttributes
 

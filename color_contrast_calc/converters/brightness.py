@@ -1,3 +1,9 @@
+'''Implement a function that corresponds to a CSS filter brightness().
+
+* https://www.w3.org/TR/filter-effects/#funcdef-brightness
+* https://www.w3.org/TR/SVG/filters.html#TransferFunctionElementAttributes
+'''
+
 # https://www.w3.org/TR/filter-effects/#funcdef-brightness
 # https://www.w3.org/TR/SVG/filters.html#TransferFunctionElementAttributes
 
