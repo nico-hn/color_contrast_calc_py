@@ -17,7 +17,7 @@ _RATIO_PART = np.array([[0.7874, -0.7152, -0.0722],
 
 
 def calc_rgb(rgb, s):
-    """Convert passed a passed color to grayscale.
+    """Convert a passed color to grayscale.
 
     The calculation is based on the definition found at
     https://www.w3.org/TR/filter-effects/#funcdef-grayscale
