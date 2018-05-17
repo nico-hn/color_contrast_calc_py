@@ -11,9 +11,9 @@ from itertools import product
 from .. import utils
 from .. import checker
 
-from .color import Color
-from .color import NAME_TO_COLOR, HEX_TO_COLOR
-from .color import NAMED_COLORS, WEB_SAFE_COLORS
+from ._color import Color
+from ._color import NAME_TO_COLOR, HEX_TO_COLOR
+from ._color import NAMED_COLORS, WEB_SAFE_COLORS
 
 class InvalidColorRepresentationError(Exception):
     '''Error raised if creating a Color instance with invalid value.
