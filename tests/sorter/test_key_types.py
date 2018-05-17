@@ -1,7 +1,7 @@
 import unittest
 import operator
 from color_contrast_calc.color import Color
-from color_contrast_calc.sorter import sorter, key_types
+from color_contrast_calc.sorter import _sorter, key_types
 
 class TestKeyTypes(unittest.TestCase):
     def setUp(self):

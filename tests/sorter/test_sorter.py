@@ -2,7 +2,7 @@ import unittest
 import operator
 import color_contrast_calc.color as color_module
 from color_contrast_calc.color import Color
-from color_contrast_calc.sorter import sorter
+from color_contrast_calc.sorter import _sorter as sorter
 from color_contrast_calc import utils
 
 class TestSorter(unittest.TestCase):
